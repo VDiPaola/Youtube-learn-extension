@@ -1,0 +1,45 @@
+{
+  "name": "youtube-learn",
+  "description": "Active recall quizzes and spaced repetition for educational YouTube videos",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "wxt",
+    "dev:firefox": "wxt -b firefox --mv3",
+    "build": "wxt build",
+    "build:firefox": "wxt build -b firefox --mv3",
+    "zip": "wxt zip",
+    "zip:firefox": "wxt zip -b firefox --mv3",
+    "compile": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint:firefox": "web-ext lint --source-dir .output/firefox-mv3",
+    "postinstall": "wxt prepare",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test:smoke": "node scripts/smoke-test.mjs",
+    "eval:activities": "vitest run --config vitest.eval.config.ts"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.131.0",
+    "dexie": "^4.4.6",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitest/coverage-v8": "^5.0.3",
+    "@wxt-dev/module-react": "^1.1.5",
+    "fake-indexeddb": "^6.2.5",
+    "happy-dom": "^20.14.5",
+    "playwright": "^1.63.0",
+    "prettier": "^3.9.9",
+    "typescript": "^5.9.3",
+    "vitest": "^5.0.3",
+    "web-ext": "^10.5.0",
+    "wxt": "^0.21.3"
+  }
+}

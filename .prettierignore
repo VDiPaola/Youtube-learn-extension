@@ -1,0 +1,6 @@
+.output
+.wxt
+node_modules
+pnpm-lock.yaml
+tests/fixtures
+eval/output

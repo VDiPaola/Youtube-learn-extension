@@ -1,0 +1,49 @@
+/* !important is needed to win over WXT's `all: initial !important` host reset. */
+:host(ytl-learn-button) {
+  display: inline-flex !important;
+  align-items: center !important;
+  height: 100% !important;
+  vertical-align: top !important;
+  margin-right: 8px !important;
+  font-family: 'Roboto', system-ui, sans-serif !important;
+}
+
+.ytl-learn-button {
+  height: 32px;
+  padding: 0 14px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  font:
+    500 13px/1 'Roboto',
+    system-ui,
+    sans-serif;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.ytl-learn-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.ytl-learn-button:focus-visible {
+  outline: 2px solid #8ab4ff;
+  outline-offset: 2px;
+}
+
+.ytl-learn-button.ytl-busy {
+  opacity: 0.8;
+  cursor: progress;
+}
+
+.ytl-learn-button.ytl-ready {
+  background: #8ab4ff;
+  border-color: #8ab4ff;
+  color: #0b1220;
+  font-weight: 600;
+}
+
+.ytl-learn-button.ytl-failed {
+  border-color: #ff9a92;
+}

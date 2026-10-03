@@ -1,0 +1,5600 @@
+{
+  "videoId": "WkOnWfNMqqU",
+  "kind": "timedtext",
+  "languageCode": "en",
+  "capturedAt": "2026-10-02T15:02:15.411Z",
+  "body": {
+    "wireMagic": "pb3",
+    "pens": [
+      {}
+    ],
+    "wsWinStyles": [
+      {},
+      {
+        "mhModeHint": 2,
+        "juJustifCode": 0,
+        "sdScrollDir": 3
+      }
+    ],
+    "wpWinPositions": [
+      {},
+      {
+        "apPoint": 6,
+        "ahHorPos": 20,
+        "avVerPos": 100,
+        "rcRows": 2,
+        "ccCols": 40
+      }
+    ],
+    "events": [
+      {
+        "tStartMs": 0,
+        "id": 1,
+        "wpWinPosId": 1,
+        "wsWinStyleId": 1
+      },
+      {
+        "tStartMs": 160,
+        "dDurationMs": 6560,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "So, two interesting things happened last\nweek. Firstly, the 1.5 degrees report",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 4480,
+        "dDurationMs": 5520,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "came out from the United Nations, and it\nsaid what I've been saying on this",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 8080,
+        "dDurationMs": 7200,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "channel for a while. That climate change\nis very serious, that we're not going to",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 12000,
+        "dDurationMs": 7119,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "limit warming to 1.5°, but we can and\nmust limit warming as much as possible",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 17760,
+        "dDurationMs": 4800,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "and eventually bring the temperature\nanomaly to below 1.5. And I'm not going",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 21119,
+        "dDurationMs": 5441,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "to go through this report in this video\nin great detail. I think I'm going to do",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 24240,
+        "dDurationMs": 5520,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "that across a couple of projects. In\nthis video, I want to focus on what I",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 28240,
+        "dDurationMs": 6400,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "think is the key takeaway from that\nreport, which is what we're doing isn't",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 32559,
+        "dDurationMs": 6561,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "working. Like, we are turning the ship.\nWe have successfully reduced the rate of",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 37840,
+        "dDurationMs": 5360,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "increase of emissions. In fact, they\nhave basically flatlined over the past",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 40800,
+        "dDurationMs": 6000,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "10 years. We have successfully decoupled\neconomic growth from carbon emissions.",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 45200,
+        "dDurationMs": 6160,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "And we're seeing emissions fall in a\nbunch of key geographies. What we're",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 48559,
+        "dDurationMs": 7121,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "doing is working, just not fast enough.\nAnd my take away from that is we need to",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 53360,
+        "dDurationMs": 6320,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "get better at communicating the reality\nof climate change, the severity of the",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 58000,
+        "dDurationMs": 6799,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "situation that we are facing and the\npossible futures this century. Who is to",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 62480,
+        "dDurationMs": 6720,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "blame for those potential futures and\nwhat we can do to try and limit the",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 67040,
+        "dDurationMs": 5200,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "warming as much as possible? [music] And\nwe need to get better at this",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 70400,
+        "dDurationMs": 6719,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "communication. And I think a key part of\nthat is doing communication in unusual",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 75200,
+        "dDurationMs": 5919,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "ways. I've been saying for years that we\nneed to get weird with climate",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 79040,
+        "dDurationMs": 6079,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "communications, which brings me on to\nthe other interesting thing that",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 82400,
+        "dDurationMs": 7039,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "happened to me last week. I greatly\nenjoyed talking to",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 86720,
+        "dDurationMs": 7840,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": ">> My name is Jess Riches. I am a content\ncreator, specifically talking about",
+            "acAsrConf": 0,
+            "isSpeakerChange": 1
+          }
+        ]
+      },
+      {
+        "tStartMs": 91840,
+        "dDurationMs": 6400,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "climate change and AI. I use um\ninteresting methods to get people to",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 96640,
+        "dDurationMs": 5920,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "care about things in the world that I\nthink they should care about.",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 99200,
+        "dDurationMs": 8000,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": ">> And what platforms do you create on?\n>> Oh, a leading question. Yes, it was a",
+            "acAsrConf": 0,
+            "isSpeakerChange": 1
+          }
+        ]
+      },
+      {
+        "tStartMs": 104960,
+        "dDurationMs": 6320,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "leading question because Jess posts on\nOnly Fans, which if you're not familiar,",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 109280,
+        "dDurationMs": 6720,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "is a paid content subscription service\ngeared towards individual creators,",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 113759,
+        "dDurationMs": 6161,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "mostly but not exclusively used for\nadult content. But in addition to her",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 117840,
+        "dDurationMs": 5840,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "own work on Only Fans, Jess has been in\nthe news recently because of her role in",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 121520,
+        "dDurationMs": 5840,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "an incredible climate campaign called\nHeadline Nudes.",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 125040,
+        "dDurationMs": 5120,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": ">> So Headline Nudes is basically a way to\nget people to engage with climate",
+            "acAsrConf": 0,
+            "isSpeakerChange": 1
+          }
+        ]
+      },
+      {
+        "tStartMs": 128720,
+        "dDurationMs": 4080,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "content who would usually scroll past\nclimate content. And I was like, how do",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 131680,
+        "dDurationMs": 4720,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "you stop people scrolling past\nsomething? And the answer was boobs. The",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 134879,
+        "dDurationMs": 4561,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "answer was boobs. That's how you stop\npeople scrolling fast. And so we were",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 138080,
+        "dDurationMs": 4799,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "like, well, there just must be something\nthat we can do that can um catch the",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 141520,
+        "dDurationMs": 5280,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "attention of the people who aren't\nusually reached by climate messaging.",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 145520,
+        "dDurationMs": 4079,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "And people, when I say that, people\nthink I'm talking about like climate",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 148080,
+        "dDurationMs": 4640,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "deniialists and things like that. But\nactually, that's not who I'm talking",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 150959,
+        "dDurationMs": 4961,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "about. Climate denialists are a really,\nreally small percentage of very loud",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 154480,
+        "dDurationMs": 4960,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "people who have got that as their\nidentity. And what I wanted to show with",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 157920,
+        "dDurationMs": 5039,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "this campaign is that you can look like\nanything and anyone and care about the",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 161360,
+        "dDurationMs": 4720,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "climate. And that can involve the people\nthat you might not expect. And for some",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 164160,
+        "dDurationMs": 5600,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "reason, people don't expect sex workers\nand only fans creators to passionately",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 168239,
+        "dDurationMs": 4720,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "care about the climate, but they do. The\npeople that I know who do sex work and",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 171280,
+        "dDurationMs": 5039,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "have only fans definitely do care about\nthe climate. They're actually really",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 174239,
+        "dDurationMs": 5280,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "good messengers for climate stories\nbecause they're connected to the",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 177920,
+        "dDurationMs": 5679,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "physical body and all of the things that\nour super capitalist society is trying",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 181437,
+        "dDurationMs": 7363,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "[music]"
+          },
+          {
+            "utf8": " to separate us from by creating\nthis individualistic technology focused",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 185920,
+        "dDurationMs": 7280,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "world. Um, and I think that working with\nthem gives us the ability to connect to",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 190640,
+        "dDurationMs": 7840,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "something more [music] innate within us,\nwhich is this desire to live and the",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 196720,
+        "dDurationMs": 5920,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "climate crisis is a barrier to that. So,\nHeadline needs is essentially a series",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 200400,
+        "dDurationMs": 6640,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "of um, comedy shorts that are performed\nby adult content creators um, just",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 204879,
+        "dDurationMs": 7360,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "giving really straightforward climate\nscience and politics facts to camera but",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 209760,
+        "dDurationMs": 6000,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "wearing very few clothes. And they kind\nof start off like porn pastiches. So",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 214400,
+        "dDurationMs": 4800,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "when you would see it on your Instagram,\nyou would be like, \"Oh, I know what this",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 217599,
+        "dDurationMs": 6081,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "one is.\" Because there's so many kind of\ngenres and categories of porn. We did",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 221280,
+        "dDurationMs": 6480,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "two Dominatrix ones in series 1. We had\na dominatrix who was pouring black",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 225920,
+        "dDurationMs": 7280,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "trial, which looks like oil, onto a\nsoldier to talk about oil wars in the",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 230000,
+        "dDurationMs": 8239,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "US. We had a dominatrix um spanking a\npiggy to talk about banks and how banks",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 235920,
+        "dDurationMs": 5599,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "are making lots of money from not\ntransitioning fully to renewable energy,",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 240159,
+        "dDurationMs": 4640,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "which they absolutely could [music] do.\nWe had a kind of cute girlfriend",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 242959,
+        "dDurationMs": 5761,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "experience one of someone in bed and who\nwas then explaining how the sun is daddy",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 246560,
+        "dDurationMs": 6560,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "because the sun can provide all of the\nenergy that we need to um power the",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 250959,
+        "dDurationMs": 5921,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "world. We had a geography teacher one\nwhich was a very classic one. We did a",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 254879,
+        "dDurationMs": 6480,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "housewife one which was about size\nqueens and talking about how 1.5°",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 259040,
+        "dDurationMs": 5520,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "actually is a lot bigger than it sounds.\nAnd this series, we have Lily Phillips,",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 263120,
+        "dDurationMs": 5840,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "who's known for having [music] sex with\nover a thousand men in 14 hours, talking",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 266880,
+        "dDurationMs": 5599,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "about how the world is obsessed with her\nbody count, but maybe it should be more",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 270479,
+        "dDurationMs": 5361,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "obsessed with the body count of big oil.\nUm, and I'm really excited for that one",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 274479,
+        "dDurationMs": 4961,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "to come out cuz I think it's maybe my\nfavorite thing I've ever written. We",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 277280,
+        "dDurationMs": 6000,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "also have Girth Master talking about the\nGodzilla El Nino that we have coming",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 281360,
+        "dDurationMs": 6240,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "because he is the person who knows about\nbig things. So, we're able to lean into",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 285680,
+        "dDurationMs": 7519,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "the niches of the content creators and\nour expectations of porn as a content",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 290080,
+        "dDurationMs": 6800,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "type to create these quite funny videos\nthat give you the ability to actually",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 294960,
+        "dDurationMs": 5120,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "give straightforward climate science and\npolitics in a way that [music] people",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 298479,
+        "dDurationMs": 3841,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "will actually listen to. It's only 90\nseconds, but people would scroll past if",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 301600,
+        "dDurationMs": 4319,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "there were no boobs.\n>> And to be clear, this isn't stuff that's",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 303919,
+        "dDurationMs": 5280,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "only being posted on Only Fans. Like\nthat was my initial perception when when",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 307680,
+        "dDurationMs": 6320,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "I heard about this campaign and I\nthought surely people aren't going on",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 311199,
+        "dDurationMs": 6000,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "only fans for for this kind of content.\nThis is stuff that they can and do post",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 316639,
+        "dDurationMs": 4000,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "elsewhere.\n>> We do have an Only Fans channel for the",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 319039,
+        "dDurationMs": 5201,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "campaign and we just post the same\nvideos that are on um Instagram with a",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 322720,
+        "dDurationMs": 6240,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "slight slight tweak to them. We're going\nto be posting on OFTV um which is Only",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 326880,
+        "dDurationMs": 4879,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "Fans uh safer work platform. So we're\ngoing to be posting on there with some",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 330160,
+        "dDurationMs": 4960,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "additional science facts [music] this\nseason as well which is very exciting.",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 333680,
+        "dDurationMs": 4799,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "And you mentioned Instagram that that\nyou're posting this on. This is this",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 336479,
+        "dDurationMs": 5841,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "isn't content that's just going on only.\nI mean, presumably this is going on like",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 340560,
+        "dDurationMs": 5199,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "all vertical video hosting sites. We're\ndoing this in partnership with Yellow",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 343440,
+        "dDurationMs": 6319,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "Dot Studios, I should mention, who um is\na nonprofit founded by Adam McKay, who",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 347919,
+        "dDurationMs": 6321,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "is the director [music] of Don't Look Up\nand The Big Short and Anchor Man and",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 352080,
+        "dDurationMs": 5440,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "lots of incredible films and obviously\nunderstands comedy and climate in a",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 356160,
+        "dDurationMs": 4960,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "really specific way, but obviously\ndoesn't have the connection to the adult",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 359120,
+        "dDurationMs": 7680,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "content creator um community in the way\nthat myself and my collaborators Bri and",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 363199,
+        "dDurationMs": 7201,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "Meg, who um I created this with have. So\num it's a kind of the dream team. Um,",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 368639,
+        "dDurationMs": 5601,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "and so in terms of distribution, we\ncreate them so that they could go on",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 372560,
+        "dDurationMs": 4960,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "social media. They have worked on\nInstagram. We've had some taken off of",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 376000,
+        "dDurationMs": 5199,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "YouTube because YouTube does not love\nthe fetish content, but we have some",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 379120,
+        "dDurationMs": 7440,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "that can go on YouTube. Um, so we we we\nmake them so that they can technically",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 383440,
+        "dDurationMs": 6319,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "not [music] be against Meta's um, rules\nand guidelines because that is the one",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 388160,
+        "dDurationMs": 5440,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "that we're kind of where most of our\ncreator audiences are. We wouldn't post",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 391600,
+        "dDurationMs": 5760,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "on Tik Tok. They're so strict. Um, it\nwouldn't it wouldn't work at all. And um",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 396240,
+        "dDurationMs": 4079,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "we were thinking about posting on\nPornhub but you're not allowed to post",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 398560,
+        "dDurationMs": 5040,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "anything political on Pornhub. I think\nthat's you know they're just they know",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 401759,
+        "dDurationMs": 4961,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "where they're wanted and it's not in\npolitics. I more think it's because if",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 405360,
+        "dDurationMs": 5200,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "you were on Pornhub for the reason that\nmost people are on Pornhub, you might be",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 408240,
+        "dDurationMs": 4640,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "quite disconcerted and you'd be very\nagainst seeing some climate messaging",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 412479,
+        "dDurationMs": 4961,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "there.\n>> Though not without some issues that are",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 415199,
+        "dDurationMs": 6241,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "quite revealing, no pun intended.\n>> We had to censor some of our videos that",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 419039,
+        "dDurationMs": 6321,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "went on Instagram for Only Fans, which\nis quite funny. All of these platforms",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 423440,
+        "dDurationMs": 5280,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "have different rules and they honestly\njust make it really hard to be a sex",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 426800,
+        "dDurationMs": 5360,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "worker. They don't want sex workers to\nhave any autonomy in being able to sell",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 430319,
+        "dDurationMs": 5681,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "anything with their own bodies, but it's\nfine if it's like an advert for perfume",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 433840,
+        "dDurationMs": 6240,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "or something. The videos that we created\nfor our climate change campaign, we had",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 438560,
+        "dDurationMs": 6400,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "some stock footage in there which had\npeople in, but every single person who's",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 441759,
+        "dDurationMs": 7121,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "included in an in only fans video has to\nhave an account which has their ID and",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 447039,
+        "dDurationMs": 5041,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "their age because obviously um no\nunderage people are allowed on there. So",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 450479,
+        "dDurationMs": 5280,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "while we had stock footage of like crowd\nscenes and stuff, we had to completely",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 453520,
+        "dDurationMs": 5760,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "blur it out. Whereas on Instagram, we\ncan kind of have the full version. We",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 457520,
+        "dDurationMs": 6079,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "have not made fully sexually explicit\nclimate campaign content because I",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 461919,
+        "dDurationMs": 6000,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "didn't want to get into the experience\nof being a porn producer for this. Um,",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 465599,
+        "dDurationMs": 6160,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "which is a whole different legal system.\nUm, but it is using adult content",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 469759,
+        "dDurationMs": 5041,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "creators um, who have been doing this\nfor much longer and more effectively",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 472960,
+        "dDurationMs": 5359,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "than I have and who do do usually talk\nabout things that are not climate change",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 476240,
+        "dDurationMs": 6480,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "because Only Fans is not just like you\nsay, it's not just for sexually explicit",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 480319,
+        "dDurationMs": 5600,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "content. Um, it's for lonely people\nreally or just people who want to build",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 484560,
+        "dDurationMs": 5440,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "deeper connections with the creators\nthat they follow. And that sometimes",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 488560,
+        "dDurationMs": 4319,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "includes sexual content if that's\navailable, but sometimes it's just",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 491440,
+        "dDurationMs": 4000,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "having someone to speak to at the end of\nthe day.",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 493199,
+        "dDurationMs": 5521,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": ">> So, how did the campaign happen? Like\nwas there a moment when you just thought",
+            "acAsrConf": 0,
+            "isSpeakerChange": 1
+          }
+        ]
+      },
+      {
+        "tStartMs": 497199,
+        "dDurationMs": 5440,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "I want to do this, I'm going to make\nthis cool and you know make this happen.",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 500800,
+        "dDurationMs": 6000,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "Like what was the the genesis?\n>> Meg Prescott, my co-creator on this",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 504400,
+        "dDurationMs": 6639,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "campaign, one of my best friends, she um\nused to be in a TV show called Skins.",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 508400,
+        "dDurationMs": 5680,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "Skins was a relatively sexual TV show.\nIt was known for being quite rounchy and",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 512479,
+        "dDurationMs": 4081,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "risque, but they were absolutely not\nlike given the right amount of money for",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 515599,
+        "dDurationMs": 4481,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "that. There were no intimacy\ncoordinators and they were all very",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 517760,
+        "dDurationMs": 5360,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "young. and she then went on to do only\nfans during the pandemic and she joined",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 521680,
+        "dDurationMs": 5440,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "the board of a charity called national\nugly mugs which um is the only charity",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 524959,
+        "dDurationMs": 5521,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "in the UK working to protect sex workers\nfrom violence. So through her I",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 529040,
+        "dDurationMs": 6560,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "understood how [music]\nsex work and only fans are actually very",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 532800,
+        "dDurationMs": 7520,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "different to what we as a general\npopulation might expect from them and I",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 538160,
+        "dDurationMs": 6000,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "met one of her very close friends Brig\nwho's a YouTuber who started doing Only",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 542320,
+        "dDurationMs": 4639,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "Fans as well and is very very popular on\nthe platform. So, I was like, \"Okay,",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 545839,
+        "dDurationMs": 4000,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "these people are awesome. They're the\nfunniest, most talented people I've ever",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 548399,
+        "dDurationMs": 5361,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "met, and they have these huge audiences\nwith people who are very, very, very",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 551680,
+        "dDurationMs": 6320,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "engaged.\" I was like, we need to use the\nfact that you get all this engagement to",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 555920,
+        "dDurationMs": 5840,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "engage. So, I'm very obsessed with how\ndo we use stories and storytellers and",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 559839,
+        "dDurationMs": 5841,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "specifically now parasocial\nrelationships. If you look at the way",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 563120,
+        "dDurationMs": 8000,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "that the Trump campaign won [music] most\nrecently, but also just the Steve Bannon",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 568080,
+        "dDurationMs": 6480,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "approach to comms, has always been flood\nthe zone. and flood the zone is just not",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 573120,
+        "dDurationMs": 4640,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "something we've seen in progressive\nbecause we do not have the budgets and",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 576399,
+        "dDurationMs": 6000,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "we actually just don't have the strategy\nthat they have. And so I was doing a lot",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 580160,
+        "dDurationMs": 5679,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "of research into kind of how that works,\nwho's funding it, what those platforms",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 584000,
+        "dDurationMs": 5360,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "and channels look like, what those\nessentially radicalization pipelines",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 587600,
+        "dDurationMs": 5520,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "look like from people engaging with base\nlevel influencer content up to, okay,",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 591839,
+        "dDurationMs": 4881,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "I'm slightly interested in this, maybe\nI'll follow you on a different platform",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 594480,
+        "dDurationMs": 5760,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "to being a fan of Turning Point or Daily\nWire and then being able to have this",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 598720,
+        "dDurationMs": 5360,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "really, really steady stream of\npropaganda pumped to you at all times if",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 602399,
+        "dDurationMs": 5440,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "you've kind of gone down that rabbit\nhole. And I was thinking, we just don't",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 606000,
+        "dDurationMs": 5200,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "have anything like this. And I was\nlooking at the electoral spending of the",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 609200,
+        "dDurationMs": 5920,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "2024 election and seeing that for the\nfirst time ever, Democrats had outspent",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 613360,
+        "dDurationMs": 4640,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "Republicans on electoral spending, which\nwas crazy to me because we've always",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 616480,
+        "dDurationMs": 4960,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "seen that there's been a huge like\ndisparity in that. But it's because",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 619920,
+        "dDurationMs": 4880,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "Republicans don't have to do that\nspending because they have this always",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 622800,
+        "dDurationMs": 5200,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "on platform. So all of that is to say, I\nwas obsessed with how do we take",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 626560,
+        "dDurationMs": 5279,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "advantage of the fact that we have some\nparasocial relationships that they",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 629839,
+        "dDurationMs": 5120,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "haven't tapped into yet when it comes to\ncommunicating [music] complex issues.",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 633519,
+        "dDurationMs": 4801,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "How can we build our own propaganda\nmachine? Essentially, that was when I",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 636800,
+        "dDurationMs": 4640,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "went and interviewed Stacy Robert\nSteele, who's one of the producers at um",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 640240,
+        "dDurationMs": 4400,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "she's the managing director of Yellow\nDot Studios. She was a co-producer on",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 643200,
+        "dDurationMs": 5040,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "Don't Look Up, works really closely with\nAdam McKay, who is, in my opinion, the",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 646720,
+        "dDurationMs": 7040,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "person who's succeeding in making\nclimate messaging reach wider audiences.",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 650640,
+        "dDurationMs": 6480,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "Don't Look Up is my favorite film. And I\nwas just there and I was like, I'm going",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 654959,
+        "dDurationMs": 5120,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "to shoot my shot. I am going to shoot my\nshot and tell this amazing, incredible,",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 658720,
+        "dDurationMs": 4640,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "talented woman who's made Hollywood\nfilms that I think we should make",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 662000,
+        "dDurationMs": 4000,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "climate porn. That conversation\nhappened. I thought it was going to be",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 664560,
+        "dDurationMs": 4560,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "the type of conversation that never goes\nanywhere. You just have a chat and then",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 667440,
+        "dDurationMs": 5680,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "you're like, \"Okay, great to meet you.\nLike, see you in 5 years.\" But we all",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 671120,
+        "dDurationMs": 6719,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "followed up. We had these conversations.\nWe co-created it with Only Fans creators",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 675519,
+        "dDurationMs": 5601,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "from the start. What worked so well was\nthat that they know their channels. They",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 679519,
+        "dDurationMs": 4481,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "know their audiences. [music] They know\nwhat people like. They know what you can",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 682560,
+        "dDurationMs": 4800,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "post on Instagram without getting\nbanned. We know the climate stuff, the",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 686240,
+        "dDurationMs": 4880,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "science stuff, the politics [music]\nstuff. I know the kind of narrative",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 689040,
+        "dDurationMs": 4960,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "theory about what gets people to listen.\nYellow Dot are very, very funny. wrote",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 692959,
+        "dDurationMs": 4961,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "the [music] scripts based on some\nconcepts that we all came up with",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 695200,
+        "dDurationMs": 7840,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "together about what could be a good\nclimate science and sexy and easy to",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 701120,
+        "dDurationMs": 5360,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "digest in 90 seconds which is a ven\ndiagram that's actually quite fun to",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 704720,
+        "dDurationMs": 4960,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "find the middle of there's lots of puns\nthat you can make",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 707519,
+        "dDurationMs": 5921,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": ">> how do you pitch this to someone like\nlike say Lily Phillips like or or did",
+            "acAsrConf": 0,
+            "isSpeakerChange": 1
+          }
+        ]
+      },
+      {
+        "tStartMs": 712160,
+        "dDurationMs": 6000,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "they come to you\n>> the first series explaining what we",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 715360,
+        "dDurationMs": 6560,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "wanted to do was a conundrum because you\nit is really hard to say it is it is",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 719839,
+        "dDurationMs": 5761,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "funny it's definitely comedy but it is\nalso climate science, which is, you",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 723600,
+        "dDurationMs": 4080,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "know, not typically funny. And it's also\nkind of you're not going to be wearing",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 726639,
+        "dDurationMs": 5041,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "many clothes and you're going to be\nleaning into porn stereotypes. That was",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 730240,
+        "dDurationMs": 4480,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "uh that was a challenge, but people kind\nof just trusted us because of Meg's",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 733200,
+        "dDurationMs": 5280,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "relationship. And I think, you know,\nit's it's always good for sex workers to",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 736639,
+        "dDurationMs": 4961,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "have credits on more mainstream things\nbecause they're so discriminated against",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 740079,
+        "dDurationMs": 4721,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "and from their work anyway. So, we're\nable to offer that as well as obviously",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 743200,
+        "dDurationMs": 4720,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "we pay everybody for their time. Like\nall of the people who got involved in",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 746240,
+        "dDurationMs": 4320,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "series 1 did it because they genuinely\nare passionate about [music] climate",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 749040,
+        "dDurationMs": 5440,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "change and they wanted to talk about\nthese issues and not just the climate",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 752880,
+        "dDurationMs": 4880,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "change itself but the societal issue\nthat climate change is a symptom of",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 756240,
+        "dDurationMs": 4719,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "which is the inequality and the\nconcentration of power of the rich men",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 759360,
+        "dDurationMs": 4719,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "which we have to keep reminding people\nthat this was not just a random thing",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 762480,
+        "dDurationMs": 4533,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "that happened like it was planned it was\ncaused. They did it on purpose. They're",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 765440,
+        "dDurationMs": 4639,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "still doing it on purpose. And so\n[music] with series 2 we had the",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 768399,
+        "dDurationMs": 5281,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "examples and we could just be like look\nthis went really well. It was in the",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 771200,
+        "dDurationMs": 5439,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "Guardian. It was in NME. It was in LBC.\nlike all of these mainstream places that",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 775279,
+        "dDurationMs": 5761,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "were talking about it. So, we reached\nout to Lily Phillips kind of as like a a",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 779200,
+        "dDurationMs": 4800,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "prayer. She's the mainstream crossover.\nShe's the most charming and sweet",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 782320,
+        "dDurationMs": 5199,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "person, but she has this story that like\npeople that precede her. 25 years old",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 786079,
+        "dDurationMs": 5041,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "and has made this great career for\nherself. Like insane stunty things, but",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 789600,
+        "dDurationMs": 4799,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "very much the world that we live in\nright now. And she really cares about",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 792800,
+        "dDurationMs": 4800,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "this. Like I was chatting to her about\nlike how there's no such thing as an",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 796000,
+        "dDurationMs": 5040,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "ethical billionaire. And she was just\nlike saying all of this stuff and I was",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 799040,
+        "dDurationMs": 5760,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "like she showed me memes that she liked\nabout billionaires. And I was like, see,",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 803200,
+        "dDurationMs": 4560,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "like people underestimate you. And\nthat's the thing. People underestimate",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 806160,
+        "dDurationMs": 4880,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "Lily. They underestimate everyone who\nsays they do sex work. Like I love",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 809680,
+        "dDurationMs": 4399,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "talking to people and they ask me what I\ndo and I get to say I have an Only Fans.",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 812959,
+        "dDurationMs": 3841,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "And then they just have this like\nexpectation about me and the type of",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 815600,
+        "dDurationMs": 4239,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "thing that I do. But then they'll and\nthen I'll say, well, you know, we could",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 818079,
+        "dDurationMs": 4641,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "talk about something else and I can\nprobably like run rings around them when",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 821519,
+        "dDurationMs": 3601,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "they want to talk about like the\nstructures of the world that we live in",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 824160,
+        "dDurationMs": 4400,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "because that's actually what I think\nabout. I'm just using Only Fans as a",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 826800,
+        "dDurationMs": 6080,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "tactic to reach people. And I mean, do\nyou have a list of people that you you'd",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 830240,
+        "dDurationMs": 5440,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "like to work with for say I I know\nseason 2 hasn't even finished yet, but",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 834240,
+        "dDurationMs": 3839,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "like for season 3, is there anyone that\nyou'd like to to call out?",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 836880,
+        "dDurationMs": 3680,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": ">> I don't know. There are some celebrities\nI'd really love to work with that I",
+            "acAsrConf": 0,
+            "isSpeakerChange": 1
+          }
+        ]
+      },
+      {
+        "tStartMs": 839600,
+        "dDurationMs": 5599,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "thought would be great. Like I think\nJillian Anderson does great work in the",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 843040,
+        "dDurationMs": 5440,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "sexy space [music] and she's really\nconnected to that and I think she would",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 846639,
+        "dDurationMs": 4880,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "number one has a great Only Fans even if\nshe just used it to post about climate",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 849839,
+        "dDurationMs": 5601,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "change a couple of times. We could do\nsome really fun content with her like um",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 853440,
+        "dDurationMs": 5440,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "mily stuff around like explaining how\npensions are actually a big reason that",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 857120,
+        "dDurationMs": 4560,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "we haven't been able to have climate\naction in the way that we want because",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 860079,
+        "dDurationMs": 5281,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "of where the oil stays in the ground. No\none makes money from it. Um I think",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 863120,
+        "dDurationMs": 5440,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "there's a good explainer in there. Um in\na similar vein like Liz Hurley is always",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 867040,
+        "dDurationMs": 5680,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "posting really really sexy pictures of\nherself on the internet and maybe she",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 870399,
+        "dDurationMs": 6000,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "would be interested in um having an only\nfans. Um I would love to do Jane Fonder",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 874800,
+        "dDurationMs": 5520,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "at some point. That would be great. So\nthere are definitely um some the milks.",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 878399,
+        "dDurationMs": 3361,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "I really want the milk symbol milky\nlist.",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 880959,
+        "dDurationMs": 4801,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": ">> You [laughter] got to look at that. But\n>> what what's interesting there is that",
+            "acAsrConf": 0,
+            "isSpeakerChange": 1
+          }
+        ]
+      },
+      {
+        "tStartMs": 883279,
+        "dDurationMs": 7360,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "you originally started like season 1 was\npeople who were creating on only fans.",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 887279,
+        "dDurationMs": 8641,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "Now in season two it only fans creators\nwho have kind of spread out into the",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 893360,
+        "dDurationMs": 8960,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "mainstream and then for season 3 you're\nsaying mainstream people I'd like them",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 899839,
+        "dDurationMs": 7521,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "to start creating stuff on only fans.\nSo, do you think a potential outcome of",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 904959,
+        "dDurationMs": 6000,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "this campaign is that it kind of\nlegitimizes",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 909120,
+        "dDurationMs": 5200,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "sex work and it shows people that if you\nupload to only fans, you're more than",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 912959,
+        "dDurationMs": 5281,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "just commodity.\n>> That is so important to us with this",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 916160,
+        "dDurationMs": 5520,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "campaign. Like I obviously it's a\nclimate campaign, but as I mentioned,",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 919760,
+        "dDurationMs": 7120,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "climate [music] is change is a symptom\nof a broken system and sex workers are",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 924399,
+        "dDurationMs": 5921,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "very much a victim of that system just\nin the way that they're stigmatized and",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 928240,
+        "dDurationMs": 6159,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "treated. And this campaign has allowed\nus to go out and say things like, \"Why",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 932480,
+        "dDurationMs": 5599,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "are you questioning why Lily Phillips is\ntalking about climate change when there",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 936000,
+        "dDurationMs": 5279,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "has been wildfires in the UK and Andy\nBurnham, our prime minister, has not",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 939680,
+        "dDurationMs": 4640,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "mentioned climate change?\" Like, it\nseems insane to me that you're asking me",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 942800,
+        "dDurationMs": 4995,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "why Lily Phillips is talking about it\nand you're not saying, \"Why is everybody",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 946079,
+        "dDurationMs": 4801,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "else not constantly talking about\n[music] it?\" Like that just seems so",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 949440,
+        "dDurationMs": 5920,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "inongress to me that people would much\nrather be like why is this lady taking",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 953440,
+        "dDurationMs": 5360,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "her top off when it's like no but why is\nthis man literally killing like four",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 956959,
+        "dDurationMs": 5841,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "billion people if you look at the effect\nthat [music] we're going to see over the",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 960560,
+        "dDurationMs": 5760,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "next few years. It's wild the the\ndiscrepancy. So it gives us a platform",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 964800,
+        "dDurationMs": 5520,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "in which to have those conversations and\noften it's just a logic leap in people's",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 968079,
+        "dDurationMs": 5120,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "brains that they aren't able to when you\nexplain it to them like that they're",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 971440,
+        "dDurationMs": 5680,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "like oh yeah like you're so right and\nthere's a lot of internalized shame and",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 974959,
+        "dDurationMs": 5281,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "confusing feelings around sex which is\nobviously again another result of a",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 978880,
+        "dDurationMs": 6560,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "system that has like repression and\noppression built into it. And trying to",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 982639,
+        "dDurationMs": 6241,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "unpack those things is a really great\nway to get people to understand that the",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 987279,
+        "dDurationMs": 5281,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "climate crisis is something that was\ncaused that was done to us [music] and",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 990959,
+        "dDurationMs": 5761,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "that we are not the enemies of each\nother. Whichever message we are choosing",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 994800,
+        "dDurationMs": 4159,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "to take to the masses and however we're\nchoosing to communicate that.",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 997759,
+        "dDurationMs": 4241,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": ">> And there's a long history of sex\nworkers taking part in social campaigns,",
+            "acAsrConf": 0,
+            "isSpeakerChange": 1
+          }
+        ]
+      },
+      {
+        "tStartMs": 1000959,
+        "dDurationMs": 5680,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "right? That might not have been only\nfans praise. Sure. But like sex workers",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1004480,
+        "dDurationMs": 5919,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "more broadly have been part of campaigns\nlike this before. I think it's",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1008240,
+        "dDurationMs": 6719,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "interesting because sex workers often\nthey're kind of at the bottom of the the",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1012560,
+        "dDurationMs": 7040,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "totem pole of society. There's nothing\nleft to lose I guess in some in terms of",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1017360,
+        "dDurationMs": 6880,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "perception. So there's a lot of\nexpectation of like the shame or like",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1022079,
+        "dDurationMs": 6880,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "being scared to put if you're kind of\nprivileged and you're profiting and",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1025839,
+        "dDurationMs": 7200,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "benefiting from a society that has these\num injustices in it. if you are not",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1031199,
+        "dDurationMs": 5441,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "really a victim of those injustices yet\nor you don't perceive yourself to be,",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1034880,
+        "dDurationMs": 5039,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "you are much less inclined to speak out\nagainst that system because you are",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1038319,
+        "dDurationMs": 5681,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "benefiting from it. But when you take\npeople who have just disenfranchised by",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1042000,
+        "dDurationMs": 5356,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "society with this reputation that's\ncompletely unearned because it comes",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1045439,
+        "dDurationMs": 5521,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "from people's internalized issues\n[music] with sex and relationships, then",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1049600,
+        "dDurationMs": 4959,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "you are kind of in a position where\nyou're like actually I am going to speak",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1052799,
+        "dDurationMs": 5041,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "out about this because I [music] see the\nbigger picture. And also, one thing that",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1056240,
+        "dDurationMs": 4480,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "Meg always says, who is obviously a lot\nmore connected to the sex worker right",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1059280,
+        "dDurationMs": 5360,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "side of this than I am, although I'm\nlearning, is that you see that people",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1063039,
+        "dDurationMs": 4481,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "treat sex workers the way that they\nwould treat all women if they could.",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1066320,
+        "dDurationMs": 5040,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "They just think that because there's a\nservice that's being paid for that it",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1069600,
+        "dDurationMs": 5280,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "gives them free reign to kind of be\nbrutal or be cruel. A lot of the",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1073360,
+        "dDurationMs": 5840,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "inconsequential\nnonsense and the inconsistencies that I",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1076960,
+        "dDurationMs": 7200,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "see around treatment of women, treatment\nof people in like different jobs, but",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1081600,
+        "dDurationMs": 5520,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "specifically sex work is coming to the\nfour in this and giving us a great way",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1085520,
+        "dDurationMs": 3840,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "to talk about that as part of the\nproblem when it comes to things like",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1088400,
+        "dDurationMs": 5519,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "climate change.\n>> In terms of the response to it, have you",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1091520,
+        "dDurationMs": 5920,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "seen anything that surprised you? Like\ncuz I think there's two possibilities",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1095360,
+        "dDurationMs": 6800,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "here. Like there's one world, as we just\nsaid, where you legitimize sex work, but",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1100799,
+        "dDurationMs": 7361,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "then there's also the possibility that\nsome people view this campaign as almost",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1105679,
+        "dDurationMs": 5601,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "demeaning the climate movement and and\nlike the message that we're trying to",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1109360,
+        "dDurationMs": 5040,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "get across here. Have you have you seen\nanything like that?",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1112480,
+        "dDurationMs": 7040,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": ">> Yeah, mainly we've had a couple of like\nwomen um do that. We have men who um",
+            "acAsrConf": 0,
+            "isSpeakerChange": 1
+          }
+        ]
+      },
+      {
+        "tStartMs": 1118000,
+        "dDurationMs": 5200,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "sort of just get angry about women\nreally doing anything um and they say,",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1121360,
+        "dDurationMs": 5199,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "\"Oh, this is what society's come to.\"\nAnd I'm like, I mean, yeah, we we agree.",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1125360,
+        "dDurationMs": 4240,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "Like, society is\n>> that that's why we're doing this.",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1127919,
+        "dDurationMs": 5601,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": ">> That's literally it. Like, societyy's\nkind of not in a great place right now.",
+            "acAsrConf": 0,
+            "isSpeakerChange": 1
+          }
+        ]
+      },
+      {
+        "tStartMs": 1131360,
+        "dDurationMs": 6240,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "And so, we need everybody to come\ntogether. And a lot of the things that",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1135520,
+        "dDurationMs": 6000,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "people say, I'm just like, I agree with\nyou. I just disagree that these are the",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1139840,
+        "dDurationMs": 4000,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "wrong messengers for that story. And I\ndon't think you actually mean it when",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1142960,
+        "dDurationMs": 4560,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "you say that they're the wrong\nmessengers. Um, to your point about kind",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1145760,
+        "dDurationMs": 5200,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "of demeaning the message. That was a\nreally big conversation for us,",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1149360,
+        "dDurationMs": 5280,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "everybody working on this before we went\nout with it, we didn't want to kind of",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1152240,
+        "dDurationMs": 5920,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "be seen to trivialize the reality that\nthis is a crisis that's killing many,",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1156640,
+        "dDurationMs": 6560,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "many people already and we'll continue\nto do so. And that's incredibly serious.",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1161280,
+        "dDurationMs": 6399,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "And that's why we were like, we have to\ndo everything we can. Like if we spent",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1165520,
+        "dDurationMs": 5200,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "half as much time as we do criticizing\neach other and other women for their",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1169120,
+        "dDurationMs": 5760,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "choices on actually looking at the\nsystemic oppression that we all face,",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1172799,
+        "dDurationMs": 6161,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "there's been so much propaganda over the\npast however many decades, not just on",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1176960,
+        "dDurationMs": 5440,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "literally the effects of oil, but also\nnot questioning the status quo and the",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1180960,
+        "dDurationMs": 4719,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "systems that have allowed those people\nto stay in power. We have been very",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1184160,
+        "dDurationMs": 4800,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "prepared to have those conversations.\nThe biggest surprise has been how few",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1187200,
+        "dDurationMs": 7200,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "times we've had to have them because I\nthink overall people understand that",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1191679,
+        "dDurationMs": 6321,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "this is a very insane situation. And\nactually sex has been used to sell",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1196320,
+        "dDurationMs": 5040,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "things for a really really long time.\nIt's just being used to sell things to",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1199840,
+        "dDurationMs": 5760,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "us where someone profits. [music]\nWhereas this is us selling a concept",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1204000,
+        "dDurationMs": 4480,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "that hopefully we can all get behind\nwhich is we [music] really like this",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1207200,
+        "dDurationMs": 4160,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "planet. We really don't like the way\nit's being treated. We would really like",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1210240,
+        "dDurationMs": 2880,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "to change the structures that are\ncausing that.",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1211919,
+        "dDurationMs": 5120,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": ">> No boobs on a dead planet.\n>> No boobs on a dead planet. Oh my gosh.",
+            "acAsrConf": 0,
+            "isSpeakerChange": 1
+          }
+        ]
+      },
+      {
+        "tStartMs": 1214799,
+        "dDurationMs": 6721,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "I'm going to use that. [laughter]\n>> There is so much juicy stuff there that",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1219360,
+        "dDurationMs": 6240,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "Jess said and uh I just want to\nunderline a couple of key points that",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1223360,
+        "dDurationMs": 7600,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "she made. Firstly, is this what society\nhas come to? Yes, we are talking about",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1228159,
+        "dDurationMs": 6880,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "an existential threat to society. And\nso, of course, that means mobilizing all",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1233200,
+        "dDurationMs": 4800,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "forms of communication. And I think the\nreason this campaign will succeed is",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1236559,
+        "dDurationMs": 4641,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "because of the point that Jess mentioned\nabout parasocial relationships. If you",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1240000,
+        "dDurationMs": 5760,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "don't know what that means, it's a\none-sided relationship. You might feel",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1242880,
+        "dDurationMs": 6640,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "like you know a celebrity like Zenaia or\nMatt Damon or somebody else in the",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1247600,
+        "dDurationMs": 5840,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "Odyssey apparently that they don't\nobviously know you. And that's a",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1251280,
+        "dDurationMs": 5759,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "relationship that can be frankly\nexploited. And it's something that's",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1255120,
+        "dDurationMs": 5039,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "exploited by influencers over and over\nagain. It's just accepted that",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1258799,
+        "dDurationMs": 5681,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "influencers will [music]\nexploit that relationship to sell you",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1262640,
+        "dDurationMs": 6720,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "products because you feel like you're\ntheir friend. And apparently that is",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1266400,
+        "dDurationMs": 6960,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "more acceptable than sex workers talking\nabout existential threats to our",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1271679,
+        "dDurationMs": 6000,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "civilization. But the parasocial\nrelationship is the same. There is a",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1275280,
+        "dDurationMs": 5279,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "deeply personal connection to obviously\nit's on a spectrum varying degrees with",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1279679,
+        "dDurationMs": 5441,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "different people and different\nperformers. But that connection is very",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1283120,
+        "dDurationMs": 5919,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "human and very real [music] and I think\nforms the basis for some really",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1287280,
+        "dDurationMs": 4960,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "effective communication. And who is\ndoing that communication is the other",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1290640,
+        "dDurationMs": 6800,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "really interesting part of this to me\nbecause so much of what what we do in",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1295120,
+        "dDurationMs": 5280,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "comms depends on the person doing the\ncommunication. Like when we talk about",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1298880,
+        "dDurationMs": 4720,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "communication in abstract, we will talk\nabout the story. What are you trying to",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1301919,
+        "dDurationMs": 4961,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "say? We'll talk about the audience. Who\nare you trying to reach? And the idea",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1305120,
+        "dDurationMs": 5600,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "being that you know those two things and\nthat forms the basis for effective",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1308720,
+        "dDurationMs": 7360,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "communication. But we very often forget\nthe third leg of this stool which is who",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1314000,
+        "dDurationMs": 6240,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "are you the person doing the\ncommunication and what does your",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1317760,
+        "dDurationMs": 5919,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "audience think about you and about the\nsubject matter and so much of climate",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1322159,
+        "dDurationMs": 6161,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "communication to date has come from\npeople who are empowered and and benefit",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1326159,
+        "dDurationMs": 6640,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "from the status quo. My friend Alex\nLathbridge has this saying of stale,",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1330640,
+        "dDurationMs": 6159,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "pale, and male. And that is so\nfrequently who does this kind of work.",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1335039,
+        "dDurationMs": 6000,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "And yes, I realize when I say that that\nI am talking about me, living vanilla.",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1339520,
+        "dDurationMs": 7279,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "But it's why I'm so excited about the\nidea of people who, as Jess says, have",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1344240,
+        "dDurationMs": 7919,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "nothing to lose engaging in this kind of\ncommunication. I want to see people who",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1349919,
+        "dDurationMs": 5681,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "are disenfranchised uh whether that's\nthrough their profession or through",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1353520,
+        "dDurationMs": 5600,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "geography or through gender identity\ntalking about climate issues because",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1357360,
+        "dDurationMs": 6319,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "that's communication we haven't done\nyet. We haven't seen and is going to be",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1361679,
+        "dDurationMs": 6961,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "so much more effective at reaching key\ndemographics than the stale pale and",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1366000,
+        "dDurationMs": 5919,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "male version of climate comms. And I\nthink that's something that Jess",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1369919,
+        "dDurationMs": 4240,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "recognizes as being core to this\ncampaign.",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1372640,
+        "dDurationMs": 5039,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": ">> The existence of the campaign is the\nthing that I am actually most excited",
+            "acAsrConf": 0,
+            "isSpeakerChange": 1
+          }
+        ]
+      },
+      {
+        "tStartMs": 1375840,
+        "dDurationMs": 4959,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "about. Obviously, it's great that we are\nposting these videos that have climate",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1379120,
+        "dDurationMs": 4320,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "science that explain things that even\nthe models are just like, \"Oh, I didn't",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1382080,
+        "dDurationMs": 4160,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "know that.\" Like, they genuinely didn't\nknow that there was enough solar energy",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1385039,
+        "dDurationMs": 4961,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "that could power the world and it would\ntake up less land space than would be",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1388480,
+        "dDurationMs": 4640,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "required for the equivalent with the\nfossil fuel system. And just things like",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1391760,
+        "dDurationMs": 4159,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "that that you know, people like you and\nI just know. So, it's great that those",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1394799,
+        "dDurationMs": 3681,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "things are getting out there and even\njust one sound bite stays in people's",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1397360,
+        "dDurationMs": 4880,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "minds. It means that they're less\nsusceptible when they're having",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1400000,
+        "dDurationMs": 5679,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "conversations to believing the fossil\nfuel propaganda narratives. And I think",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1403840,
+        "dDurationMs": 5440,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "that's really important that people have\nthose points of reference for",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1406799,
+        "dDurationMs": 5441,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "alternative counternarratives. I am so\nglad to be having these types of",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1410559,
+        "dDurationMs": 5761,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "conversations about how I don't believe\nin the old-fashioned impact reports and",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1414320,
+        "dDurationMs": 5280,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "the kind of how many people did you\nreach and what was the engagement and",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1418080,
+        "dDurationMs": 5120,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "did it lead to a call to action which\nled them to do this. I'm like all we can",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1421600,
+        "dDurationMs": 5360,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "do is push people a little bit further\nalong in their climate journey. We have",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1424880,
+        "dDurationMs": 5520,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "been really ineffective at doing that in\ntraditional ways. With this campaign",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1428799,
+        "dDurationMs": 4801,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "we've been able to show that it might\nnot be orthodox. Most people probably",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1432080,
+        "dDurationMs": 4880,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "would not have funded this. Actually,\nnobody would have funded this. We had to",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1434960,
+        "dDurationMs": 5760,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "go to like a Hollywood nonprofit. I just\nwant to be part of the conversations",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1438480,
+        "dDurationMs": 6480,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "happening around. We do not have much\ntime left to communicate how urgent this",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1443200,
+        "dDurationMs": 4719,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "is. I think that the world is kind of\ndoing that for us [music] right now. The",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1446640,
+        "dDurationMs": 4800,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "planet is being the best climate\ncommunicator we have. The politicians",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1449520,
+        "dDurationMs": 5600,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "are being also pretty good at letting us\ndown. So then what is the next stage for",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1453440,
+        "dDurationMs": 5839,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "us as a climate communications [music]\nindustry? What are we trying to get",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1457279,
+        "dDurationMs": 6721,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "people to do? How can we use our powers\nof communication, persuasion, [music]",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1461520,
+        "dDurationMs": 5039,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "engagement to take things to the next\nlevel? And I have some ideas on what I",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1465360,
+        "dDurationMs": 6080,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "want that to be. I want us to make\nfossil fuels villains. [music] I think",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1468480,
+        "dDurationMs": 6720,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "that there's like a real missing link in\nterms of fact that there are people",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1473120,
+        "dDurationMs": 5840,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "responsible for this. And I think about\nthis all of the time and I think that we",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1477360,
+        "dDurationMs": 5760,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "live in a world where people really like\nto get mad at people and we need to use",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1481200,
+        "dDurationMs": 4400,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "that to our advantage. How do we take\nthat narrative to make it something",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1484159,
+        "dDurationMs": 5601,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "that's like more concrete in people's\nminds and raise the alarm? so fun having",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1488159,
+        "dDurationMs": 6321,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "the time of my life doing this. How can\nwe move beyond that conversation to",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1491600,
+        "dDurationMs": 6720,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "like, okay, quick and effective comms,\nnot traditional, not what you want, but",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1496400,
+        "dDurationMs": 6000,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "just what works. That's where I hope we\nget to now. I mean, this is quite an",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1500159,
+        "dDurationMs": 5361,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "interesting case because this has got to\nmainstream media having meta",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1504159,
+        "dDurationMs": 4880,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "conversations about the nature of\nclimate communications, which [music] is",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1507520,
+        "dDurationMs": 4480,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "beyond my wildest dreams for what we\ncould have done for this because that",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1510159,
+        "dDurationMs": 4000,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "was my personal goal for the campaign,\nbut I didn't [music] think that people",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1512960,
+        "dDurationMs": 4880,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "would pick up on it. But when you do\nhave messengers like Lily Phillips and",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1515520,
+        "dDurationMs": 6159,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "Girth Master, that will happen. And so\nI'm really hoping that that doesn't just",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1519360,
+        "dDurationMs": 5439,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "stay as conversations and that maybe\npeople that watch this or maybe people",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1523360,
+        "dDurationMs": 4960,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "that listen to me talking on podcasts\nabout it are able to take that [music]",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1526559,
+        "dDurationMs": 5201,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "into their professional life and and\nmake a difference there, but also I get",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1530080,
+        "dDurationMs": 4240,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "to work on cool weird stuff more as\nwell. Like that's what I want to do.",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1533039,
+        "dDurationMs": 4640,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "Hopefully there will be chance for like\nbigger bolder interventions.",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1536000,
+        "dDurationMs": 5360,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": ">> If you heard about this campaign in the\nnews or on your feed, you probably",
+            "acAsrConf": 0,
+            "isSpeakerChange": 1
+          }
+        ]
+      },
+      {
+        "tStartMs": 1539440,
+        "dDurationMs": 5040,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "thought that's kind of jokes. think the\nonly fans people are talking about",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1542799,
+        "dDurationMs": 6000,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "climate change. But when you sit down\nand actually think about what this",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1546320,
+        "dDurationMs": 7280,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "campaign is doing, I think it's really\nimportant. As evidenced by the 1.5°",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1551360,
+        "dDurationMs": 8480,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "report, what we're doing isn't working\nfast enough. If you want to keep the",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1556559,
+        "dDurationMs": 7521,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "future beautiful, livable even, we need\nto overhaul our systems. The way that",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1562320,
+        "dDurationMs": 6239,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "society works, we need to overturn\ndecades of concerted corporate",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1566000,
+        "dDurationMs": 6960,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "propaganda. And to do that, you need to\nexpand how you're talking about this",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1571200,
+        "dDurationMs": 5359,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "problem. And maybe along the way, we can\nalso write some wrongs. But will I be",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1574880,
+        "dDurationMs": 5840,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "joining in and creating an Only Fans to\ntalk about climate change? Uh, I don't",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1578720,
+        "dDurationMs": 5520,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "think I'm the right person to be doing\nthat kind of work. I think if anything,",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1582640,
+        "dDurationMs": 6159,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "my only fans will be on a dead man's\nswitch like I will release my pictures",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1586960,
+        "dDurationMs": 5360,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "unless you keep giving me money. But\nfortunately, there are a lot of people",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1590559,
+        "dDurationMs": 6161,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "already on that platform who care about\nthis issue who are better suited to that",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1594240,
+        "dDurationMs": 6880,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "kind of communication via their audience\nrelationship. What I can best do is try",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1599039,
+        "dDurationMs": 6401,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "and support people doing that kind of\nwork as I hope in the future to be able",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1603279,
+        "dDurationMs": 5681,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "to support people doing communication\nmore broadly and those disenfranchised",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1607360,
+        "dDurationMs": 6160,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "groups that I mentioned previously. But\nin terms of my work, I think this is the",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1611440,
+        "dDurationMs": 5760,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "format that best suits me as a person\nand what I can do. Though, if you do",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1615919,
+        "dDurationMs": 4321,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "want to see me with my clothes off, you\nshould watch my video from last year",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1618320,
+        "dDurationMs": 5440,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "about doing a really big swim. Though,\nif you watch it, you do have to donate",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1622159,
+        "dDurationMs": 6844,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "to charity. Though, speaking about being\nthe right person for the message, I'm",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1625840,
+        "dDurationMs": 5183,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "going to go and take a train.\n[music]",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1631200,
+        "dDurationMs": 6800,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "So, behind me is the harbor in the\nbeautiful city of Bristol, which is the",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1635760,
+        "dDurationMs": 6080,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "biggest city in my region. I'm actually\nstood less than 10 miles from where my",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1640159,
+        "dDurationMs": 6481,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "studio is, and I've stood here many,\nmany times. But you know what else used",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1643600,
+        "dDurationMs": 7760,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "to stand here? reeds, brushes, wild\nflowers because this used to be a",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1649120,
+        "dDurationMs": 6080,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "wetland, but as in so many places around\nthe world, it was drained to make way",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1653440,
+        "dDurationMs": 5119,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "for Bristol Harbor. And that's a bit of\na problem because wetlands are kind of",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1657200,
+        "dDurationMs": 4800,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "amazing. They obviously provide a\nhabitat for certain kinds of animals,",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1660159,
+        "dDurationMs": 5681,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "but they also purify the water. They\nreduce flood risk. They regulate",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1663840,
+        "dDurationMs": 4640,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "temperatures. They suck down carbon.\nThey I really should make a video about",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1667120,
+        "dDurationMs": 4159,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "them. They're genuinely incredible. So\nto try and have the best of both worlds",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1670080,
+        "dDurationMs": 5360,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "or those positive properties of\nwetlands, but also not getting rid of",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1673440,
+        "dDurationMs": 6880,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "Bristol Harbor, a project is taking\nplace to build floating wetlands right",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1678960,
+        "dDurationMs": 7280,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "here in the harbor. And it's a project\nthat I've contributed to because it's",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1682960,
+        "dDurationMs": 6640,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "run by the WWT in partnership with\nPlanet Wild. I've talked about Planet",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1688000,
+        "dDurationMs": 6320,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "Wild on this channel a bunch before.\nIt's a community that fundraises a new",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1692159,
+        "dDurationMs": 6721,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "mission to restore nature somewhere in\nthe world every month. It's a bit like",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1696799,
+        "dDurationMs": 5120,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "Kickstarter. It's it's crowdfunding for\nnature. And in previous months, I've",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1700159,
+        "dDurationMs": 6000,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "talked about relocating a jaguar in\nArgentina, about restoring a lost",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1703679,
+        "dDurationMs": 5921,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "ecosystem in Australia, and planting\nforests on the shores of Lake Victoria.",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1708080,
+        "dDurationMs": 6000,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "And all of those are documented on their\namazing YouTube channel. But this one,",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1711600,
+        "dDurationMs": 5920,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "this one's different because it's it's\nright here. Like, it's on my doorstep.",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1716240,
+        "dDurationMs": 5840,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "When I heard the news, I genuinely\ncouldn't believe it. Planet Wild is",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1719200,
+        "dDurationMs": 7040,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "funding two floating wetland platforms\nwhich is going to provide a habitat for",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1723760,
+        "dDurationMs": 7200,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "gulls, for pollinators, and for native\nplants with the roots below also acting",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1728480,
+        "dDurationMs": 6960,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "as a habitat for aquatic life and\npurifying the water in the harbor, which",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1732880,
+        "dDurationMs": 6320,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "um could do with it. And they're also\nsupporting development of a wetland in a",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1737600,
+        "dDurationMs": 4799,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "box, which is a thing that you can\ninstall anywhere that you have a drain",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1740559,
+        "dDurationMs": 5600,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "pipe and bring some nature back to your\ncity. I won't lie, this one is special",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1744080,
+        "dDurationMs": 5520,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "to me. Like I've been part of the Planet\nWorld community for a while now and it's",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1747919,
+        "dDurationMs": 7120,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "been great feeling part of a community\nof people who care about nature and who",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1752000,
+        "dDurationMs": 7440,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "every month get to see where our money\nis going and the difference that we are",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1756640,
+        "dDurationMs": 7279,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "making. But this time I get to visit it\nin person. It's a place I've known all",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1761760,
+        "dDurationMs": 4480,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "my life. I don't have to watch it on\nYouTube. But if you don't live in",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1764960,
+        "dDurationMs": 5199,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "Bristol, you can still follow the\nprogress with updates at the 1 year,",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1768159,
+        "dDurationMs": 4880,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "3year, and 10year mark on the Planet\nWild YouTube channel and of course in",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1771679,
+        "dDurationMs": 6081,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "their app. And if you would like to join\nour community of over 25,000 members,",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1775520,
+        "dDurationMs": 6639,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "then you can do so right now. In fact,\nthe first 100 people to sign up with my",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1779679,
+        "dDurationMs": 5761,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "code, which is Simon29,\ndown in the description, will get their",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1783760,
+        "dDurationMs": 5279,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "first month of membership paid for by\nme. You can also scan the QR code, which",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1787440,
+        "dDurationMs": 5520,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "is somewhere on the screen right now.\nThat code again is Simon 29. You can",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1791520,
+        "dDurationMs": 4720,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "give however much you want per month.\nReally, every pound does make a",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1794399,
+        "dDurationMs": 5121,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "difference. And you can see what impact\nyour money is having through regular",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1798000,
+        "dDurationMs": 4399,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "updates on the Planet Wild YouTube\nchannel and in their app. Please do",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1801039,
+        "dDurationMs": 5041,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "consider signing up and making a\ndifference to nature restoration around",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1804480,
+        "dDurationMs": 5919,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "the world. And if you'd like to see them\nin action, you can check out their video",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1807679,
+        "dDurationMs": 6081,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "on the Bristol Wetland Project. And if\npeople want to see your weird",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1812000,
+        "dDurationMs": 6080,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "interesting stuff, where can they find\nout more about that?",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1814559,
+        "dDurationMs": 8321,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": ">> I am not Peter Teal on Instagram. Um,\nbecause I am not Peter Teal and uh I'm",
+            "acAsrConf": 0,
+            "isSpeakerChange": 1
+          }
+        ]
+      },
+      {
+        "tStartMs": 1820159,
+        "dDurationMs": 4801,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "Jessica Riches on LinkedIn and I am\nheadline nudes wherever you want to",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1824640,
+        "dDurationMs": 3360,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "look.\n>> On the [laughter] the Spice Emoji",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1827279,
+        "dDurationMs": 4241,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "website.\n>> Yeah, the Spice Emoji. the blue and",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1829679,
+        "dDurationMs": 5281,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "white site, the website that we're not\nallowed to talk about. Yeah, I'm also if",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1833679,
+        "dDurationMs": 4000,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "you want to find my one, then that's\nlinked to in my Instagram in a very",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1836480,
+        "dDurationMs": 4880,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "subtle way, just like yours.\n>> And if you'd like to watch the full",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1839200,
+        "dDurationMs": 5920,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "uncensored interview with Jess, then\nthat's available on my Patreon.",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1842880,
+        "dDurationMs": 6799,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "Supporters at patreon.com/simon\nox get videos early. They get exclusive",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1848240,
+        "dDurationMs": 5039,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "content every month, notably a\nbehind-the-scenes blog, and a producer",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1851440,
+        "dDurationMs": 6239,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "tier and above can vote on topics for me\nto cover in videos. We've actually",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1855120,
+        "dDurationMs": 6080,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "recently refreshed the Patreon. So, if\nyou want to get a sampler of the kind of",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1859520,
+        "dDurationMs": 4879,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "stuff behind the payw wall, there's a\ncouple of videos that are now available.",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1863120,
+        "dDurationMs": 4080,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "So, go and check it out. It's linked\ndown in the description.",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1865200,
+        "dDurationMs": 5199,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": ">> With a special thank you to Peter Lee,\nNitwix, and Anton Marov. Thank you for",
+            "acAsrConf": 0,
+            "isSpeakerChange": 1
+          }
+        ]
+      },
+      {
+        "tStartMs": 1869840,
+        "dDurationMs": 3760,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "your support.\n>> And of course, thank you to Jess for",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1871679,
+        "dDurationMs": 4801,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "chatting to me. I had an amazing time\ntalking. Unfortunately, we both had to",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1875120,
+        "dDurationMs": 5200,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "run to other commitments. Otherwise, I\nthink we would have chatted for hours.",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1878480,
+        "dDurationMs": 4720,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "Do check out her work. And if you\nenjoyed this video, please do the",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1881679,
+        "dDurationMs": 4081,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "YouTube pleasantries. you know, like,\ncomment, subscribe, all that kind of",
+            "acAsrConf": 0
+          }
+        ]
+      },
+      {
+        "tStartMs": 1884720,
+        "dDurationMs": 4160,
+        "wWinId": 1,
+        "segs": [
+          {
+            "utf8": "thing. Check [music] out the links down\nin the description.",
+            "acAsrConf": 0
+          }
+        ]
+      }
+    ]
+  }
+}
