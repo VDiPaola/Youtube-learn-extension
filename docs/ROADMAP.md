@@ -49,7 +49,7 @@ Each phase ends with working, tested software. Phases 1 and 2 can run in paralle
 - Eligibility rules (category, channel allowlist and blocklist, manual trigger).
 - Generation starts at 50% watched; prompt appears at the configured point.
 - Quiz overlay in Shadow DOM: optional MCQ warm-up, then free recall with reveal and self-grade.
-- Keyboard controls (space to reveal, 1 to 4 to grade) and screen reader labels.
+- Keyboard controls (space to reveal, 1 or 2 to mark correct or incorrect) and screen reader labels.
 
 **Done when:** the Playwright test with a mocked provider completes a quiz on a real video page, and the overlay works with YouTube in theater, fullscreen, and dark modes.
 
@@ -69,7 +69,7 @@ Each phase ends with working, tested software. Phases 1 and 2 can run in paralle
 ## Phase 4: Knowledge bank and reviews
 
 - Dexie schema (see [Data model](ARCHITECTURE.md#data-model)).
-- Save session results as activities with FSRS state seeded from the first result.
+- Save session results as activities with FSRS state seeded from the first result (correct as Good, incorrect as Again).
 - Dashboard review session.
 - Toolbar badge with due count; optional daily notification.
 - Popup with due count and "Start review".

@@ -42,6 +42,7 @@ button:hover:not(:disabled) {
 
 button:focus-visible,
 input:focus-visible,
+summary:focus-visible,
 .ytl-dialog:focus-visible {
   outline: 2px solid var(--ytl-accent);
   outline-offset: 2px;
@@ -189,19 +190,18 @@ button:disabled {
 
 .ytl-grades {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 6px;
 }
 
-.ytl-grade-1 {
-  border-color: var(--ytl-wrong);
-}
-
-.ytl-grade-4 {
+.ytl-grade-correct {
   border-color: var(--ytl-correct);
 }
 
-.ytl-counts,
+.ytl-grade-wrong {
+  border-color: var(--ytl-wrong);
+}
+
 .ytl-review {
   margin: 6px 0;
   padding-left: 20px;
@@ -304,6 +304,25 @@ button:disabled {
 
 .ytl-feedback {
   margin-top: 8px;
+}
+
+.ytl-explanation {
+  margin: 8px 0;
+}
+
+.ytl-explanation summary {
+  width: fit-content;
+  color: var(--ytl-muted);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.ytl-explanation summary:hover {
+  color: var(--ytl-fg);
+}
+
+.ytl-explanation p {
+  margin: 4px 0 0;
 }
 
 .ytl-visually-hidden {

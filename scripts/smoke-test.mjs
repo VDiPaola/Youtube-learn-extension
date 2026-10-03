@@ -184,10 +184,11 @@ async function checkOverlay(page, popup) {
   await press('Enter');
   await waitFor('button', 'Show answer');
   await press('Space');
-  await press('3');
+  const selfGrades = await page.locator('ytl-quiz-overlay .ytl-grade').allTextContents();
+  await press('1');
   await waitFor('button', 'Flip card');
   await press('Space');
-  await press('4');
+  await press('1');
   await waitFor('textbox', 'Missing word');
   await page.keyboard.type('activaton');
   await press('Enter');
@@ -197,6 +198,11 @@ async function checkOverlay(page, popup) {
   const wrongIndex = options.findIndex((text) => !text.includes('784'));
   await press(String(wrongIndex + 1));
   const mcWrong = await page.getByText('The answer is: 784').isVisible();
+  const explanationText = page.getByText('One per pixel.');
+  const explanationHidden = !(await explanationText.isVisible());
+  await page.locator('ytl-quiz-overlay .ytl-explanation summary').click();
+  const explanationShown = await explanationText.isVisible();
+  await page.getByRole('button', { name: 'Continue' }).focus();
   await press('Enter');
   await waitFor('button', /True/);
   await press('t');
@@ -212,7 +218,7 @@ async function checkOverlay(page, popup) {
   await press('Enter');
   await waitFor('button', 'Show answer');
   await press('Space');
-  await press('1');
+  await press('2');
 
   const summary = await page.locator('ytl-quiz-overlay .ytl-dialog').textContent();
   const complete = summary?.includes('Session complete') ?? false;
@@ -222,10 +228,19 @@ async function checkOverlay(page, popup) {
   console.log(
     `  fill in the blank accepted a typo: ${clozeCorrect}; wrong multiple choice explained: ${mcWrong}`,
   );
-  console.log(`  summary: ${summary?.match(/Checked answers: [^.]+\./)?.[0] ?? 'none'}`);
+  console.log(`  summary: ${summary?.match(/\d+ of \d+ correct\./)?.[0] ?? 'none'}`);
+  console.log(`  self-grade buttons: ${selfGrades.map((text) => `"${text.trim()}"`).join(', ')}`);
+  if (selfGrades.join('|').replace(/\s+/g, ' ') !== '1 Correct|2 Incorrect') {
+    fail(`expected Correct and Incorrect buttons, found ${selfGrades.join(', ')}`);
+  }
   if (!complete) fail('keyboard flow did not reach the summary');
   if (!clozeCorrect) fail('fill in the blank rejected a one-letter typo');
   if (!mcWrong) fail('wrong multiple choice answer did not show the correct one');
+  console.log(
+    `  explanation collapsed by default: ${explanationHidden}; opens on click: ${explanationShown}`,
+  );
+  if (!explanationHidden) fail('explanation was visible before opening the dropdown');
+  if (!explanationShown) fail('explanation did not open from the dropdown');
   const rewatch = await page.locator('.ytl-review li').count();
   console.log(`  worth rewatching: ${rewatch}`);
   if (rewatch < 2) fail(`expected at least 2 activities to rewatch, found ${rewatch}`);

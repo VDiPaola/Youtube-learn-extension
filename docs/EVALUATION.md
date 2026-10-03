@@ -24,7 +24,7 @@ Aim for at least 5 fixtures covering different subjects, lengths, and caption ty
 
 Each video shows:
 
-- **Automated checks:** activity count, topic length, at least two activity types, timestamps inside the video, no references to "the video" or "the speaker", and answer length.
+- **Automated checks:** activity count, topic length, at least two activity types, timestamps inside the video, no references to "the video" or "the speaker", answer length, and explanations that repeat the answer.
 - **Activities:** type, prompt, answer details, and a link to the source timestamp.
 
 Review each activity for: accurate to the video, worth remembering, understandable without the video, a fitting activity type, and wrong options that are plausible but clearly wrong.

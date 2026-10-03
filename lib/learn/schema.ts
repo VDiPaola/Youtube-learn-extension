@@ -47,7 +47,7 @@ export const ActivitySchema = z.strictObject({
   explanation: z
     .string()
     .describe(
-      'Why the answer is right, in one or two sentences. Required for true_false (correct a false statement) and apply. Optional elsewhere: use an empty string.',
+      'One or two sentences that add what the answer leaves out: the reason or mechanism behind it, or why a tempting wrong answer is wrong. Never repeat or rephrase the answer. Required for true_false (for a false statement, give the correct fact) and apply. Elsewhere, use an empty string when there is nothing to add.',
     ),
   options: z
     .array(z.string())

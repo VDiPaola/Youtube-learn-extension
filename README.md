@@ -67,7 +67,7 @@ pnpm dev:firefox    # Firefox with live reload
 1. Open the popup and select **Settings**. Choose a provider, paste an API key, and select **Save and test connection**. Accept the browser prompt that grants access to the provider.
 2. Watch an Education video. A **Learn** button appears in the player controls, next to autoplay. Halfway through, activities are prepared in the background and the button shows how many are ready. Click it whenever you want; clicking earlier generates them on the spot.
 3. For any other video, open the popup and select **Learn from this video**. The popup also sets a channel to always or never show the button, and shows the quiz status.
-4. In a session: Enter or Space continues, 1 to 4 picks an option or rates your recall, Esc closes. Settings can turn activity types off.
+4. In a session: Enter or Space continues, 1 to 4 picks an option, 1 or 2 marks your answer correct or incorrect, Esc closes. Settings can turn activity types off.
 
 Activities are cached per video. The popup's **Developer tools** section shows the transcript and can regenerate activities.
 

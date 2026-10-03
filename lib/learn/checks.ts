@@ -1,3 +1,4 @@
+import { similarity } from '@/lib/learn/clean';
 import type { ActivitySet } from '@/lib/learn/schema';
 
 export interface CheckResult {
@@ -9,6 +10,7 @@ export interface CheckResult {
 const VIDEO_REFERENCE = /\b(the|this) (video|speaker|narrator|presenter|lecturer|host)\b/i;
 const MAX_ANSWER_CHARS = 300;
 const MIN_FOR_VARIETY = 4;
+const REPEATED_EXPLANATION_SIMILARITY = 0.5;
 
 export function runChecks(
   set: ActivitySet,
@@ -49,6 +51,15 @@ export function runChecks(
     check(
       `Answers under ${MAX_ANSWER_CHARS} characters`,
       activities.filter((a) => a.answer.length > MAX_ANSWER_CHARS).map((a) => a.label),
+    ),
+    check(
+      'Explanations do not repeat the answer',
+      activities
+        .filter(
+          (a) =>
+            a.explanation && similarity(a.answer, a.explanation) >= REPEATED_EXPLANATION_SIMILARITY,
+        )
+        .map((a) => a.label),
     ),
   ];
 }

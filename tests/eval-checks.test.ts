@@ -42,6 +42,7 @@ describe('runChecks', () => {
         activity({
           prompt: 'What does the speaker say about layers?',
           answer: 'x'.repeat(301),
+          explanation: 'x'.repeat(301),
           sourceStartSec: 601,
         }),
       ],
@@ -52,7 +53,25 @@ describe('runChecks', () => {
       'Timestamps inside the video: activity 1 at 601s',
       'Prompts do not refer to the video or speaker: activity 1',
       'Answers under 300 characters: activity 1',
+      'Explanations do not repeat the answer: activity 1',
     ]);
+  });
+
+  it('flags explanations that rephrase the answer but allows ones that add context', () => {
+    const answer = 'The brightness of one pixel.';
+    expect(
+      failures(set([activity({ answer, explanation: 'It holds the brightness of a pixel.' })])),
+    ).toEqual(['Explanations do not repeat the answer: activity 1']);
+    expect(
+      failures(
+        set([
+          activity({
+            answer,
+            explanation: 'A 28 by 28 image has 784 pixels, so the first layer has 784 neurons.',
+          }),
+        ]),
+      ),
+    ).toEqual([]);
   });
 
   it('requires variety once there are four or more activities', () => {

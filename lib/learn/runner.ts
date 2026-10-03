@@ -1,22 +1,7 @@
 import { isSelfGraded, type Activity } from './schema';
 
-export type Grade = 1 | 2 | 3 | 4;
-
-export const GRADES: { grade: Grade; label: string }[] = [
-  { grade: 1, label: 'Again' },
-  { grade: 2, label: 'Hard' },
-  { grade: 3, label: 'Good' },
-  { grade: 4, label: 'Easy' },
-];
-
-/** Grades given to automatically checked activities. */
-const CORRECT_GRADE: Grade = 3;
-const WRONG_GRADE: Grade = 1;
-
 export interface ActivityResult {
-  grade: Grade;
-  /** Outcome of the automatic check, or null for self-graded activities. */
-  correct: boolean | null;
+  correct: boolean;
 }
 
 export interface RunnerState {
@@ -33,7 +18,7 @@ export interface RunnerState {
 export type RunnerAction =
   | { type: 'start' }
   | { type: 'reveal' }
-  | { type: 'grade'; grade: Grade }
+  | { type: 'grade'; correct: boolean }
   | { type: 'submit'; correct: boolean }
   | { type: 'override' }
   | { type: 'next' };
@@ -62,9 +47,7 @@ export function runnerReducer(state: RunnerState, action: RunnerAction): RunnerS
       return selfGraded && !state.answered ? { ...state, answered: true } : state;
 
     case 'grade':
-      return selfGraded && state.answered
-        ? advance(state, { grade: action.grade, correct: null })
-        : state;
+      return selfGraded && state.answered ? advance(state, { correct: action.correct }) : state;
 
     case 'submit':
       return !selfGraded && !state.answered
@@ -78,10 +61,7 @@ export function runnerReducer(state: RunnerState, action: RunnerAction): RunnerS
 
     case 'next':
       return !selfGraded && state.answered
-        ? advance(state, {
-            grade: state.correct ? CORRECT_GRADE : WRONG_GRADE,
-            correct: state.correct,
-          })
+        ? advance(state, { correct: state.correct === true })
         : state;
   }
 }
@@ -92,9 +72,4 @@ function advance(state: RunnerState, result: ActivityResult): RunnerState {
   return state.index + 1 < state.activities.length
     ? { ...next, index: state.index + 1 }
     : { ...next, phase: 'summary' };
-}
-
-/** Results that suggest rewatching: wrong answers and self-grades of Again or Hard. */
-export function needsReview(result: ActivityResult): boolean {
-  return result.correct === false || result.grade <= 2;
 }

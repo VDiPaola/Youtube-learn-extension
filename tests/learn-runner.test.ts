@@ -10,7 +10,6 @@ import {
 import { activityFields } from '@/lib/learn/describe';
 import {
   initialRunnerState,
-  needsReview,
   runnerReducer,
   type RunnerAction,
   type RunnerState,
@@ -41,17 +40,17 @@ describe('runnerReducer', () => {
     let state = run(initialRunnerState(activities), { type: 'start' });
     expect(state).toMatchObject({ phase: 'activity', index: 0, answered: false });
 
-    state = run(state, { type: 'reveal' }, { type: 'grade', grade: 4 });
-    expect(state).toMatchObject({ index: 1, results: [{ grade: 4, correct: null }] });
+    state = run(state, { type: 'reveal' }, { type: 'grade', correct: true });
+    expect(state).toMatchObject({ index: 1, results: [{ correct: true }] });
 
     state = run(state, { type: 'submit', correct: false });
     expect(state).toMatchObject({ index: 1, answered: true, correct: false });
     state = run(state, { type: 'next' });
-    expect(state.results[1]).toEqual({ grade: 1, correct: false });
+    expect(state.results[1]).toEqual({ correct: false });
 
     state = run(state, { type: 'submit', correct: true }, { type: 'next' });
     expect(state).toMatchObject({ phase: 'summary' });
-    expect(state.results[2]).toEqual({ grade: 3, correct: true });
+    expect(state.results[2]).toEqual({ correct: true });
   });
 
   it('lets a wrong checked answer be overridden as correct', () => {
@@ -62,7 +61,7 @@ describe('runnerReducer', () => {
       { type: 'override' },
       { type: 'next' },
     );
-    expect(state.results).toEqual([{ grade: 3, correct: true }]);
+    expect(state.results).toEqual([{ correct: true }]);
   });
 
   it('ignores actions that do not fit the activity or step', () => {
@@ -70,11 +69,11 @@ describe('runnerReducer', () => {
     expect(run(start, { type: 'reveal' }, { type: 'next' })).toBe(start);
 
     const selfGraded = run(start, { type: 'start' });
-    expect(run(selfGraded, { type: 'grade', grade: 3 })).toBe(selfGraded);
+    expect(run(selfGraded, { type: 'grade', correct: true })).toBe(selfGraded);
     expect(run(selfGraded, { type: 'submit', correct: true })).toBe(selfGraded);
     expect(run(selfGraded, { type: 'next' })).toBe(selfGraded);
 
-    const checked = run(selfGraded, { type: 'reveal' }, { type: 'grade', grade: 3 });
+    const checked = run(selfGraded, { type: 'reveal' }, { type: 'grade', correct: true });
     expect(run(checked, { type: 'reveal' })).toBe(checked);
     expect(run(checked, { type: 'next' })).toBe(checked);
     const answered = run(checked, { type: 'submit', correct: true });
@@ -87,11 +86,14 @@ describe('runnerReducer', () => {
     expect(run(empty, { type: 'start' })).toBe(empty);
   });
 
-  it('flags wrong answers and Again or Hard ratings for review', () => {
-    expect(needsReview({ grade: 1, correct: false })).toBe(true);
-    expect(needsReview({ grade: 2, correct: null })).toBe(true);
-    expect(needsReview({ grade: 3, correct: true })).toBe(false);
-    expect(needsReview({ grade: 4, correct: null })).toBe(false);
+  it('records a self-graded activity marked incorrect', () => {
+    const state = run(
+      initialRunnerState([activity({ type: 'apply' })]),
+      { type: 'start' },
+      { type: 'reveal' },
+      { type: 'grade', correct: false },
+    );
+    expect(state).toMatchObject({ phase: 'summary', results: [{ correct: false }] });
   });
 });
 

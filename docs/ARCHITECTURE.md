@@ -39,7 +39,7 @@ YouTube tab                         Extension
 - **Updates:** Browsers leave already-open tabs running a disconnected copy of the old content script after an update. On install or update, the background injects the current content scripts into open YouTube tabs (`lib/reinject.ts`). If a tab still does not answer, the popup says so and offers **Reload tab**.
 - **Status:** The popup polls the session status (`quiz:status`) every second: waiting, each preparation step, ready, or failed with the reason. Failures are also logged to the page console with the prefix `[YouTube Learn]`.
 - **UI:** The button and the activity dialog render in Shadow DOM roots. The dialog is mounted inside `#movie_player`, so it stays visible in theater mode and fullscreen. Key and mouse events are stopped at each shadow root so YouTube's player shortcuts (Space, digits, `f`, `k`) do not fire. Opening the activities pauses the video.
-- **Activity runner (`lib/learn/runner.ts`, `entrypoints/youtube.content/LearnPanel.tsx`):** Shows each activity by type. Recall questions, flashcards, and apply-it scenarios are self-graded: show the answer (Space), then rate Again, Hard, Good, or Easy (1 to 4). Fill in the blank (typed, forgiving of case, articles, and small typos, with an "I was right" override), multiple choice (1 to 4), true or false (1 or T, 2 or F), and put in order (arrow buttons) are checked automatically: correct counts as Good, wrong as Again. Only activity types enabled in settings are shown. The summary reports checked answers and recall ratings, and lists activities worth rewatching with buttons that jump to their timestamp. Results stay in memory until Phase 4 stores them.
+- **Activity runner (`lib/learn/runner.ts`, `entrypoints/youtube.content/LearnPanel.tsx`):** Shows each activity by type. Recall questions, flashcards, and apply-it scenarios are self-graded: show the answer (Space), then mark it Correct (1) or Incorrect (2). Fill in the blank (typed, forgiving of case, articles, and small typos, with an "I was right" override), multiple choice (1 to 4), true or false (1 or T, 2 or F), and put in order (arrow buttons) are checked automatically. When an activity has an explanation, it sits in a collapsed **Explanation** dropdown below the answer. Only activity types enabled in settings are shown. The summary reports how many answers were correct, and lists the incorrect ones as worth rewatching, with buttons that jump to their timestamp. Results stay in memory until Phase 4 stores them.
 - **Styling:** WXT resets each shadow host with `all: initial !important`, so host styles (position, font, color) need `!important` in the shadow stylesheet. Every stylesheet the content script imports is injected into both shadow roots, so host rules name their element (`:host(ytl-learn-button)`). Sizes use px because YouTube sets the page root font size to 10px.
 
 ### Transcript retrieval
@@ -88,7 +88,7 @@ Implementation notes, confirmed against live YouTube (October 2026):
 
 ### Dashboard (extension page)
 
-- **Review:** Session of due cards. Show question, user recalls (optionally types an answer), reveal answer, grade Again / Hard / Good / Easy. Each card links back to the source video at the relevant timestamp.
+- **Review:** Session of due cards. Show question, user recalls (optionally types an answer), reveal answer, mark it Correct or Incorrect. Each card links back to the source video at the relevant timestamp.
 - **Knowledge bank:** Browse by topic. Search. Edit, suspend, or delete cards. Delete all cards from a video. Rename, merge, or delete topics. Move cards between topics.
 - **Export:** Anki `.apkg` and TSV per topic or for everything.
 - **Backup:** Full JSON export and import (cards, review history, settings except API keys).
@@ -117,7 +117,7 @@ Schema changes go through Dexie version upgrades. Every version bump ships with 
 ## Learning model
 
 - **Activity types:** recall question, flashcard, fill in the blank, multiple choice, true or false, put in order, and apply it. Each stored activity is reviewed in its own form.
-- **First retrieval:** The session on the video counts as the first review. Self-grades are used as given; checked activities count as Good when correct and Again when wrong. That result seeds FSRS state, so the next review is scheduled from it. Activities from a skipped session are not saved by default.
+- **First retrieval:** The session on the video counts as the first review. Every result is correct or incorrect, whether self-graded or checked; correct counts as Good and incorrect as Again. That result seeds FSRS state, so the next review is scheduled from it. Activities from a skipped session are not saved by default.
 - **Scheduler:** `ts-fsrs` with default parameters and a user-configurable desired retention (default 0.9). Review logs are kept so parameters can be optimized later.
 - **Deletion:** Deleting a activity removes it and its review logs. An undo toast is shown for a few seconds. Suspending keeps the activity but removes it from reviews.
 

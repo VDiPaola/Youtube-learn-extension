@@ -9,11 +9,8 @@ import {
 } from '@/lib/learn/check-answer';
 import {
   currentActivity,
-  GRADES,
   initialRunnerState,
-  needsReview,
   runnerReducer,
-  type Grade,
   type RunnerAction,
   type RunnerState,
 } from '@/lib/learn/runner';
@@ -24,6 +21,11 @@ import { Dialog, type OverlayActions } from './Overlay';
 type Dispatch = React.Dispatch<RunnerAction>;
 type PrimaryRef = React.RefObject<HTMLElement | null>;
 const asButtonRef = (ref: PrimaryRef) => ref as React.RefObject<HTMLButtonElement>;
+
+const SELF_GRADES = [
+  { correct: true, label: 'Correct' },
+  { correct: false, label: 'Incorrect' },
+] as const;
 
 const digitOf = (event: KeyboardEvent) => {
   const digit = Number(event.key);
@@ -106,7 +108,8 @@ function StartView({
         ))}
       </ul>
       <p className="ytl-muted ytl-small">
-        Keys: Enter or Space continues, 1 to 4 picks an option or rates your recall, Esc closes.
+        Keys: Enter or Space continues, 1 to 4 picks an option, 1 or 2 marks your answer correct or
+        incorrect, Esc closes.
       </p>
       <div className="ytl-actions">
         <button ref={asButtonRef(primary)} type="button" className="ytl-primary" onClick={onStart}>
@@ -145,9 +148,10 @@ function SelfGradedActivity({ activity, state, dispatch, primary }: ActivityProp
   const flashcard = activity.type === 'flashcard';
   const onKeyDown = (event: KeyboardEvent) => {
     const digit = digitOf(event);
-    if (state.answered && digit !== null && digit <= 4) {
+    const grade = digit === null ? undefined : SELF_GRADES[digit - 1];
+    if (state.answered && grade) {
       event.preventDefault();
-      dispatch({ type: 'grade', grade: digit as Grade });
+      dispatch({ type: 'grade', correct: grade.correct });
     }
   };
 
@@ -169,22 +173,22 @@ function SelfGradedActivity({ activity, state, dispatch, primary }: ActivityProp
         <>
           <div className="ytl-answer" role="status">
             <p>{activity.answer}</p>
-            {activity.explanation && <p className="ytl-muted">{activity.explanation}</p>}
+            <Explanation text={activity.explanation} />
           </div>
           <p className="ytl-muted ytl-small" id="ytl-grade-label">
-            How well did you remember it?
+            Did you get it right?
           </p>
           <div className="ytl-grades" role="group" aria-labelledby="ytl-grade-label">
-            {GRADES.map(({ grade, label }) => (
+            {SELF_GRADES.map(({ correct, label }, i) => (
               <button
-                key={grade}
-                ref={grade === 3 ? asButtonRef(primary) : undefined}
+                key={label}
+                ref={correct ? asButtonRef(primary) : undefined}
                 type="button"
-                className={`ytl-grade ytl-grade-${grade}`}
-                aria-keyshortcuts={String(grade)}
-                onClick={() => dispatch({ type: 'grade', grade })}
+                className={`ytl-grade ${correct ? 'ytl-grade-correct' : 'ytl-grade-wrong'}`}
+                aria-keyshortcuts={String(i + 1)}
+                onClick={() => dispatch({ type: 'grade', correct })}
               >
-                <span className="ytl-key">{grade}</span> {label}
+                <span className="ytl-key">{i + 1}</span> {label}
               </button>
             ))}
           </div>
@@ -439,7 +443,7 @@ function Feedback({
           {state.correct ? 'Correct.' : 'Not quite.'}
         </p>
         {!state.correct && <p>{correction}</p>}
-        {explanation && <p className="ytl-muted">{explanation}</p>}
+        <Explanation text={explanation} />
       </div>
       <div className="ytl-actions">
         <button
@@ -460,6 +464,16 @@ function Feedback({
   );
 }
 
+function Explanation({ text }: { text: string }) {
+  if (!text) return null;
+  return (
+    <details className="ytl-explanation">
+      <summary>Explanation</summary>
+      <p className="ytl-muted">{text}</p>
+    </details>
+  );
+}
+
 function SummaryView({
   state,
   actions,
@@ -469,34 +483,20 @@ function SummaryView({
   actions: OverlayActions;
   primary: PrimaryRef;
 }) {
-  const checked = state.results.filter((r) => r.correct !== null);
-  const selfGraded = state.results.filter((r) => r.correct === null);
-  const toReview = state.activities
-    .map((activity, i) => ({ activity, result: state.results[i]! }))
-    .filter(({ result }) => needsReview(result));
+  const correctCount = state.results.filter((r) => r.correct).length;
+  const toReview = state.activities.filter((_, i) => !state.results[i]!.correct);
 
   return (
     <>
       <p className="ytl-question">Session complete</p>
-      {checked.length > 0 && (
-        <p>
-          Checked answers: {checked.filter((r) => r.correct).length} of {checked.length} correct.
-        </p>
-      )}
-      {selfGraded.length > 0 && (
-        <ul className="ytl-counts" aria-label="Recall ratings">
-          {GRADES.map(({ grade, label }) => (
-            <li key={grade}>
-              {label}: {selfGraded.filter((r) => r.grade === grade).length}
-            </li>
-          ))}
-        </ul>
-      )}
+      <p>
+        {correctCount} of {state.results.length} correct.
+      </p>
       {toReview.length > 0 && (
         <>
           <p>Worth rewatching:</p>
           <ul className="ytl-review">
-            {toReview.map(({ activity }, i) => (
+            {toReview.map((activity, i) => (
               <li key={i}>
                 <button
                   type="button"
