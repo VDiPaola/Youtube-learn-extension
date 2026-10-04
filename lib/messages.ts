@@ -1,4 +1,5 @@
 import type { CachedActivities } from '@/lib/db';
+import type { VideoResult } from '@/lib/knowledge/bank';
 import type { ChannelRule, Eligibility } from '@/lib/prompt-settings';
 import type { QuizErrorCode } from '@/lib/learn/errors';
 import type { TranscriptFixture } from '@/lib/transcript/sanitize';
@@ -68,6 +69,18 @@ export interface OpenOptionsMessage {
   type: 'options:open';
 }
 
+export interface RecordResultMessage {
+  type: 'activity:record';
+  result: VideoResult;
+}
+
+export type RecordResultResponse = { ok: true } | { ok: false; error: string };
+
+/** Sent after the dashboard records reviews, so the toolbar badge shows the new due count. */
+export interface RefreshBadgeMessage {
+  type: 'badge:refresh';
+}
+
 const hasType =
   <T extends { type: string }>(type: T['type']) =>
   (message: unknown): message is T =>
@@ -78,6 +91,8 @@ export const isOpenQuizMessage = hasType<OpenQuizMessage>('quiz:open');
 export const isQuizStatusMessage = hasType<QuizStatusMessage>('quiz:status');
 export const isGetCachedQuizMessage = hasType<GetCachedQuizMessage>('quiz:get-cached');
 export const isOpenOptionsMessage = hasType<OpenOptionsMessage>('options:open');
+export const isRecordResultMessage = hasType<RecordResultMessage>('activity:record');
+export const isRefreshBadgeMessage = hasType<RefreshBadgeMessage>('badge:refresh');
 
 export function isGetTranscriptMessage(message: unknown): message is GetTranscriptMessage {
   return (message as GetTranscriptMessage | null)?.type === 'transcript:get';

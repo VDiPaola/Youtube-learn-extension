@@ -76,6 +76,10 @@ Each phase ends with working, tested software. Phases 1 and 2 can run in paralle
 
 **Done when:** activities reviewed on simulated dates follow FSRS intervals in unit tests, and a full session-to-review cycle works in the browser.
 
+**Status:** Implemented. Each answer in a video session is saved as it is given; repeating a video session reviews the same activities instead of adding duplicates. The dashboard page (`dashboard.html`) runs review sessions with the same activity views as the video. The badge refreshes every 5 minutes and after each answer. The daily notification uses an optional permission, requested when it is turned on. Unit tests cover the bank, FSRS intervals on simulated dates, reminders, and the version 3 database upgrade. The smoke test saves a video session, makes it due, and completes a keyboard review in the dashboard. A separate check upgraded the previous build's database across an extension reload, with a YouTube tab left open. Remaining:
+
+- Confirm in Edge with your provider: a real session, then a review the next day.
+
 ## Phase 5: Knowledge management
 
 - Topic assignment using existing topic names in the prompt.

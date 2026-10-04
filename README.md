@@ -7,7 +7,7 @@ A browser extension that turns educational YouTube videos into active learning a
 1. Watch an educational video on YouTube.
 2. The extension reads the video transcript and an AI model writes learning activities: recall questions, flashcards, fill in the blank, multiple choice, true or false, put in order, and apply it.
 3. A **Learn** button in the player controls opens the activities whenever you want.
-4. Completed activities go into a local knowledge bank, grouped by topic (Phase 4).
+4. Each answer goes into a local knowledge bank, grouped by topic.
 5. The extension schedules reviews at expanding intervals (FSRS algorithm) and shows a badge when activities are due.
 6. Activities can be edited, suspended, or deleted at any time. Topics can be exported to Anki.
 
@@ -37,7 +37,7 @@ A browser extension that turns educational YouTube videos into active learning a
 
 ## Status
 
-Phases 1 to 3 are implemented: transcripts, activity generation, and the Learn button on the YouTube page. Results are not saved yet; that comes with the knowledge bank in Phase 4. See the [Roadmap](docs/ROADMAP.md) for progress.
+Phases 1 to 4 are implemented: transcripts, activity generation, the Learn button on the YouTube page, and the knowledge bank with spaced reviews. Phase 5 (knowledge management) is next. See the [Roadmap](docs/ROADMAP.md) for progress.
 
 ## Development
 
@@ -70,6 +70,13 @@ pnpm dev:firefox    # Firefox with live reload
 4. In a session: Enter or Space continues, 1 to 4 picks an option, 1 or 2 marks your answer correct or incorrect, Esc closes. Settings can turn activity types off.
 
 Activities are cached per video. The popup's **Developer tools** section shows the transcript and can regenerate activities.
+
+### Review
+
+1. Each answer in a video session is saved to the knowledge bank and scheduled with FSRS. Repeating a video session counts as a review of the same activities.
+2. The toolbar icon shows how many activities are due. Select **Start review** in the popup, or open **Knowledge bank** for the overview.
+3. Reviews use the same keys as the video session. Esc ends the review; answers already given are kept.
+4. Settings, under **Reviews**, set the desired retention and an optional daily notification. Turning the notification on asks for the notifications permission.
 
 ### Commands
 

@@ -1,17 +1,25 @@
 import { db } from '@/lib/db';
+import { createReviewService } from '@/lib/knowledge/background';
 import {
   isGenerateQuizMessage,
   isGetCachedQuizMessage,
   isOpenOptionsMessage,
+  isRecordResultMessage,
+  isRefreshBadgeMessage,
   isTestProviderMessage,
 } from '@/lib/messages';
 import { createProvider } from '@/lib/learn/providers';
 import { createQuizService } from '@/lib/learn/service';
 import { enabledActivityTypes, promptSettingsItem } from '@/lib/prompt-settings';
 import { reinjectContentScripts, type ContentScriptEntry } from '@/lib/reinject';
+import { lastReminderDayItem, reviewSettingsItem } from '@/lib/review-settings';
 import { apiKeysItem, resolveProviderConfig, settingsItem } from '@/lib/settings';
 
 const KEEP_ALIVE_INTERVAL_MS = 20_000;
+const REVIEW_ALARM = 'reviews';
+const REVIEW_CHECK_MINUTES = 5;
+const REMINDER_ID = 'review-reminder';
+const REVIEW_URL = '/dashboard.html#review';
 
 export default defineBackground(() => {
   const quizService = createQuizService({
@@ -24,7 +32,45 @@ export default defineBackground(() => {
     now: Date.now,
   });
 
+  const reviewService = createReviewService({
+    db,
+    now: Date.now,
+    loadSettings: () => reviewSettingsItem.getValue(),
+    loadLastReminderDay: () => lastReminderDayItem.getValue(),
+    saveLastReminderDay: (day) => lastReminderDayItem.setValue(day),
+    setBadge: (text) => browser.action.setBadgeText({ text }),
+    notify: async (dueCount) => {
+      if (!(await browser.permissions.contains({ permissions: ['notifications'] }))) return false;
+      await browser.notifications.create(REMINDER_ID, {
+        type: 'basic',
+        iconUrl: browser.runtime.getURL('/icon/128.png'),
+        title: 'Time to review',
+        message: `${dueCount} ${dueCount === 1 ? 'activity is' : 'activities are'} due.`,
+      });
+      return true;
+    },
+    log: (message) => console.warn('[YouTube Learn]', message),
+  });
+
+  // Listeners for an optional permission's API exist only after it is granted.
+  browser.notifications?.onClicked.addListener((id) => {
+    if (id !== REMINDER_ID) return;
+    void browser.tabs.create({ url: browser.runtime.getURL(REVIEW_URL) });
+    void browser.notifications.clear(id);
+  });
+
+  browser.alarms.onAlarm.addListener((alarm) => {
+    if (alarm.name === REVIEW_ALARM) void reviewService.check();
+  });
+  // The worker starts often; creating the alarm again would postpone it each time.
+  void browser.alarms.get(REVIEW_ALARM).then((alarm) => {
+    if (!alarm) void browser.alarms.create(REVIEW_ALARM, { periodInMinutes: REVIEW_CHECK_MINUTES });
+  });
+
+  browser.runtime.onStartup.addListener(() => void reviewService.refreshBadge());
+
   browser.runtime.onInstalled.addListener(() => {
+    void reviewService.refreshBadge();
     void reinjectContentScripts({
       contentScripts: (browser.runtime.getManifest().content_scripts ?? []) as ContentScriptEntry[],
       queryTabIds: async (matches) =>
@@ -46,6 +92,14 @@ export default defineBackground(() => {
     if (isGetCachedQuizMessage(message)) {
       void quizService.getCachedQuiz(message.videoId).then(sendResponse);
       return true;
+    }
+    if (isRecordResultMessage(message)) {
+      void reviewService.recordResult(message).then(sendResponse);
+      return true;
+    }
+    if (isRefreshBadgeMessage(message)) {
+      void reviewService.refreshBadge();
+      return;
     }
     if (isOpenOptionsMessage(message)) {
       void browser.runtime.openOptionsPage();

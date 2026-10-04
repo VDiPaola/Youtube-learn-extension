@@ -44,6 +44,13 @@ const QUIZ: CachedActivities = {
   createdAt: 1,
 };
 
+const LEARN_VIEW: OverlayState = {
+  view: 'learn',
+  entry: QUIZ,
+  activities: QUIZ.set.activities,
+  video: { id: 'vid', title: 'Title', channelId: 'UC1', channelName: 'Channel', durationSec: 600 },
+};
+
 const SEGMENTS = [{ startMs: 0, durationMs: 1000, text: 'hello' }];
 
 type GenerateResult = Awaited<ReturnType<WatchDeps['generateQuiz']>>;
@@ -201,7 +208,7 @@ describe('WatchSession opening the quiz', () => {
     s.onProgress(300);
     await flush();
     await s.openNow();
-    expect(overlay.get()).toEqual({ view: 'learn', entry: QUIZ, activities: QUIZ.set.activities });
+    expect(overlay.get()).toEqual(LEARN_VIEW);
     expect(deps.pauseVideo).toHaveBeenCalledOnce();
   });
 
@@ -210,7 +217,7 @@ describe('WatchSession opening the quiz', () => {
     const opening = s.openNow();
     expect(overlay.get().view).toBe('loading');
     await opening;
-    expect(overlay.get()).toEqual({ view: 'learn', entry: QUIZ, activities: QUIZ.set.activities });
+    expect(overlay.get()).toEqual(LEARN_VIEW);
   });
 
   it('waits for a background generation that is already running', async () => {

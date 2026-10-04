@@ -11,6 +11,8 @@ import {
   type GenerateQuizResponse,
   type GetTranscriptMessage,
   type GetTranscriptResponse,
+  type RecordResultMessage,
+  type RecordResultResponse,
   type VideoInfoResponse,
   type VideoSummary,
 } from '@/lib/messages';
@@ -27,6 +29,7 @@ import { videoIdFromUrl, type VideoInfo } from '@/lib/youtube/player-response';
 import { Overlay, type OverlayActions } from './Overlay';
 import { LearnButton } from './LearnButton';
 import { isAdShowing, loadTranscript, loadVideoInfo, mainVideo, moviePlayer } from './video';
+import '@/components/activities/activities.css';
 import './overlay.css';
 import './learn-button.css';
 
@@ -76,6 +79,7 @@ export default defineContentScript({
         };
         return browser.runtime.sendMessage(message) as Promise<GenerateQuizResponse>;
       },
+
       pauseVideo: () => mainVideo()?.pause(),
       onStatus: (value) => status.set(value),
       log: (message) => console.warn('[YouTube Learn]', message),
@@ -116,6 +120,15 @@ export default defineContentScript({
         void video.play();
       },
       resume: () => void mainVideo()?.play(),
+      record: (result) => {
+        const message: RecordResultMessage = { type: 'activity:record', result };
+        void (browser.runtime.sendMessage(message) as Promise<RecordResultResponse>).then(
+          (response) => {
+            if (!response?.ok) console.warn('[YouTube Learn] Result not saved:', response?.error);
+          },
+          (error: unknown) => console.warn('[YouTube Learn] Result not saved:', error),
+        );
+      },
     };
 
     browser.runtime.onMessage.addListener((message, _sender, sendResponse) => {

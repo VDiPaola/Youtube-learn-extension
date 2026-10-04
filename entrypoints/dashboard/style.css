@@ -1,0 +1,39 @@
+main {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 32px 16px;
+}
+
+header,
+.review-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+header h1 {
+  margin: 0;
+}
+
+.due-count {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+/* Maps the shared activity colors to the page theme. */
+.review {
+  --ytl-fg: var(--fg);
+  --ytl-muted: var(--muted);
+  --ytl-border: var(--border);
+  --ytl-accent: var(--accent);
+  --ytl-accent-fg: var(--bg);
+  --ytl-correct: var(--ok);
+  --ytl-wrong: var(--failed);
+  margin-top: 16px;
+  font-size: 15px;
+}
+
+.review h2 {
+  margin: 0;
+}

@@ -4,6 +4,7 @@ import { promptSettingsItem, withChannelRule, type ChannelRule } from '@/lib/pro
 import { DebugTools } from './DebugTools';
 import { QuizStatus } from './QuizStatus';
 import { ReloadTab } from './ReloadTab';
+import { ReviewSummary } from './ReviewSummary';
 
 type VideoState =
   | { status: 'loading' }
@@ -61,6 +62,8 @@ export default function App() {
           Settings
         </button>
       </header>
+
+      <ReviewSummary />
 
       {video.status === 'loading' && <p className="muted">Checking this tab...</p>}
       {video.status === 'unavailable' && <p className="muted">{video.message}</p>}

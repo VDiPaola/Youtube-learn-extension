@@ -11,6 +11,7 @@ import {
   type Settings,
 } from '@/lib/settings';
 import { PromptSection } from './PromptSection';
+import { ReviewSection } from './ReviewSection';
 
 type Status =
   | { kind: 'idle' }
@@ -207,6 +208,7 @@ export default function App() {
       </form>
 
       <PromptSection />
+      <ReviewSection />
 
       {__EVAL_PAGE__ && (
         <p className="muted">

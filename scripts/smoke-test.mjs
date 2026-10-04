@@ -101,6 +101,13 @@ try {
   const page = context.pages()[0] ?? (await context.newPage());
   const popup = await context.newPage();
   await popup.goto(`chrome-extension://${extensionId}/popup.html`);
+  const emptyReviews = await popup
+    .locator('.reviews')
+    .textContent({ timeout: 5_000 })
+    .catch(() => '');
+  console.log(`Popup with an empty knowledge bank: ${JSON.stringify(emptyReviews)}`);
+  if (!emptyReviews.includes('No activities saved yet'))
+    failures.push('popup: the Reviews section is missing when the knowledge bank is empty');
   await mkdir(FIXTURE_DIR, { recursive: true });
   if (process.env.VERBOSE) logTranscriptTraffic(page);
 
@@ -120,6 +127,7 @@ try {
 
   await checkQuizBackground(popup, extensionId);
   await checkOverlay(page, popup);
+  await checkDashboard(popup, extensionId);
 } finally {
   await context.close();
   await rm(userDataDir, { recursive: true, force: true });
@@ -244,6 +252,17 @@ async function checkOverlay(page, popup) {
   const rewatch = await page.locator('.ytl-review li').count();
   console.log(`  worth rewatching: ${rewatch}`);
   if (rewatch < 2) fail(`expected at least 2 activities to rewatch, found ${rewatch}`);
+
+  await page.waitForTimeout(1_000);
+  const bank = await readBank(popup);
+  console.log(
+    `  knowledge bank: ${bank.activities.length} activities, ${bank.reviewLogs} review logs, topics ${JSON.stringify(bank.topics)}, video "${bank.videos[0]?.title ?? 'none'}"`,
+  );
+  if (bank.activities.length !== SEEDED_ACTIVITIES.length)
+    fail(`expected ${SEEDED_ACTIVITIES.length} saved activities, found ${bank.activities.length}`);
+  if (bank.reviewLogs !== SEEDED_ACTIVITIES.length) fail('each answer should log one review');
+  if (bank.topics.join() !== 'Smoke Test') fail('activities were not saved under the set topic');
+  if (bank.videos[0]?.id !== OVERLAY_VIDEO) fail('the source video was not saved');
 
   await page.keyboard.press('Escape');
   if (await dialog.isVisible().catch(() => false)) fail('Escape did not close the quiz');
@@ -409,6 +428,177 @@ async function checkQuizButton(page, popup, fail) {
   console.log(`  button after a failed preparation: ${JSON.stringify(failed)}`);
   console.log(`  status: ${JSON.stringify(await status())}`);
   if (failed !== 'Learn failed, retry') fail('failed preparation was not shown on the button');
+}
+
+/** Reads the knowledge bank tables through the popup, which shares the extension origin. */
+function readBank(popup) {
+  return popup.evaluate(async () => {
+    const db = await new Promise((resolve, reject) => {
+      const request = indexedDB.open('youtube-learn');
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = () => reject(request.error);
+    });
+    const all = (store) =>
+      new Promise((resolve, reject) => {
+        const request = db.transaction(store).objectStore(store).getAll();
+        request.onsuccess = () => resolve(request.result);
+        request.onerror = () => reject(request.error);
+      });
+    const [activities, reviewLogs, topics, videos] = await Promise.all(
+      ['activities', 'reviewLogs', 'topics', 'videos'].map(all),
+    );
+    db.close();
+    return {
+      activities: activities.map(({ id, type, due }) => ({ id, type, due })),
+      reviewLogs: reviewLogs.length,
+      topics: topics.map((topic) => topic.name),
+      videos,
+    };
+  });
+}
+
+/** Makes every saved activity due now, as if the scheduled days had passed. */
+function makeAllDue(popup) {
+  return popup.evaluate(async () => {
+    const db = await new Promise((resolve, reject) => {
+      const request = indexedDB.open('youtube-learn');
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = () => reject(request.error);
+    });
+    const now = Date.now() - 1_000;
+    await new Promise((resolve, reject) => {
+      const tx = db.transaction('activities', 'readwrite');
+      const store = tx.objectStore('activities');
+      store.getAll().onsuccess = (event) => {
+        for (const activity of event.target.result) {
+          store.put({ ...activity, due: now, fsrs: { ...activity.fsrs, due: new Date(now) } });
+        }
+      };
+      tx.oncomplete = resolve;
+      tx.onerror = () => reject(tx.error);
+    });
+    db.close();
+  });
+}
+
+/** Completes a review of the saved activities on the dashboard with the keyboard. */
+async function checkDashboard(popup, extensionId) {
+  console.log('\nDashboard reviews');
+  const fail = (message) => failures.push(`dashboard: ${message}`);
+  const badge = () => popup.evaluate(() => chrome.action.getBadgeText({}));
+  const refreshBadge = async () => {
+    await popup.evaluate(() => chrome.runtime.sendMessage({ type: 'badge:refresh' }));
+    await popup.waitForTimeout(500);
+  };
+
+  await refreshBadge();
+  const before = await badge();
+  console.log(`  badge right after the video session: ${JSON.stringify(before)}`);
+  if (before !== '') fail('activities were due immediately after the video session');
+
+  await makeAllDue(popup);
+  await refreshBadge();
+  const dueBadge = await badge();
+  console.log(`  badge once activities are due: ${JSON.stringify(dueBadge)}`);
+  if (dueBadge !== String(SEEDED_ACTIVITIES.length))
+    fail(`expected badge ${SEEDED_ACTIVITIES.length}`);
+
+  await popup.reload();
+  const popupText = await popup
+    .locator('.reviews')
+    .textContent({ timeout: 5_000 })
+    .catch(() => '');
+  console.log(`  popup: ${JSON.stringify(popupText)}`);
+  if (!popupText.includes(`${SEEDED_ACTIVITIES.length} activities due`))
+    fail('popup did not show the due count');
+
+  const page = await popup.context().newPage();
+  await page.goto(`chrome-extension://${extensionId}/dashboard.html`);
+  const dueText = await page
+    .locator('.due-count')
+    .textContent({ timeout: 5_000 })
+    .catch(() => null);
+  console.log(`  overview: ${JSON.stringify(dueText)}`);
+  if (dueText !== `${SEEDED_ACTIVITIES.length} activities due`) fail('overview due count is wrong');
+
+  await page.getByRole('button', { name: 'Start review' }).click();
+  const press = (key) => page.keyboard.press(key);
+  const seen = [];
+  for (let step = 0; step < SEEDED_ACTIVITIES.length; step++) {
+    const text = await page
+      .locator('.ytl-progress')
+      .textContent({ timeout: 5_000 })
+      .catch(() => null);
+    if (!text?.startsWith(`${step + 1} of`)) {
+      fail(`step ${step + 1}: unexpected progress ${JSON.stringify(text)}`);
+      break;
+    }
+    const type = text.split(' · ')[1];
+    seen.push(type);
+    switch (type) {
+      case 'Recall question':
+      case 'Flashcard':
+      case 'Apply it':
+        await press('Space');
+        await press('1');
+        break;
+      case 'Fill in the blank':
+        await page.keyboard.type('activation');
+        await press('Enter');
+        await press('Enter');
+        break;
+      case 'Multiple choice':
+        await press('1');
+        await press('Enter');
+        break;
+      case 'True or false':
+        await press('t');
+        await press('Enter');
+        break;
+      case 'Put in order':
+        await press('Enter');
+        await press('Enter');
+        break;
+      default:
+        fail(`unknown activity type ${type}`);
+    }
+    await page
+      .waitForFunction(
+        (next) =>
+          document.querySelector('#review-heading')?.textContent === 'Review complete' ||
+          document.querySelector('.ytl-progress')?.textContent?.startsWith(`${next} of`),
+        step + 2,
+        { timeout: 5_000 },
+      )
+      .catch(() => fail(`step ${step + 1} (${type}) did not advance`));
+  }
+  const heading = await page.locator('#review-heading').textContent();
+  const summary = await page.locator('.review').textContent();
+  console.log(
+    `  keyboard review of ${seen.length} activities: ${heading}; ${summary.match(/\d+ of \d+ correct/)?.[0]}`,
+  );
+  if (heading !== 'Review complete') fail('review did not reach the summary');
+  if (new Set(seen).size !== SEEDED_ACTIVITIES.length) fail(`types reviewed: ${seen.join(', ')}`);
+
+  await page.waitForTimeout(500);
+  const bank = await readBank(popup);
+  const stillDue = bank.activities.filter((activity) => activity.due <= Date.now()).length;
+  const afterBadge = await badge();
+  console.log(
+    `  after review: ${bank.reviewLogs} review logs, ${stillDue} still due, badge ${JSON.stringify(afterBadge)}`,
+  );
+  if (bank.reviewLogs !== SEEDED_ACTIVITIES.length * 2) fail('each review should add a log');
+  if (stillDue !== 0) fail('reviewed activities are still due');
+  if (afterBadge !== '') fail('badge was not cleared after the review');
+
+  await page.getByRole('button', { name: 'Done' }).click();
+  await page
+    .getByText('Nothing due right now.')
+    .waitFor({ timeout: 5_000 })
+    .catch(() => {
+      fail('overview did not update after the review');
+    });
+  await page.close();
 }
 
 /** Writes activities into the extension's cache so the overlay opens without a provider. */

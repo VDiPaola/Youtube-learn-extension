@@ -39,8 +39,9 @@ YouTube tab                         Extension
 - **Updates:** Browsers leave already-open tabs running a disconnected copy of the old content script after an update. On install or update, the background injects the current content scripts into open YouTube tabs (`lib/reinject.ts`). If a tab still does not answer, the popup says so and offers **Reload tab**.
 - **Status:** The popup polls the session status (`quiz:status`) every second: waiting, each preparation step, ready, or failed with the reason. Failures are also logged to the page console with the prefix `[YouTube Learn]`.
 - **UI:** The button and the activity dialog render in Shadow DOM roots. The dialog is mounted inside `#movie_player`, so it stays visible in theater mode and fullscreen. Key and mouse events are stopped at each shadow root so YouTube's player shortcuts (Space, digits, `f`, `k`) do not fire. Opening the activities pauses the video.
-- **Activity runner (`lib/learn/runner.ts`, `entrypoints/youtube.content/LearnPanel.tsx`):** Shows each activity by type. Recall questions, flashcards, and apply-it scenarios are self-graded: show the answer (Space), then mark it Correct (1) or Incorrect (2). Fill in the blank (typed, forgiving of case, articles, and small typos, with an "I was right" override), multiple choice (1 to 4), true or false (1 or T, 2 or F), and put in order (arrow buttons) are checked automatically. When an activity has an explanation, it sits in a collapsed **Explanation** dropdown below the answer. Only activity types enabled in settings are shown. The summary reports how many answers were correct, and lists the incorrect ones as worth rewatching, with buttons that jump to their timestamp. Results stay in memory until Phase 4 stores them.
-- **Styling:** WXT resets each shadow host with `all: initial !important`, so host styles (position, font, color) need `!important` in the shadow stylesheet. Every stylesheet the content script imports is injected into both shadow roots, so host rules name their element (`:host(ytl-learn-button)`). Sizes use px because YouTube sets the page root font size to 10px.
+- **Activity runner (`lib/learn/runner.ts`, `components/activities/ActivityView.tsx`, `entrypoints/youtube.content/LearnPanel.tsx`):** Shows each activity by type. Recall questions, flashcards, and apply-it scenarios are self-graded: show the answer (Space), then mark it Correct (1) or Incorrect (2). Fill in the blank (typed, forgiving of case, articles, and small typos, with an "I was right" override), multiple choice (1 to 4), true or false (1 or T, 2 or F), and put in order (arrow buttons) are checked automatically. When an activity has an explanation, it sits in a collapsed **Explanation** dropdown below the answer. Only activity types enabled in settings are shown. The summary reports how many answers were correct, and lists the incorrect ones as worth rewatching, with buttons that jump to their timestamp. The activity views and the `useActivityRunner` hook are shared with the dashboard.
+- **Saving results:** Each finished activity is sent to the background (`activity:record`) and saved to the knowledge bank. A checked answer also counts if the dialog closes before **Continue**. A self-graded answer that was shown but not graded is not saved. The video details travel with the open dialog, so an answer saved during in-app navigation stays with its own video.
+- **Styling:** Activity styles live in `components/activities/activities.css`, scoped to a container with the `ytl-surface` class and colored by `--ytl-*` variables, so the dashboard reuses them. WXT resets each shadow host with `all: initial !important`, so host styles (position, font, color) need `!important` in the shadow stylesheet. Every stylesheet the content script imports is injected into both shadow roots, so host rules name their element (`:host(ytl-learn-button)`). Sizes use px because YouTube sets the page root font size to 10px.
 
 ### Transcript retrieval
 
@@ -84,11 +85,15 @@ Implementation notes, confirmed against live YouTube (October 2026):
 - **Long transcripts:** Transcripts over 150,000 characters (about three hours of speech) are split into parts. Later parts receive the first part's topic. Activities are merged, near-duplicates (word overlap of 80% or more) removed, and the total capped.
 - **Cache:** Generated activity sets are stored per video ID in the `quizCache` table, so rewatching does not cost another API call. Concurrent requests for the same video share one generation.
 - **Keep-alive:** Browsers stop idle background workers after about 30 seconds. During generation, the background calls a cheap extension API every 20 seconds.
-- **Reminders:** `alarms` API checks due activities periodically, updates the toolbar badge count, and optionally shows one daily notification.
+- **Knowledge bank (`lib/knowledge/`):** `bank.ts` saves answers and reviews, `scheduler.ts` wraps `ts-fsrs`, and `background.ts` handles saving, the badge, and reminders. Extension pages share the extension origin, so the dashboard and popup read and write IndexedDB directly. The content script runs on YouTube's origin and goes through the background.
+- **Reminders:** An alarm every 5 minutes updates the toolbar badge with the due count. The badge also refreshes after each saved answer or review (`badge:refresh`). When the daily reminder is on, the first check after the chosen hour shows one notification if activities are due. Clicking it opens a review.
 
 ### Dashboard (extension page)
 
-- **Review:** Session of due cards. Show question, user recalls (optionally types an answer), reveal answer, mark it Correct or Incorrect. Each card links back to the source video at the relevant timestamp.
+`dashboard.html`. Phase 4 has the overview and reviews; the other sections come in Phases 5 and 6.
+
+- **Overview:** Due count, **Start review**, the next due time, and the bank size. `dashboard.html#review` starts a review directly (popup and notification).
+- **Review:** Due activities, most overdue first, each in its own form with the shared activity views. Each answer is saved as it is given. After answering, the source video link opens at the activity's timestamp. Esc or **End review** stops; the summary shows how many were correct.
 - **Knowledge bank:** Browse by topic. Search. Edit, suspend, or delete cards. Delete all cards from a video. Rename, merge, or delete topics. Move cards between topics.
 - **Export:** Anki `.apkg` and TSV per topic or for everything.
 - **Backup:** Full JSON export and import (cards, review history, settings except API keys).
@@ -96,19 +101,21 @@ Implementation notes, confirmed against live YouTube (October 2026):
 
 ### Popup
 
-On a watch page: the live status (see Status above), "Learn from this video", and a per-channel rule (automatic, always, never). A collapsed developer section holds the transcript and activity debug tools. Later: due count, "Start review", and a link to the dashboard.
+When the knowledge bank has activities: the due count, **Start review**, and **Knowledge bank** (opens the dashboard). On a watch page: the live status (see Status above), "Learn from this video", and a per-channel rule (automatic, always, never). A collapsed developer section holds the transcript and activity debug tools.
 
 ## Data model
 
 Stored in IndexedDB through Dexie. IDs are UUIDs so backups merge without collisions.
 
-| Table        | Key fields                                                                                                                                                                              |
-| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `videos`     | `id` (YouTube video ID), `title`, `channelId`, `channelName`, `durationSec`, `transcriptLang`, `activitiesGeneratedAt`                                                                  |
-| `topics`     | `id`, `name`, `parentId` (nullable, for nested topics), `createdAt`                                                                                                                     |
-| `activities` | `id`, `videoId`, `topicId`, the activity fields (`type`, `prompt`, `answer`, `explanation`, `options`), `sourceStartSec`, `fsrs` (ts-fsrs state), `suspended`, `createdAt`, `updatedAt` |
-| `reviewLogs` | `id`, `activityId`, `rating`, `reviewedAt`, `fsrsLog` (ts-fsrs review log)                                                                                                              |
-| `quizCache`  | `videoId`, `title`, `set` (validated activity set), `providerId`, `model`, `createdAt`. Version 2 of the database cleared entries saved in the earlier flashcard format.                |
+| Table        | Key fields                                                                                                                                                                                                        |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `videos`     | `id` (YouTube video ID), `title`, `channelId`, `channelName`, `durationSec`, `transcriptLang`, `activitiesGeneratedAt`                                                                                            |
+| `topics`     | `id`, `name`, `parentId` (nullable, for nested topics), `createdAt`                                                                                                                                               |
+| `activities` | `id`, `videoId`, `topicId`, the activity fields (`type`, `prompt`, `answer`, `explanation`, `options`), `sourceStartSec`, `fsrs` (ts-fsrs card), `due` (epoch ms), `suspended` (0 or 1), `createdAt`, `updatedAt` |
+| `reviewLogs` | `id`, `activityId`, `rating`, `reviewedAt`, `fsrsLog` (ts-fsrs review log)                                                                                                                                        |
+| `quizCache`  | `videoId`, `title`, `set` (validated activity set), `providerId`, `model`, `createdAt`. Version 2 of the database cleared entries saved in the earlier flashcard format.                                          |
+
+Version 3 added `videos`, `topics`, `activities`, and `reviewLogs` without changing `quizCache`. IndexedDB cannot index booleans, so `suspended` is 0 or 1, and the `[suspended+due]` index serves the due queue and count. `due` copies `fsrs.due` as a number for that index.
 
 Settings and API keys live in `browser.storage.local`, not IndexedDB. API keys are never included in backups or exports.
 
@@ -118,7 +125,8 @@ Schema changes go through Dexie version upgrades. Every version bump ships with 
 
 - **Activity types:** recall question, flashcard, fill in the blank, multiple choice, true or false, put in order, and apply it. Each stored activity is reviewed in its own form.
 - **First retrieval:** The session on the video counts as the first review. Every result is correct or incorrect, whether self-graded or checked; correct counts as Good and incorrect as Again. That result seeds FSRS state, so the next review is scheduled from it. Activities from a skipped session are not saved by default.
-- **Scheduler:** `ts-fsrs` with default parameters and a user-configurable desired retention (default 0.9). Review logs are kept so parameters can be optimized later.
+- **Repeats:** A video session for activities already in the bank (same video, type, and prompt) counts as a review of those activities.
+- **Scheduler:** `ts-fsrs` with default weights and a user-configurable desired retention (80% to 95%, default 90%). Same-day learning steps are off, because reviews happen on a daily scale: a first incorrect answer comes back the next day, a correct one a few days later. Fuzz is off, so activities from one video stay due together. Review logs are kept so parameters can be optimized later.
 - **Deletion:** Deleting a activity removes it and its review logs. An undo toast is shown for a few seconds. Suspending keeps the activity but removes it from reviews.
 
 ## Topics
@@ -147,8 +155,8 @@ Schema changes go through Dexie version upgrades. Every version bump ships with 
 | ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
 | `scripting`                   | After an install or update, injects the current content scripts into YouTube tabs that were already open, so they keep working without a reload |
 | `storage`, `unlimitedStorage` | Settings and knowledge bank                                                                                                                     |
-| `alarms`                      | Review reminders                                                                                                                                |
-| `notifications`               | Optional daily reminder                                                                                                                         |
+| `alarms`                      | Due-count badge refresh and the daily reminder check                                                                                            |
+| Optional: `notifications`     | Daily reminder. Requested when the user turns it on, so installs and updates show no permission warning                                         |
 | Host: `*://*.youtube.com/*`   | Content script and transcript fetch                                                                                                             |
 | Optional host: `*://*/*`      | Requested per provider origin when the user saves settings, never at install                                                                    |
 
@@ -161,9 +169,9 @@ Schema changes go through Dexie version upgrades. Every version bump ships with 
 
 ## Testing
 
-- **Unit (Vitest):** transcript parsing (with saved fixtures), chunking, Zod validation of model output, scheduler wrapper, topic matching, export file contents, backup round trip, Dexie migrations.
+- **Unit (Vitest):** transcript parsing (with saved fixtures), chunking, Zod validation of model output, the knowledge bank and FSRS intervals on simulated dates, reminders, the activity runner hook, topic matching, export file contents, backup round trip, Dexie migrations.
 - **Extension APIs:** WXT's fake browser for storage and messaging in unit tests.
-- **Smoke test (Playwright, `pnpm test:smoke`):** Loads the Chromium build on live YouTube videos and checks video details, step order, request capture, in-app navigation, and panel cleanup. For the activities, it seeds one of each type, completes them with the keyboard (including a fill-in-the-blank typo and a wrong multiple-choice answer), confirms YouTube shortcuts do not fire, and checks the dialog is on top in default, theater, and fullscreen views with YouTube's dark theme. It also checks the button's states (Learn, Learn (N), Learn failed) and that a click opens the activities. Automated browsers cannot play far into a video, so the test sets the position and dispatches the playback event.
+- **Smoke test (Playwright, `pnpm test:smoke`):** Loads the Chromium build on live YouTube videos and checks video details, step order, request capture, in-app navigation, and panel cleanup. For the activities, it seeds one of each type, completes them with the keyboard (including a fill-in-the-blank typo and a wrong multiple-choice answer), confirms YouTube shortcuts do not fire, and checks the dialog is on top in default, theater, and fullscreen views with YouTube's dark theme. It also checks the button's states (Learn, Learn (N), Learn failed) and that a click opens the activities. Then it checks the saved activities, makes them due, and checks the badge, the popup, and a keyboard review of every type in the dashboard. Automated browsers cannot play far into a video, so the test sets the position and dispatches the playback event.
 - **Manual:** Successful transcript retrieval and live activity generation, in Edge.
 - **Firefox:** `web-ext lint` in CI plus a manual test checklist per release.
 

@@ -17,7 +17,10 @@ export default defineConfig({
     name: 'YouTube Learn',
     description: 'Active recall quizzes and spaced repetition for educational YouTube videos.',
     // scripting: updates content scripts in YouTube tabs that were open during an update.
-    permissions: ['storage', 'scripting'],
+    // alarms: refreshes the due-count badge and checks the daily reminder.
+    permissions: ['storage', 'scripting', 'alarms'],
+    // Requested when the daily reminder is turned on, so installs and updates show no warning.
+    optional_permissions: ['notifications'],
     host_permissions: ['*://*.youtube.com/*'],
     // Requested per provider origin from the settings page, never at install.
     optional_host_permissions: ['*://*/*'],

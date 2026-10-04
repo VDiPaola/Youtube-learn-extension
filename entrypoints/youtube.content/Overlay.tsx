@@ -1,5 +1,6 @@
 import { useEffect, useRef, useSyncExternalStore, type KeyboardEvent } from 'react';
 import type { QuizErrorCode } from '@/lib/learn/errors';
+import type { VideoResult } from '@/lib/knowledge/bank';
 import type { OverlayState, Store } from '@/lib/watch/session';
 import { LearnPanel } from './LearnPanel';
 
@@ -8,6 +9,8 @@ export interface OverlayActions {
   openSettings(): void;
   seekAndPlay(seconds: number): void;
   resume(): void;
+  /** Saves one answer to the knowledge bank. */
+  record(result: VideoResult): void;
 }
 
 const SETTINGS_ERRORS: QuizErrorCode[] = ['not-configured', 'permission', 'auth'];
@@ -55,6 +58,15 @@ export function Overlay({
           topic={state.entry.set.topic}
           activities={state.activities}
           actions={actions}
+          onResult={(activity, correct) =>
+            actions.record({
+              video: state.video,
+              topic: state.entry.set.topic,
+              generatedAt: state.entry.createdAt,
+              activity,
+              correct,
+            })
+          }
         />
       );
   }
@@ -79,7 +91,7 @@ export function Dialog({
     <div className="ytl-scrim">
       <div
         ref={ref}
-        className="ytl-dialog"
+        className="ytl-dialog ytl-surface"
         role="dialog"
         aria-modal="true"
         aria-labelledby="ytl-dialog-title"

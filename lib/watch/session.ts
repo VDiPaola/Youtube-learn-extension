@@ -1,4 +1,4 @@
-import type { CachedActivities } from '@/lib/db';
+import type { CachedActivities, StoredVideo } from '@/lib/db';
 import type { GenerateQuizResponse } from '@/lib/messages';
 import {
   checkEligibility,
@@ -34,7 +34,10 @@ export type OverlayState =
   | { view: 'hidden' }
   | { view: 'loading' }
   | { view: 'error'; code: QuizErrorCode; message: string }
-  | { view: 'learn'; entry: CachedActivities; activities: Activity[] };
+  | { view: 'learn'; entry: CachedActivities; activities: Activity[]; video: VideoRef };
+
+/** Video details saved with each answer. Kept in the view so answers stay with their video. */
+export type VideoRef = Omit<StoredVideo, 'activitiesGeneratedAt'>;
 
 export type PrepareStep = 'cache' | 'transcript' | 'generating';
 
@@ -130,7 +133,9 @@ export class WatchSession {
       if (activities.length === 0) {
         throw new QuizError('no-activities', 'The video has nothing worth learning.');
       }
-      this.overlay.set({ view: 'learn', entry, activities });
+      const video = this.video ?? (await this.deps.loadVideo(this.videoId));
+      if (!stillWaiting()) return;
+      this.overlay.set({ view: 'learn', entry, activities, video: videoRef(video) });
       this.deps.pauseVideo();
     } catch (error) {
       if (!stillWaiting()) return;
@@ -204,4 +209,9 @@ export class WatchSession {
       this.step = null;
     }
   }
+}
+
+function videoRef(video: VideoInfo): VideoRef {
+  const { videoId, title, channelId, channelName, durationSec } = video;
+  return { id: videoId, title, channelId, channelName, durationSec };
 }
