@@ -1,4 +1,4 @@
-# YouTube Learn (working title)
+# YouTube Learn
 
 A browser extension that turns educational YouTube videos into learning activities and brings them back for review before you forget them.
 
@@ -29,10 +29,3 @@ Settings also turn activity types off, set the review retention, and enable a da
 ## Privacy
 
 Everything stays in your browser. Transcripts go only to the AI provider you choose. No accounts, no analytics.
-
-## Documentation
-
-- [Development](docs/DEVELOPMENT.md): build, test, and release
-- [Architecture](docs/ARCHITECTURE.md): how it works
-- [Roadmap](docs/ROADMAP.md): progress and next steps
-- [Evaluation](docs/EVALUATION.md): checking activity quality
