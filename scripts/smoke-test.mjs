@@ -449,9 +449,20 @@ function readBank(popup) {
     );
     db.close();
     return {
-      activities: activities.map(({ id, type, due }) => ({ id, type, due })),
+      activities: activities.map(
+        ({ id, type, due, prompt, generatedPrompt, topicId, suspended }) => ({
+          id,
+          type,
+          due,
+          prompt,
+          generatedPrompt,
+          topicId,
+          suspended,
+        }),
+      ),
       reviewLogs: reviewLogs.length,
       topics: topics.map((topic) => topic.name),
+      topicRecords: topics,
       videos,
     };
   });
@@ -598,7 +609,156 @@ async function checkDashboard(popup, extensionId) {
     .catch(() => {
       fail('overview did not update after the review');
     });
+  await checkKnowledgeBank(page, popup);
   await page.close();
+}
+
+/** Runs every knowledge bank action in the dashboard and checks the bank and the due count. */
+async function checkKnowledgeBank(page, popup) {
+  console.log('\nKnowledge bank');
+  const fail = (message) => failures.push(`knowledge bank: ${message}`);
+  const total = SEEDED_ACTIVITIES.length;
+  const toast = page.locator('.toast');
+  const dueCount = page.locator('.due-count');
+  const heading = page.locator('.bank-main h3');
+  const row = (prompt) =>
+    page.locator('.activity-item', {
+      has: page.locator('.activity-prompt').getByText(prompt, { exact: true }),
+    });
+  const topicButton = (name) => page.locator('.topic-list button', { hasText: name });
+  const expectText = async (locator, text, what) => {
+    const shown = await locator
+      .filter({ hasText: text })
+      .first()
+      .waitFor({ timeout: 5_000 })
+      .then(() => true)
+      .catch(() => false);
+    if (!shown) fail(`${what}: expected ${JSON.stringify(text)}`);
+  };
+  const step = async (name, action) => {
+    try {
+      await action();
+      console.log(`  ${name}: done`);
+    } catch (error) {
+      fail(`${name}: ${error.message.split('\n')[0]}`);
+    }
+  };
+
+  await step('browse and search', async () => {
+    await expectText(topicButton('All topics'), `${total}`, 'all topics count');
+    await expectText(topicButton('Smoke Test'), `${total}`, 'topic count');
+    const search = page.getByRole('searchbox', { name: 'Search activities' });
+    await search.fill('784');
+    await expectText(page.locator('.bank-main [role=status]'), '1 activity found', 'search');
+    if ((await page.locator('.activity-item').count()) !== 1)
+      fail('search showed other activities');
+    await search.fill('');
+  });
+
+  const recall = SEEDED_ACTIVITIES[0].prompt;
+  const edited = 'Why do neural networks need hidden layers?';
+  await step('edit', async () => {
+    await row(recall).getByRole('button', { name: 'Edit' }).click();
+    await page.getByRole('textbox', { name: 'Question' }).fill(edited);
+    await page.getByRole('button', { name: 'Save' }).click();
+    await expectText(toast, 'Activity saved.', 'edit toast');
+    const saved = (await readBank(popup)).activities.find((a) => a.prompt === edited);
+    if (saved?.generatedPrompt !== recall) fail('edit did not keep the generated prompt');
+  });
+
+  await step('suspend and resume, with the due count updated', async () => {
+    await makeAllDue(popup);
+    await page.reload();
+    await expectText(dueCount, `${total} activities due`, 'due count before suspending');
+    await row('Activation').getByRole('button', { name: 'Suspend' }).click();
+    await expectText(row('Activation'), 'Suspended', 'suspended label');
+    await expectText(dueCount, `${total - 1} activities due`, 'due count after suspending');
+    await row('Activation').getByRole('button', { name: 'Resume' }).click();
+    await expectText(dueCount, `${total} activities due`, 'due count after resuming');
+  });
+
+  await step('delete and undo', async () => {
+    const statement = SEEDED_ACTIVITIES[4].prompt;
+    await row(statement).getByRole('button', { name: 'Delete' }).click();
+    await expectText(toast, 'Activity deleted.', 'delete toast');
+    await expectText(dueCount, `${total - 1} activities due`, 'due count after deleting');
+    if ((await row(statement).count()) !== 0) fail('deleted activity is still listed');
+    await toast.getByRole('button', { name: 'Undo' }).click();
+    await expectText(dueCount, `${total} activities due`, 'due count after undo');
+    await expectText(row(statement), statement, 'restored activity');
+  });
+
+  await step('create, nest, and rename topics', async () => {
+    await page.getByRole('button', { name: 'New topic' }).click();
+    await page.getByRole('textbox', { name: 'Name' }).fill('Neural Networks');
+    await page.getByRole('button', { name: 'Create' }).click();
+    await expectText(heading, 'Neural Networks', 'new topic selected');
+
+    await topicButton('Smoke Test').click();
+    await page.getByRole('button', { name: 'Change parent' }).click();
+    await page
+      .getByRole('combobox', { name: 'Parent topic' })
+      .selectOption({ label: 'Neural Networks' });
+    await page.getByRole('button', { name: 'Save' }).click();
+    await expectText(heading, 'Neural Networks > Smoke Test', 'nested path');
+
+    await page.getByRole('button', { name: 'Rename' }).click();
+    await page.getByRole('textbox', { name: 'New name' }).fill('Basics');
+    await page.getByRole('button', { name: 'Rename' }).click();
+    await expectText(page.locator('.topic-list .subtopic'), 'Basics', 'renamed subtopic');
+  });
+
+  await step('move an activity', async () => {
+    const ordering = SEEDED_ACTIVITIES[5].prompt;
+    await row(ordering).getByRole('button', { name: 'Move' }).click();
+    await page
+      .getByRole('combobox', { name: 'Move to topic' })
+      .selectOption({ label: 'Neural Networks' });
+    await row(ordering).getByRole('button', { name: 'Move' }).click();
+    await expectText(toast, 'Moved to Neural Networks.', 'move toast');
+    await expectText(topicButton('Basics'), `${total - 1}`, 'count after moving');
+    if ((await row(ordering).count()) !== 0) fail('moved activity is still listed under Basics');
+  });
+
+  await step('merge topics', async () => {
+    await page.getByRole('button', { name: 'Merge' }).click();
+    await page
+      .getByRole('combobox', { name: /Merge "Basics" into/ })
+      .selectOption({ label: 'Neural Networks' });
+    await page.getByRole('button', { name: 'Merge' }).click();
+    await expectText(toast, 'Merged "Basics" into "Neural Networks".', 'merge toast');
+    const bank = await readBank(popup);
+    const [topic] = bank.topicRecords;
+    if (bank.topicRecords.length !== 1 || topic?.name !== 'Neural Networks')
+      fail(`topics after merge: ${JSON.stringify(bank.topics)}`);
+    if (!['Smoke Test', 'Basics'].every((name) => topic?.aliases?.includes(name)))
+      fail(`merged names were not kept as aliases: ${JSON.stringify(topic?.aliases)}`);
+    if (bank.activities.some((a) => a.topicId !== topic?.id)) fail('activities were not merged');
+    await expectText(dueCount, `${total} activities due`, 'due count after merge');
+  });
+
+  await step('delete all activities from a video and undo', async () => {
+    await page
+      .getByRole('button', { name: new RegExp(`^Delete all ${total} activities from`) })
+      .click();
+    await expectText(page.locator('section p'), 'Your knowledge bank is empty.', 'empty bank');
+    await toast.getByRole('button', { name: 'Undo' }).click();
+    await expectText(dueCount, `${total} activities due`, 'due count after undo');
+  });
+
+  await step('delete a topic and undo', async () => {
+    await topicButton('Neural Networks').click();
+    await page.getByRole('button', { name: 'Delete topic' }).click();
+    await expectText(toast, `Deleted topic "Neural Networks" and ${total} activities.`, 'toast');
+    if ((await readBank(popup)).activities.length !== 0) fail('topic activities were not deleted');
+    await toast.getByRole('button', { name: 'Undo' }).click();
+    await expectText(dueCount, `${total} activities due`, 'due count after undo');
+  });
+
+  await page.waitForTimeout(500);
+  const badge = await popup.evaluate(() => chrome.action.getBadgeText({}));
+  console.log(`  badge after the management actions: ${JSON.stringify(badge)}`);
+  if (badge !== String(total)) fail(`expected badge ${total}`);
 }
 
 /** Writes activities into the extension's cache so the overlay opens without a provider. */

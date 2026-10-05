@@ -108,14 +108,30 @@ describe('saving video results', () => {
   });
 
   it('reuses topics by name, ignoring case', async () => {
+    const video = (id: string) => ({ ...result().video, id });
     await recordVideoResult(db, result(), options(START));
-    await recordVideoResult(
-      db,
-      result({ topic: 'biology', activity: activity('B?') }),
-      options(START),
-    );
-    await recordVideoResult(db, result({ topic: '  ', activity: activity('C?') }), options(START));
+    await recordVideoResult(db, result({ video: video('b'), topic: 'biology' }), options(START));
+    await recordVideoResult(db, result({ video: video('c'), topic: '  ' }), options(START));
     expect((await db.topics.toArray()).map((t) => t.name).sort()).toEqual(['Biology', 'General']);
+  });
+
+  it("adds new activities to the topic the video's activities were moved to", async () => {
+    const first = await recordVideoResult(db, result(), options(START));
+    await db.topics.add({ id: 'chosen', name: 'Chosen', parentId: null, createdAt: START });
+    await db.activities.update(first.id, { topicId: 'chosen' });
+
+    const next = await recordVideoResult(db, result({ activity: activity('B?') }), options(START));
+    expect(next.topicId).toBe('chosen');
+  });
+
+  it('matches an edited activity by its generated prompt', async () => {
+    const first = await recordVideoResult(db, result(), options(START));
+    await db.activities.update(first.id, { prompt: 'Edited?', generatedPrompt: 'What is DNA?' });
+
+    const again = await recordVideoResult(db, result(), options(first.due));
+    expect(again.id).toBe(first.id);
+    expect(again.prompt).toBe('Edited?');
+    expect(await db.activities.count()).toBe(1);
   });
 
   it('stores only the activity fields', async () => {
@@ -189,6 +205,16 @@ describe('due activities', () => {
     const queue = await loadReviewQueue(db, now);
     expect(queue.map((item) => item.activity.id)).toEqual([b.id, a.id]);
     expect(queue[0]).toMatchObject({ topic: 'Biology', videoTitle: 'Genes' });
+  });
+
+  it('shows subtopics as a path in the review queue', async () => {
+    const saved = await recordVideoResult(
+      db,
+      result({ topic: 'Biology > Genetics', correct: false }),
+      options(START),
+    );
+    const [item] = await loadReviewQueue(db, saved.due);
+    expect(item?.topic).toBe('Biology > Genetics');
   });
 
   it('summarizes the bank with the next due time', async () => {

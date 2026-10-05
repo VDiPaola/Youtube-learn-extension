@@ -1,0 +1,54 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: lts/*
+
+      - name: Install pnpm
+        run: npm install --global pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Type check
+        run: pnpm compile
+
+      - name: Unit tests
+        run: pnpm test
+
+      - name: Build archives
+        run: |
+          pnpm zip
+          pnpm zip:firefox
+
+      - name: Lint the Firefox build
+        run: pnpm lint:firefox
+
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version=$(node -p "require('./package.json').version")
+          tag="v${version}-build.${GITHUB_RUN_NUMBER}"
+          gh release create "$tag" .output/*.zip \
+            --target "$GITHUB_SHA" \
+            --title "YouTube Learn ${version} (build ${GITHUB_RUN_NUMBER})" \
+            --generate-notes

@@ -117,6 +117,21 @@ describe('activity service', () => {
     expect(provider.generate.mock.calls[1]![0].prompt).toContain('Existing topics: Biology');
   });
 
+  it('passes knowledge bank topics first and skips cached topics that were renamed', async () => {
+    await db.topics.bulkAdd([
+      { id: 'life', name: 'Life Science', parentId: null, createdAt: 1, aliases: ['Biology'] },
+      { id: 'gen', name: 'Genetics', parentId: 'life', createdAt: 2 },
+    ]);
+    const s = service();
+    await s.generateQuiz(message('first'));
+    provider.generate.mockResolvedValueOnce(quiz('Chemistry'));
+    await s.generateQuiz(message('second'));
+    await s.generateQuiz(message('third'));
+    expect(provider.generate.mock.calls[2]![0].prompt).toContain(
+      'Existing topics: Life Science > Genetics; Life Science; Chemistry\n',
+    );
+  });
+
   it('shares one generation between concurrent requests for the same video', async () => {
     const s = service();
     const [a, b] = await Promise.all([s.generateQuiz(message()), s.generateQuiz(message())]);

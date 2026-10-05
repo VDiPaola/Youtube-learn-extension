@@ -11,7 +11,7 @@ Each phase ends with working, tested software. Phases 1 and 2 can run in paralle
 
 **Done when:** an empty extension loads in Chrome and Firefox from CI build artifacts.
 
-**Status:** Mostly done. WXT, React, TypeScript, Prettier, Vitest, Playwright, and both builds are set up. Remaining: ESLint, and CI once the project is a git repository.
+**Status:** Mostly done. WXT, React, TypeScript, Prettier, Vitest, Playwright, and both builds are set up. Each push to `main` runs the type check, unit tests, both store archives, and `web-ext lint`, then publishes a GitHub release with the archives (`.github/workflows/release.yml`). Remaining: ESLint.
 
 ## Phase 1: Transcript pipeline
 
@@ -88,6 +88,10 @@ Each phase ends with working, tested software. Phases 1 and 2 can run in paralle
 - Rename, merge, nest, and delete topics; move activities between topics.
 
 **Done when:** every management action is covered by a unit test and reflected immediately in the review queue.
+
+**Status:** Implemented. The dashboard has a **Knowledge bank** section: topic list, search, activities grouped by video, and actions for activities, videos, and topics. Every action can be undone from a toast. Suggested topic names match current names, `Parent > Subtopic` paths, and former names kept after a rename or merge, so manual changes stick. Unit tests cover each action, its undo, and the review queue afterwards. The smoke test runs every action in the dashboard and checks the due count and badge. A separate check opened data saved by the Phase 4 build in the new dashboard, with a YouTube tab open. Remaining:
+
+- Confirm in Edge with your provider: reload the extension over your existing bank, then rename a topic and check that the next video with that subject joins it.
 
 ## Phase 6: Export and backup
 

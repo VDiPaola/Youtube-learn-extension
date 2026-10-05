@@ -27,12 +27,16 @@ export interface Topic {
   name: string;
   parentId: string | null;
   createdAt: number;
+  /** Former names from renames and merges, so AI topic suggestions follow manual changes. */
+  aliases?: string[];
 }
 
 export interface StoredActivity extends Activity {
   id: string;
   videoId: string;
   topicId: string;
+  /** The prompt as generated, kept after an edit so a repeated video session still matches. */
+  generatedPrompt?: string;
   fsrs: FsrsCard;
   /** Copy of `fsrs.due` in epoch ms, for the due index. */
   due: number;

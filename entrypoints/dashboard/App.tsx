@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { db } from '@/lib/db';
 import {
   loadReviewQueue,
@@ -6,6 +6,8 @@ import {
   type BankSummary,
   type ReviewItem,
 } from '@/lib/knowledge/bank';
+import { useLiveQuery } from './bank-actions';
+import { KnowledgeBank } from './KnowledgeBank';
 import { ReviewSession } from './ReviewSession';
 
 type View = { kind: 'overview' } | { kind: 'review'; items: ReviewItem[] };
@@ -13,14 +15,9 @@ type View = { kind: 'overview' } | { kind: 'review'; items: ReviewItem[] };
 const REVIEW_HASH = '#review';
 
 export default function App() {
-  const [summary, setSummary] = useState<BankSummary | null>(null);
+  const summary = useLiveQuery(() => summarizeBank(db, Date.now()));
   const [view, setView] = useState<View>({ kind: 'overview' });
-
-  const refresh = useCallback(async () => {
-    const next = await summarizeBank(db, Date.now());
-    setSummary(next);
-    return next;
-  }, []);
+  const hashHandled = useRef(false);
 
   const startReview = useCallback(async () => {
     const items = await loadReviewQueue(db, Date.now());
@@ -28,15 +25,14 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    void refresh().then((next) => {
-      if (location.hash === REVIEW_HASH && next.due > 0) void startReview();
-    });
-  }, [refresh, startReview]);
+    if (!summary || hashHandled.current) return;
+    hashHandled.current = true;
+    if (location.hash === REVIEW_HASH && summary.due > 0) void startReview();
+  }, [summary, startReview]);
 
   const finish = () => {
     history.replaceState(null, '', location.pathname);
     setView({ kind: 'overview' });
-    void refresh();
   };
 
   return (
@@ -54,13 +50,16 @@ export default function App() {
       {view.kind === 'review' ? (
         <ReviewSession items={view.items} onFinish={finish} />
       ) : (
-        <Overview summary={summary} onStart={() => void startReview()} />
+        <>
+          <Overview summary={summary} onStart={() => void startReview()} />
+          {summary && <KnowledgeBank />}
+        </>
       )}
     </main>
   );
 }
 
-function Overview({ summary, onStart }: { summary: BankSummary | null; onStart: () => void }) {
+function Overview({ summary, onStart }: { summary?: BankSummary; onStart: () => void }) {
   if (!summary) return <p className="muted">Loading...</p>;
   if (summary.total === 0) {
     return (

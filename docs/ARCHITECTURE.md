@@ -79,22 +79,26 @@ Implementation notes, confirmed against live YouTube (October 2026):
   ```
   - **Anthropic:** official `@anthropic-ai/sdk` with structured outputs (`output_config.format`, schema from `betaZodOutputFormat`). Default model `claude-opus-5-5`. Server-side refusal fallbacks (`fallbacks: "default"`) are enabled for models that support them. `stop_reason` is checked before the JSON is parsed, so refusals and truncation get their own errors.
   - **OpenAI-compatible:** plain `fetch` to `/chat/completions` with `response_format: json_schema` (strict). Presets: OpenAI, Google Gemini (through its OpenAI-compatible endpoint), OpenRouter, Ollama, and any custom server.
-- **Generation (`lib/learn/generate.ts`):** Caption segments are merged into ~20 second lines with `[m:ss]` markers. The prompt describes the seven activity types and when each fits, and includes the title, channel, existing topic names, the enabled types, and the target activity count. The model picks the type that fits each idea. Output is validated with Zod, normalized per type (`lib/learn/clean.ts`), and invalid output is retried once, then reported as an error.
+- **Generation (`lib/learn/generate.ts`):** Caption segments are merged into ~20 second lines with `[m:ss]` markers. The prompt describes the seven activity types and when each fits, and includes the title, channel, existing topic names, the enabled types, and the target activity count. Existing topics are the knowledge bank's topics (subtopics as `Parent > Subtopic`), then topics of cached sets not saved to the bank yet, up to 50. The model picks the type that fits each idea. Output is validated with Zod, normalized per type (`lib/learn/clean.ts`), and invalid output is retried once, then reported as an error.
 - **Activity count:** One activity per three minutes of video, between 5 and 15.
 - **Activity format (`lib/learn/schema.ts`):** One flat shape for every type: `type`, `prompt`, `answer`, `explanation`, `options`, `sourceStartSec`, with unused fields empty. `options` holds wrong choices (multiple choice), the items in correct order (put in order), or accepted alternatives (fill in the blank). Strict JSON schema modes handle a flat shape more reliably than a union of shapes.
 - **Long transcripts:** Transcripts over 150,000 characters (about three hours of speech) are split into parts. Later parts receive the first part's topic. Activities are merged, near-duplicates (word overlap of 80% or more) removed, and the total capped.
 - **Cache:** Generated activity sets are stored per video ID in the `quizCache` table, so rewatching does not cost another API call. Concurrent requests for the same video share one generation.
 - **Keep-alive:** Browsers stop idle background workers after about 30 seconds. During generation, the background calls a cheap extension API every 20 seconds.
-- **Knowledge bank (`lib/knowledge/`):** `bank.ts` saves answers and reviews, `scheduler.ts` wraps `ts-fsrs`, and `background.ts` handles saving, the badge, and reminders. Extension pages share the extension origin, so the dashboard and popup read and write IndexedDB directly. The content script runs on YouTube's origin and goes through the background.
+- **Knowledge bank (`lib/knowledge/`):** `bank.ts` saves answers and reviews, `scheduler.ts` wraps `ts-fsrs`, `topics.ts` matches topic names, `manage.ts` holds the management actions, `browse.ts` builds the dashboard's topic list and search results, and `background.ts` handles saving, the badge, and reminders. Extension pages share the extension origin, so the dashboard and popup read and write IndexedDB directly. The content script runs on YouTube's origin and goes through the background.
 - **Reminders:** An alarm every 5 minutes updates the toolbar badge with the due count. The badge also refreshes after each saved answer or review (`badge:refresh`). When the daily reminder is on, the first check after the chosen hour shows one notification if activities are due. Clicking it opens a review.
 
 ### Dashboard (extension page)
 
-`dashboard.html`. Phase 4 has the overview and reviews; the other sections come in Phases 5 and 6.
+`dashboard.html`. The page reads IndexedDB through Dexie live queries, so counts and lists update after any change, including answers saved by the background. Export and backup come in Phase 6.
 
 - **Overview:** Due count, **Start review**, the next due time, and the bank size. `dashboard.html#review` starts a review directly (popup and notification).
 - **Review:** Due activities, most overdue first, each in its own form with the shared activity views. Each answer is saved as it is given. After answering, the source video link opens at the activity's timestamp. Esc or **End review** stops; the summary shows how many were correct.
-- **Knowledge bank:** Browse by topic. Search. Edit, suspend, or delete cards. Delete all cards from a video. Rename, merge, or delete topics. Move cards between topics.
+- **Knowledge bank:** A topic list (subtopics indented, with activity counts) beside the activities of the selected topic and its subtopics, grouped by video, newest video first. Search matches every word in the prompt, answer, explanation, options, and video title, ignoring case and accents. 100 activities show at a time.
+  - Activities: **Edit** (text fields for the type, checked with the same rules as generated activities), **Suspend** or **Resume**, **Move** to another topic, **Delete**.
+  - Videos: **Move all** and **Delete all** for every activity from the video, in any topic.
+  - Topics: **New topic**, **Rename**, **Change parent**, **Merge** into another topic, **Delete topic** (with its activities; subtopics move to the top level).
+  - **Undo:** Each action returns a snapshot of the records it changed or removed. The toast offers **Undo** for 10 seconds (paused while hovered or focused), which puts the snapshot back. Only the latest action can be undone.
 - **Export:** Anki `.apkg` and TSV per topic or for everything.
 - **Backup:** Full JSON export and import (cards, review history, settings except API keys).
 - **Settings:** Provider, API key, model, prompt timing, card count, eligibility rules, reminder schedule, desired retention.
@@ -107,15 +111,15 @@ When the knowledge bank has activities: the due count, **Start review**, and **K
 
 Stored in IndexedDB through Dexie. IDs are UUIDs so backups merge without collisions.
 
-| Table        | Key fields                                                                                                                                                                                                        |
-| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `videos`     | `id` (YouTube video ID), `title`, `channelId`, `channelName`, `durationSec`, `transcriptLang`, `activitiesGeneratedAt`                                                                                            |
-| `topics`     | `id`, `name`, `parentId` (nullable, for nested topics), `createdAt`                                                                                                                                               |
-| `activities` | `id`, `videoId`, `topicId`, the activity fields (`type`, `prompt`, `answer`, `explanation`, `options`), `sourceStartSec`, `fsrs` (ts-fsrs card), `due` (epoch ms), `suspended` (0 or 1), `createdAt`, `updatedAt` |
-| `reviewLogs` | `id`, `activityId`, `rating`, `reviewedAt`, `fsrsLog` (ts-fsrs review log)                                                                                                                                        |
-| `quizCache`  | `videoId`, `title`, `set` (validated activity set), `providerId`, `model`, `createdAt`. Version 2 of the database cleared entries saved in the earlier flashcard format.                                          |
+| Table        | Key fields                                                                                                                                                                                                                                               |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `videos`     | `id` (YouTube video ID), `title`, `channelId`, `channelName`, `durationSec`, `transcriptLang`, `activitiesGeneratedAt`                                                                                                                                   |
+| `topics`     | `id`, `name`, `parentId` (nullable, for nested topics), `createdAt`, `aliases` (former names)                                                                                                                                                            |
+| `activities` | `id`, `videoId`, `topicId`, the activity fields (`type`, `prompt`, `answer`, `explanation`, `options`), `generatedPrompt` (set on first edit), `sourceStartSec`, `fsrs` (ts-fsrs card), `due` (epoch ms), `suspended` (0 or 1), `createdAt`, `updatedAt` |
+| `reviewLogs` | `id`, `activityId`, `rating`, `reviewedAt`, `fsrsLog` (ts-fsrs review log)                                                                                                                                                                               |
+| `quizCache`  | `videoId`, `title`, `set` (validated activity set), `providerId`, `model`, `createdAt`. Version 2 of the database cleared entries saved in the earlier flashcard format.                                                                                 |
 
-Version 3 added `videos`, `topics`, `activities`, and `reviewLogs` without changing `quizCache`. IndexedDB cannot index booleans, so `suspended` is 0 or 1, and the `[suspended+due]` index serves the due queue and count. `due` copies `fsrs.due` as a number for that index.
+Version 3 added `videos`, `topics`, `activities`, and `reviewLogs` without changing `quizCache`. IndexedDB cannot index booleans, so `suspended` is 0 or 1, and the `[suspended+due]` index serves the due queue and count. `due` copies `fsrs.due` as a number for that index. Phase 5 added `aliases` and `generatedPrompt` as optional fields without indexes, so the database stayed at version 3; records without them behave as before.
 
 Settings and API keys live in `browser.storage.local`, not IndexedDB. API keys are never included in backups or exports.
 
@@ -125,15 +129,16 @@ Schema changes go through Dexie version upgrades. Every version bump ships with 
 
 - **Activity types:** recall question, flashcard, fill in the blank, multiple choice, true or false, put in order, and apply it. Each stored activity is reviewed in its own form.
 - **First retrieval:** The session on the video counts as the first review. Every result is correct or incorrect, whether self-graded or checked; correct counts as Good and incorrect as Again. That result seeds FSRS state, so the next review is scheduled from it. Activities from a skipped session are not saved by default.
-- **Repeats:** A video session for activities already in the bank (same video, type, and prompt) counts as a review of those activities.
+- **Repeats:** A video session for activities already in the bank (same video, type, and generated prompt, so edits keep the match) counts as a review of those activities. New activities from a video already in the bank join the topic most of its activities are in, so manual moves stick.
 - **Scheduler:** `ts-fsrs` with default weights and a user-configurable desired retention (80% to 95%, default 90%). Same-day learning steps are off, because reviews happen on a daily scale: a first incorrect answer comes back the next day, a correct one a few days later. Fuzz is off, so activities from one video stay due together. Review logs are kept so parameters can be optimized later.
-- **Deletion:** Deleting a activity removes it and its review logs. An undo toast is shown for a few seconds. Suspending keeps the activity but removes it from reviews.
+- **Deletion:** Deleting an activity removes it and its review logs, and the video record once no activities remain. Every knowledge bank change can be undone from the toast. Suspending keeps the activity but removes it from reviews. A deleted activity returns if the same video session is answered again.
 
 ## Topics
 
 - The generation prompt receives existing topic names and must reuse one when it fits, or propose a new one.
-- Topics support one level of nesting (for example `Biology > Genetics`), which maps to Anki subdecks (`Biology::Genetics`).
-- Users can rename, merge, and move activities between topics. AI suggestions never override manual changes.
+- Topics support one level of nesting (for example `Biology > Genetics`), which maps to Anki subdecks (`Biology::Genetics`). Topic names are unique, ignoring case, and cannot contain `>`.
+- A suggested name is matched against current names first, then former names, and accepts either `Subtopic` or `Parent > Subtopic`. An unknown name creates a topic (and a missing parent).
+- Users can create, rename, nest, merge, and delete topics, and move activities between them. AI suggestions never override manual changes: renamed and merged topics keep their former names as aliases, and a video's new activities follow its existing ones.
 
 ## Anki export
 
@@ -169,9 +174,9 @@ Schema changes go through Dexie version upgrades. Every version bump ships with 
 
 ## Testing
 
-- **Unit (Vitest):** transcript parsing (with saved fixtures), chunking, Zod validation of model output, the knowledge bank and FSRS intervals on simulated dates, reminders, the activity runner hook, topic matching, export file contents, backup round trip, Dexie migrations.
+- **Unit (Vitest):** transcript parsing (with saved fixtures), chunking, Zod validation of model output, the knowledge bank and FSRS intervals on simulated dates, reminders, the activity runner hook, topic matching, every knowledge management action with its undo and its effect on the review queue, browsing and search, export file contents, backup round trip, Dexie migrations.
 - **Extension APIs:** WXT's fake browser for storage and messaging in unit tests.
-- **Smoke test (Playwright, `pnpm test:smoke`):** Loads the Chromium build on live YouTube videos and checks video details, step order, request capture, in-app navigation, and panel cleanup. For the activities, it seeds one of each type, completes them with the keyboard (including a fill-in-the-blank typo and a wrong multiple-choice answer), confirms YouTube shortcuts do not fire, and checks the dialog is on top in default, theater, and fullscreen views with YouTube's dark theme. It also checks the button's states (Learn, Learn (N), Learn failed) and that a click opens the activities. Then it checks the saved activities, makes them due, and checks the badge, the popup, and a keyboard review of every type in the dashboard. Automated browsers cannot play far into a video, so the test sets the position and dispatches the playback event.
+- **Smoke test (Playwright, `pnpm test:smoke`):** Loads the Chromium build on live YouTube videos and checks video details, step order, request capture, in-app navigation, and panel cleanup. For the activities, it seeds one of each type, completes them with the keyboard (including a fill-in-the-blank typo and a wrong multiple-choice answer), confirms YouTube shortcuts do not fire, and checks the dialog is on top in default, theater, and fullscreen views with YouTube's dark theme. It also checks the button's states (Learn, Learn (N), Learn failed) and that a click opens the activities. Then it checks the saved activities, makes them due, and checks the badge, the popup, and a keyboard review of every type in the dashboard. Finally it runs every knowledge bank action in the dashboard (search, edit, suspend, delete and undo, create, nest, rename, move, merge, delete a video, delete a topic) and checks the due count and badge after each. Automated browsers cannot play far into a video, so the test sets the position and dispatches the playback event.
 - **Manual:** Successful transcript retrieval and live activity generation, in Edge.
 - **Firefox:** `web-ext lint` in CI plus a manual test checklist per release.
 

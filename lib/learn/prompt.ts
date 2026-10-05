@@ -21,7 +21,7 @@ Guidelines:
 - The explanation adds context the answer does not give, such as why it is true or why a tempting wrong answer fails. Never restate the answer in other words. Leave it empty when there is nothing to add.
 - Wrong options for multiple_choice must match the answer in length and form and be clearly wrong to someone who understood the material.
 - sourceStartSec is the start time in seconds of the transcript line where the idea is explained. Use the [m:ss] markers.
-- topic names the subject area in two to four words. If an existing topic fits, reuse its exact name.
+- topic names the subject area in two to four words. If an existing topic fits, reuse its exact name. Existing subtopics are written "Parent > Subtopic"; reuse that full name.
 - Write in the language of the transcript.
 - If the transcript has nothing worth learning, return an empty activities array.
 

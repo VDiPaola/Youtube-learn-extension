@@ -2,8 +2,7 @@ import { Dexie } from 'dexie';
 import type { LearnDatabase, StoredActivity, StoredVideo } from '@/lib/db';
 import type { Activity } from '@/lib/learn/schema';
 import { createScheduler } from './scheduler';
-
-const FALLBACK_TOPIC = 'General';
+import { FALLBACK_TOPIC, resolveTopicId, topicPath, topicsById } from './topics';
 
 export interface BankOptions {
   now: number;
@@ -28,7 +27,9 @@ export interface ReviewItem {
 
 /**
  * Saves one answer from a video session. A new activity is seeded from the answer; an activity
- * already in the bank (same video, type, and prompt) gets a review instead of a duplicate.
+ * already in the bank (same video, type, and generated prompt) gets a review instead of a
+ * duplicate. New activities join the topic that the video's saved activities are in, so manual
+ * moves are kept; otherwise the suggested topic is matched by name or created.
  */
 export async function recordVideoResult(
   db: LearnDatabase,
@@ -41,11 +42,10 @@ export async function recordVideoResult(
     await db.videos.put({ ...result.video, activitiesGeneratedAt: result.generatedAt });
 
     const { activity } = result;
-    const existing = await db.activities
-      .where('videoId')
-      .equals(result.video.id)
-      .filter((a) => a.type === activity.type && a.prompt === activity.prompt)
-      .first();
+    const saved = await db.activities.where('videoId').equals(result.video.id).toArray();
+    const existing = saved.find(
+      (a) => a.type === activity.type && (a.generatedPrompt ?? a.prompt) === activity.prompt,
+    );
     if (existing) return applyReview(db, existing, result.correct, options);
 
     const scheduler = createScheduler(options.desiredRetention);
@@ -53,7 +53,8 @@ export async function recordVideoResult(
       ...pickActivity(activity),
       id: newId(),
       videoId: result.video.id,
-      topicId: await topicIdFor(db, result.topic, now, newId),
+      topicId:
+        (await videoTopicId(db, saved)) ?? (await resolveTopicId(db, result.topic, now, newId)),
       fsrs: scheduler.newCard(now),
       due: now,
       suspended: 0,
@@ -105,18 +106,15 @@ async function applyReview(
   return updated;
 }
 
-async function topicIdFor(
+/** The topic most of a video's saved activities are in. */
+async function videoTopicId(
   db: LearnDatabase,
-  name: string,
-  now: number,
-  newId: () => string,
-): Promise<string> {
-  const trimmed = name.trim() || FALLBACK_TOPIC;
-  const existing = await db.topics.where('name').equalsIgnoreCase(trimmed).first();
-  if (existing) return existing.id;
-  const id = newId();
-  await db.topics.add({ id, name: trimmed, parentId: null, createdAt: now });
-  return id;
+  saved: readonly StoredActivity[],
+): Promise<string | undefined> {
+  const counts = new Map<string, number>();
+  for (const { topicId } of saved) counts.set(topicId, (counts.get(topicId) ?? 0) + 1);
+  const [topicId] = [...counts].sort((a, b) => b[1] - a[1])[0] ?? [];
+  return topicId && (await db.topics.get(topicId)) ? topicId : undefined;
 }
 
 function pickActivity(activity: Activity): Activity {
@@ -135,16 +133,19 @@ export function countDue(db: LearnDatabase, now: number): Promise<number> {
 export async function loadReviewQueue(db: LearnDatabase, now: number): Promise<ReviewItem[]> {
   const activities = await dueRange(db, now).toArray();
   const [topics, videos] = await Promise.all([
-    db.topics.bulkGet([...new Set(activities.map((a) => a.topicId))]),
+    db.topics.toArray(),
     db.videos.bulkGet([...new Set(activities.map((a) => a.videoId))]),
   ]);
-  const topicNames = new Map(topics.flatMap((t) => (t ? [[t.id, t.name] as const] : [])));
+  const byId = topicsById(topics);
   const videoTitles = new Map(videos.flatMap((v) => (v ? [[v.id, v.title] as const] : [])));
-  return activities.map((activity) => ({
-    activity,
-    topic: topicNames.get(activity.topicId) ?? FALLBACK_TOPIC,
-    videoTitle: videoTitles.get(activity.videoId) ?? '',
-  }));
+  return activities.map((activity) => {
+    const topic = byId.get(activity.topicId);
+    return {
+      activity,
+      topic: topic ? topicPath(topic, byId) : FALLBACK_TOPIC,
+      videoTitle: videoTitles.get(activity.videoId) ?? '',
+    };
+  });
 }
 
 export interface BankSummary {

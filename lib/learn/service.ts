@@ -4,6 +4,7 @@ import type {
   GenerateQuizResponse,
   TestProviderResponse,
 } from '@/lib/messages';
+import { findTopic, topicNamesForPrompt } from '@/lib/knowledge/topics';
 import { configProblem, originPattern, type ProviderConfig } from '@/lib/settings';
 import { QuizError, toQuizError } from './errors';
 import { generateActivities } from './generate';
@@ -46,12 +47,16 @@ export function createQuizService(deps: QuizServiceDeps) {
     return null;
   }
 
+  /** Knowledge bank topics, then topics of cached sets not saved to the bank yet. */
   async function existingTopics(): Promise<string[]> {
-    const recent = await deps.db.quizCache.orderBy('createdAt').reverse().toArray();
-    return [...new Set(recent.map((entry) => entry.set?.topic).filter(Boolean))].slice(
-      0,
-      MAX_EXISTING_TOPICS,
-    );
+    const [topics, recent] = await Promise.all([
+      deps.db.topics.toArray(),
+      deps.db.quizCache.orderBy('createdAt').reverse().toArray(),
+    ]);
+    const cached = recent
+      .map((entry) => entry.set?.topic)
+      .filter((topic) => topic && !findTopic(topics, topic));
+    return [...new Set([...topicNamesForPrompt(topics), ...cached])].slice(0, MAX_EXISTING_TOPICS);
   }
 
   async function generate(message: GenerateQuizMessage): Promise<GenerateQuizResponse> {
