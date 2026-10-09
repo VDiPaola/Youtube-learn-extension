@@ -13,7 +13,8 @@ YouTube tab                         Extension
 | Content script            | <---> |  review reminders (alarms)   |
 |  video detection          |       |  due-count badge             |
 |  playback tracking        |       +------------------------------+
-|  Learn button + activity UI |                     |
+|  Learn and Ask buttons    |                     |
+|  activity and question UI |                     |
 |  (Shadow DOM overlay)     |                     v
 +---------------------------+       +------------------------------+
                                     | IndexedDB (Dexie)            |
@@ -36,6 +37,7 @@ YouTube tab                         Extension
 - **Button states:** **Learn** (not prepared yet; a click generates and opens the activities), **Preparing…**, **Learn (N)** (ready), **Nothing to learn**, and **Learn failed, retry**. A click always opens the activities, waiting for or retrying generation as needed.
 - **Background preparation:** A capture-phase `timeupdate` listener on `document` reads the main video's position, ignoring ads. At 50% the activities are prepared once: a cached set is used if one exists, otherwise the transcript is loaded and the background generates them. One attempt per video, so a failure never repeats paid requests.
 - **Manual trigger:** "Learn from this video" in the popup opens activities for any video, ignoring the rules above.
+- **Questions (`lib/learn/ask.ts`, `entrypoints/youtube.content/AskPanel.tsx`):** An **Ask** button sits beside the Learn button and follows the same rules; "Ask about this video" in the popup opens it for any video. The dialog pauses the video and starts loading the transcript. Each question goes to the background (`video:ask`) with the transcript and the conversation so far; each user turn carries the playback position, so "this part" has a meaning. The answer appears as plain text. `[m:ss]` markers become buttons that close the dialog and play from that point. The conversation lives in the watch session, so it survives closing the dialog and ends on navigation to another video. It is not saved. A failed question is removed from the conversation and its text returns to the input box. The transcript is loaded once per video and shared with activity preparation.
 - **Updates:** Browsers leave already-open tabs running a disconnected copy of the old content script after an update. On install or update, the background injects the current content scripts into open YouTube tabs (`lib/reinject.ts`). If a tab still does not answer, the popup says so and offers **Reload tab**.
 - **Status:** The popup polls the session status (`quiz:status`) every second: waiting, each preparation step, ready, or failed with the reason. Failures are also logged to the page console with the prefix `[YouTube Learn]`.
 - **UI:** The button and the activity dialog render in Shadow DOM roots. The dialog is mounted inside `#movie_player`, so it stays visible in theater mode and fullscreen. Key and mouse events are stopped at each shadow root so YouTube's player shortcuts (Space, digits, `f`, `k`) do not fire. Opening the activities pauses the video.
@@ -74,12 +76,15 @@ Implementation notes, confirmed against live YouTube (October 2026):
   ```ts
   interface QuizProvider {
     generate(request: QuizRequest): Promise<ActivitySet>;
+    chat(request: ChatRequest): Promise<string>;
     listModels(): Promise<string[]>;
   }
   ```
+  `chat` sends a system prompt and a conversation and returns plain text, with no output schema.
   - **Anthropic:** official `@anthropic-ai/sdk` with structured outputs (`output_config.format`, schema from `betaZodOutputFormat`). Default model `claude-opus-5-5`. Server-side refusal fallbacks (`fallbacks: "default"`) are enabled for models that support them. `stop_reason` is checked before the JSON is parsed, so refusals and truncation get their own errors.
   - **OpenAI-compatible:** plain `fetch` to `/chat/completions` with `response_format: json_schema` (strict). Presets: OpenAI, Google Gemini (through its OpenAI-compatible endpoint), OpenRouter, Ollama, and any custom server.
 - **Generation (`lib/learn/generate.ts`):** Caption segments are merged into ~20 second lines with `[m:ss]` markers. The prompt describes the seven activity types and when each fits, and includes the title, channel, existing topic names, the enabled types, and the target activity count. Existing topics are the knowledge bank's topics (subtopics as `Parent > Subtopic`), then topics of cached sets not saved to the bank yet, up to 50. The model picks the type that fits each idea. Output is validated with Zod, normalized per type (`lib/learn/clean.ts`), and invalid output is retried once, then reported as an error.
+- **Questions (`lib/learn/ask.ts`):** The system prompt sets a coaching style: a direct answer first, then a step-by-step explanation in plain words, examples or analogies when useful, timestamps to rewatch, and an optional check-your-understanding question. It allows a short general answer, labeled as beyond the video, when the transcript does not cover the question. The video details and transcript follow the instructions in the system prompt, so follow-up questions share a stable prefix. Anthropic requests mark it for prompt caching. Transcripts over 150,000 characters send only the part that contains the latest question's position.
 - **Activity count:** One activity per three minutes of video, between 5 and 15.
 - **Activity format (`lib/learn/schema.ts`):** One flat shape for every type: `type`, `prompt`, `answer`, `explanation`, `options`, `sourceStartSec`, with unused fields empty. `options` holds wrong choices (multiple choice), the items in correct order (put in order), or accepted alternatives (fill in the blank). Strict JSON schema modes handle a flat shape more reliably than a union of shapes.
 - **Long transcripts:** Transcripts over 150,000 characters (about three hours of speech) are split into parts. Later parts receive the first part's topic. Activities are merged, near-duplicates (word overlap of 80% or more) removed, and the total capped.
@@ -105,7 +110,7 @@ Implementation notes, confirmed against live YouTube (October 2026):
 
 ### Popup
 
-When the knowledge bank has activities: the due count, **Start review**, and **Knowledge bank** (opens the dashboard). On a watch page: the live status (see Status above), "Learn from this video", and a per-channel rule (automatic, always, never). A collapsed developer section holds the transcript and activity debug tools.
+When the knowledge bank has activities: the due count, **Start review**, and **Knowledge bank** (opens the dashboard). On a watch page: the live status (see Status above), "Learn from this video", "Ask about this video", and a per-channel rule (automatic, always, never). A collapsed developer section holds the transcript and activity debug tools.
 
 ## Data model
 

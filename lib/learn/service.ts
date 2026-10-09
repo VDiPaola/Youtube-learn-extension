@@ -1,11 +1,14 @@
 import type { CachedActivities, LearnDatabase } from '@/lib/db';
 import type {
+  AskQuestionMessage,
+  AskQuestionResponse,
   GenerateQuizMessage,
   GenerateQuizResponse,
   TestProviderResponse,
 } from '@/lib/messages';
 import { findTopic, topicNamesForPrompt } from '@/lib/knowledge/topics';
 import { configProblem, originPattern, type ProviderConfig } from '@/lib/settings';
+import { buildAskRequest } from './ask';
 import { QuizError, toQuizError } from './errors';
 import { generateActivities } from './generate';
 import type { QuizProvider } from './providers';
@@ -106,6 +109,22 @@ export function createQuizService(deps: QuizServiceDeps) {
       const request = generate(message).finally(() => inFlight.delete(key));
       inFlight.set(key, request);
       return request;
+    },
+
+    async ask(message: AskQuestionMessage): Promise<AskQuestionResponse> {
+      try {
+        if (message.segments.length === 0) {
+          throw new QuizError('no-transcript', 'No transcript is available for this video.');
+        }
+        const { provider } = await readyProvider();
+        const answer = await provider.chat(
+          buildAskRequest({ ...message.video, segments: message.segments, turns: message.turns }),
+        );
+        return { ok: true, answer };
+      } catch (error) {
+        const quizError = toQuizError(error);
+        return { ok: false, code: quizError.code, error: quizError.message };
+      }
     },
 
     async testProvider(): Promise<TestProviderResponse> {

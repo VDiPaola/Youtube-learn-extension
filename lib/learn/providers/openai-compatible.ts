@@ -66,6 +66,24 @@ export function createOpenAICompatibleProvider(
       return parseActivitySetJson(choice?.message?.content);
     },
 
+    async chat({ system, messages }) {
+      const data = await request<ChatCompletionResponse>('/chat/completions', {
+        method: 'POST',
+        body: JSON.stringify({
+          model: config.model,
+          messages: [{ role: 'system', content: system }, ...messages],
+        }),
+      });
+
+      const message = data.choices?.[0]?.message;
+      if (message?.refusal) {
+        throw new QuizError('refusal', `The model declined to answer: ${message.refusal}`);
+      }
+      const answer = message?.content?.trim();
+      if (!answer) throw new QuizError('invalid-output', 'The model returned an empty answer.');
+      return answer;
+    },
+
     async listModels() {
       const data = await request<{ data?: { id: string }[] }>('/models', { method: 'GET' });
       return (data.data ?? []).map((model) => model.id);

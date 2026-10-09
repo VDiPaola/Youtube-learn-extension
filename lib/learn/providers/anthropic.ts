@@ -7,6 +7,7 @@ import { ActivitySetSchema } from '../schema';
 import type { FetchLike, QuizProvider } from './types';
 
 const MAX_TOKENS = 16_000;
+const MAX_CHAT_TOKENS = 4_000;
 // Only the schema is sent: the SDK's parse() throws before stop_reason can be checked.
 const { type: FORMAT_TYPE, schema: QUIZ_SCHEMA } = betaZodOutputFormat(ActivitySetSchema);
 /** Models that accept server-side refusal fallbacks in the `"default"` form. */
@@ -54,6 +55,38 @@ export function createAnthropicProvider(config: ProviderConfig, fetch?: FetchLik
           .map((block) => (block.type === 'text' ? block.text : ''))
           .join('');
         return parseActivitySetJson(text);
+      } catch (error) {
+        throw toProviderError(error);
+      }
+    },
+
+    async chat({ system, messages }) {
+      try {
+        const response = await client.beta.messages.create({
+          model: config.model,
+          max_tokens: MAX_CHAT_TOKENS,
+          // The transcript sits in the system prompt, so follow-up questions reuse the cache.
+          system: [{ type: 'text', text: system, cache_control: { type: 'ephemeral' } }],
+          messages,
+          ...(FALLBACK_MODELS.has(config.model) && {
+            betas: ['server-side-fallback-2026-07-01'],
+            fallbacks: 'default' as const,
+          }),
+        });
+
+        if (response.stop_reason === 'refusal') {
+          const reason = response.stop_details?.explanation;
+          throw new QuizError(
+            'refusal',
+            `The model declined to answer${reason ? `: ${reason}` : '.'}`,
+          );
+        }
+        const answer = response.content
+          .map((block) => (block.type === 'text' ? block.text : ''))
+          .join('')
+          .trim();
+        if (!answer) throw new QuizError('invalid-output', 'The model returned an empty answer.');
+        return answer;
       } catch (error) {
         throw toProviderError(error);
       }

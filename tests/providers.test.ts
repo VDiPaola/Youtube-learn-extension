@@ -123,6 +123,35 @@ describe('OpenAI-compatible provider', () => {
     });
   });
 
+  it('answers questions in plain text without a response format', async () => {
+    const fetch = mockFetch(completion('  A plain answer. '));
+    const provider = createOpenAICompatibleProvider(config('custom'), fetch);
+    const messages = [
+      { role: 'user' as const, content: 'Q1' },
+      { role: 'assistant' as const, content: 'A1' },
+      { role: 'user' as const, content: 'Q2' },
+    ];
+
+    await expect(provider.chat({ system: 'S', messages })).resolves.toBe('A plain answer.');
+    const body = requestBody(fetch);
+    expect(body.messages).toEqual([{ role: 'system', content: 'S' }, ...messages]);
+    expect(body).not.toHaveProperty('response_format');
+  });
+
+  it('reports refused and empty answers', async () => {
+    const refused = createOpenAICompatibleProvider(
+      config('openai'),
+      mockFetch(completion(null, { refusal: 'Not allowed' })),
+    );
+    await expect(refused.chat({ system: '', messages: [] })).rejects.toMatchObject({
+      code: 'refusal',
+    });
+    const empty = createOpenAICompatibleProvider(config('openai'), mockFetch(completion('')));
+    await expect(empty.chat({ system: '', messages: [] })).rejects.toMatchObject({
+      code: 'invalid-output',
+    });
+  });
+
   it('lists model IDs', async () => {
     const fetch = mockFetch(json({ data: [{ id: 'b' }, { id: 'a' }] }));
     await expect(
@@ -211,6 +240,29 @@ describe('Anthropic provider', () => {
     await expect(
       createAnthropicProvider(config('anthropic'), fetch).generate({ system: '', prompt: '' }),
     ).rejects.toMatchObject({ code: 'truncated' });
+  });
+
+  it('answers questions with a cached system prompt and no output format', async () => {
+    const fetch = mockFetch(message('An answer.'));
+    const provider = createAnthropicProvider(config('anthropic'), fetch);
+    const messages = [{ role: 'user' as const, content: 'Q' }];
+
+    await expect(provider.chat({ system: 'S', messages })).resolves.toBe('An answer.');
+    const body = requestBody(fetch);
+    expect(body).toMatchObject({
+      model: 'claude-opus-5-5',
+      system: [{ type: 'text', text: 'S', cache_control: { type: 'ephemeral' } }],
+      messages,
+      fallbacks: 'default',
+    });
+    expect(body).not.toHaveProperty('output_config');
+  });
+
+  it('reports refused answers', async () => {
+    const fetch = mockFetch(message('', 'refusal'));
+    await expect(
+      createAnthropicProvider(config('anthropic'), fetch).chat({ system: '', messages: [] }),
+    ).rejects.toMatchObject({ code: 'refusal' });
   });
 
   it('maps an invalid key to an auth error', async () => {

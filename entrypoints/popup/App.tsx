@@ -1,5 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
-import type { OpenQuizMessage, VideoInfoMessage, VideoInfoResponse } from '@/lib/messages';
+import type {
+  OpenAskMessage,
+  OpenQuizMessage,
+  VideoInfoMessage,
+  VideoInfoResponse,
+} from '@/lib/messages';
 import { promptSettingsItem, withChannelRule, type ChannelRule } from '@/lib/prompt-settings';
 import { DebugTools } from './DebugTools';
 import { QuizStatus } from './QuizStatus';
@@ -90,8 +95,7 @@ function VideoPanel({
   const { video, rule } = info;
   const [openError, setOpenError] = useState('');
 
-  async function openQuiz() {
-    const message: OpenQuizMessage = { type: 'quiz:open' };
+  async function openOnVideo(message: OpenQuizMessage | OpenAskMessage) {
     const response: { ok: boolean; error?: string } | null = await browser.tabs
       .sendMessage(tabId, message)
       .catch(() => null);
@@ -113,8 +117,15 @@ function VideoPanel({
       <p className="muted">{video.channelName}</p>
       <QuizStatus tabId={tabId} />
       <div className="actions">
-        <button type="button" onClick={openQuiz}>
+        <button type="button" onClick={() => openOnVideo({ type: 'quiz:open' })}>
           Learn from this video
+        </button>
+        <button
+          type="button"
+          className="secondary"
+          onClick={() => openOnVideo({ type: 'ask:open' })}
+        >
+          Ask about this video
         </button>
       </div>
       {openError && <ReloadTab tabId={tabId} message={openError} />}

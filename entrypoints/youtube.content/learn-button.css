@@ -4,11 +4,13 @@
   align-items: center !important;
   height: 100% !important;
   vertical-align: top !important;
+  gap: 8px !important;
   margin-right: 8px !important;
   font-family: 'Roboto', system-ui, sans-serif !important;
 }
 
-.ytl-learn-button {
+.ytl-learn-button,
+.ytl-ask-button {
   height: 32px;
   padding: 0 14px;
   border: 1px solid rgba(255, 255, 255, 0.35);
@@ -23,11 +25,13 @@
   cursor: pointer;
 }
 
-.ytl-learn-button:hover {
+.ytl-learn-button:hover,
+.ytl-ask-button:hover {
   background: rgba(255, 255, 255, 0.2);
 }
 
-.ytl-learn-button:focus-visible {
+.ytl-learn-button:focus-visible,
+.ytl-ask-button:focus-visible {
   outline: 2px solid #8ab4ff;
   outline-offset: 2px;
 }

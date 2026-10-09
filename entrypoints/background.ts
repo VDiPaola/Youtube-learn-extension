@@ -1,6 +1,7 @@
 import { db } from '@/lib/db';
 import { createReviewService } from '@/lib/knowledge/background';
 import {
+  isAskQuestionMessage,
   isGenerateQuizMessage,
   isGetCachedQuizMessage,
   isOpenOptionsMessage,
@@ -89,6 +90,10 @@ export default defineBackground(() => {
       void keepAliveDuring(quizService.generateQuiz(message)).then(sendResponse);
       return true;
     }
+    if (isAskQuestionMessage(message)) {
+      void keepAliveDuring(quizService.ask(message)).then(sendResponse);
+      return true;
+    }
     if (isGetCachedQuizMessage(message)) {
       void quizService.getCachedQuiz(message.videoId).then(sendResponse);
       return true;
@@ -112,7 +117,7 @@ export default defineBackground(() => {
   });
 });
 
-/** Browsers stop idle background workers after ~30 seconds; generation can take longer. */
+/** Browsers stop idle background workers after ~30 seconds; AI requests can take longer. */
 async function keepAliveDuring<T>(work: Promise<T>): Promise<T> {
   const timer = setInterval(() => void browser.runtime.getPlatformInfo(), KEEP_ALIVE_INTERVAL_MS);
   try {

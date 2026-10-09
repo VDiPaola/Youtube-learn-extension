@@ -26,6 +26,29 @@ export function LearnButton({
   );
 }
 
+/** Opens the question dialog. Shown beside the Learn button, under the same rules. */
+export function AskButton({
+  status: store,
+  onOpen,
+}: {
+  status: Store<SessionStatus | null>;
+  onOpen: () => void;
+}) {
+  const status = useSyncExternalStore(store.subscribe, store.get);
+  if (!status || status.state === 'loading' || status.state === 'not-eligible') return null;
+
+  return (
+    <button
+      type="button"
+      className="ytl-ask-button"
+      title="Ask a question about this video"
+      onClick={onOpen}
+    >
+      Ask
+    </button>
+  );
+}
+
 function describe(status: SessionStatus): { label: string; title: string; tone: string } {
   switch (status.state) {
     case 'preparing':

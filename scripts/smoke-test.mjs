@@ -380,7 +380,9 @@ async function checkQuizButton(page, popup, fail) {
     return true;
   };
 
-  const button = page.locator('#movie_player .ytp-right-controls ytl-learn-button button');
+  const button = page.locator(
+    '#movie_player .ytp-right-controls ytl-learn-button button.ytl-learn-button',
+  );
   const label = () => button.textContent({ timeout: 5_000 }).catch(() => null);
   const waitForLabel = async (pattern) => {
     for (let i = 0; i < 40; i++) {
@@ -417,6 +419,7 @@ async function checkQuizButton(page, popup, fail) {
   const cards = await page.locator('ytl-quiz-overlay .ytl-prompt').count();
   if (cards > 0) fail('a prompt card appeared on the player');
   await page.keyboard.press('Escape');
+  await checkAskDialog(page, fail, sendToTab);
 
   // No cached quiz: preparation fails here (no transcript or provider) and the button says so.
   if (!(await freshPage('QaKuVOhikaY'))) {
@@ -428,6 +431,61 @@ async function checkQuizButton(page, popup, fail) {
   console.log(`  button after a failed preparation: ${JSON.stringify(failed)}`);
   console.log(`  status: ${JSON.stringify(await status())}`);
   if (failed !== 'Learn failed, retry') fail('failed preparation was not shown on the button');
+}
+
+/**
+ * Opens the question dialog from the Ask button. Automated browsers get no transcript, so the
+ * dialog must explain that, keep the typed question, and keep YouTube shortcuts from firing.
+ */
+async function checkAskDialog(page, fail, sendToTab) {
+  const askButton = page.locator('#movie_player .ytp-right-controls button.ytl-ask-button');
+  await page.locator('#movie_player').hover();
+  const visible = await askButton.isVisible().catch(() => false);
+  console.log(`  Ask button visible: ${visible}`);
+  if (!visible) return fail('the Ask button is missing from the player controls');
+
+  await askButton.click();
+  const dialog = page.getByRole('dialog', { name: 'Ask about this video' });
+  if (
+    !(await dialog.waitFor({ timeout: 5_000 }).then(
+      () => true,
+      () => false,
+    ))
+  )
+    return fail('the Ask button did not open the question dialog');
+  const paused = await page.evaluate(
+    () => document.querySelector('#movie_player video.html5-main-video')?.paused,
+  );
+  if (!paused) fail('opening the question dialog did not pause the video');
+
+  const input = page.getByRole('textbox', { name: 'Your question' });
+  const focused = await input.evaluate((el) => el.getRootNode().activeElement === el);
+  if (!focused) fail('the question box did not get focus');
+  await page.keyboard.type('fkj why?');
+  if (await page.evaluate(() => Boolean(document.fullscreenElement)))
+    fail('YouTube handled the "f" shortcut while typing a question');
+  await page.keyboard.press('Enter');
+
+  const alert = dialog.getByRole('alert');
+  const message = await alert.textContent({ timeout: 60_000 }).catch(() => null);
+  console.log(`  question without a transcript: ${JSON.stringify(message)}`);
+  if (!message) fail('a failed question showed no error');
+  const draft = await input.inputValue();
+  if (draft !== 'fkj why?') fail(`the unanswered question was not kept (${JSON.stringify(draft)})`);
+  if ((await dialog.locator('.ytl-turn').count()) > 0) fail('an unanswered question stayed listed');
+
+  await page.keyboard.press('Escape');
+  if (await dialog.isVisible().catch(() => false)) fail('Escape did not close the question dialog');
+
+  // The popup's "Ask about this video" sends this message.
+  await sendToTab({ type: 'ask:open' });
+  const reopened = await dialog.waitFor({ timeout: 5_000 }).then(
+    () => true,
+    () => false,
+  );
+  console.log(`  popup message opens the question dialog: ${reopened}`);
+  if (!reopened) fail('the ask:open message did not open the question dialog');
+  await page.keyboard.press('Escape');
 }
 
 /** Reads the knowledge bank tables through the popup, which shares the extension origin. */
@@ -809,6 +867,26 @@ async function checkQuizBackground(popup, extensionId) {
   console.log(`  no API key: ${unconfigured?.code} (${unconfigured?.error})`);
   if (unconfigured?.code !== 'not-configured')
     fail(`expected not-configured, got ${unconfigured?.code}`);
+
+  const ask = (segments) =>
+    popup.evaluate(
+      (segments) =>
+        chrome.runtime.sendMessage({
+          type: 'video:ask',
+          video: { videoId: 'smoke-test', title: 'Smoke', channelName: 'Test', durationSec: 600 },
+          segments,
+          turns: [{ role: 'user', text: 'Why?', atSec: 30 }],
+        }),
+      segments,
+    );
+  const askUnconfigured = await ask([{ startMs: 0, durationMs: 1000, text: 'word' }]);
+  const askNoTranscript = await ask([]);
+  console.log(`  question, no API key: ${askUnconfigured?.code}`);
+  console.log(`  question, no transcript: ${askNoTranscript?.code}`);
+  if (askUnconfigured?.code !== 'not-configured')
+    fail(`question: expected not-configured, got ${askUnconfigured?.code}`);
+  if (askNoTranscript?.code !== 'no-transcript')
+    fail(`question: expected no-transcript, got ${askNoTranscript?.code}`);
 
   await popup.evaluate(() => chrome.storage.local.set({ apiKeys: { anthropic: 'sk-test' } }));
   const noPermission = await generate();

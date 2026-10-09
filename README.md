@@ -19,10 +19,11 @@ An AI model reads the video transcript and writes questions, flashcards, fill-in
 ## Use
 
 - **Learn from a video:** On Education videos, a **Learn** button appears in the player controls. Activities are prepared halfway through the video. Click the button whenever you are ready. For any other video, select **Learn from this video** in the extension popup.
+- **Ask about a video:** Select **Ask** next to the Learn button, or **Ask about this video** in the popup. Type a question and press Enter. A coach answers from the transcript in plain language, with timestamps you can click to rewatch the part that explains it. Follow-up questions keep the conversation.
 - **Review:** The toolbar icon shows how many activities are due. Select **Start review** in the popup.
 - **Manage:** Select **Knowledge bank** in the popup to browse topics, search, and edit, suspend, move, or delete activities. Every change can be undone.
 
-Keys: Enter or Space continues, 1 to 4 picks an option, 1 or 2 marks your answer correct or incorrect, Esc closes.
+Activity keys: Enter or Space continues, 1 to 4 picks an option, 1 or 2 marks your answer correct or incorrect, Esc closes.
 
 Settings also turn activity types off, set the review retention, and enable a daily reminder.
 

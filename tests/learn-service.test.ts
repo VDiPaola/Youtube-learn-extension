@@ -2,7 +2,7 @@ import 'fake-indexeddb/auto';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { Dexie } from 'dexie';
 import { LearnDatabase } from '@/lib/db';
-import type { GenerateQuizMessage } from '@/lib/messages';
+import type { AskQuestionMessage, GenerateQuizMessage } from '@/lib/messages';
 import { QuizError } from '@/lib/learn/errors';
 import type { QuizProvider } from '@/lib/learn/providers';
 import type { ActivitySet } from '@/lib/learn/schema';
@@ -44,6 +44,7 @@ const quiz = (topic = 'Biology'): ActivitySet => ({
 let db: LearnDatabase;
 let provider: QuizProvider & {
   generate: ReturnType<typeof vi.fn>;
+  chat: ReturnType<typeof vi.fn>;
   listModels: ReturnType<typeof vi.fn>;
 };
 
@@ -61,7 +62,11 @@ function service(overrides: Partial<QuizServiceDeps> = {}) {
 
 beforeEach(() => {
   db = new LearnDatabase(`test-${crypto.randomUUID()}`);
-  provider = { generate: vi.fn(async () => quiz()), listModels: vi.fn(async () => ['b', 'a']) };
+  provider = {
+    generate: vi.fn(async () => quiz()),
+    chat: vi.fn(async () => 'Because of X. See [0:30].'),
+    listModels: vi.fn(async () => ['b', 'a']),
+  };
 });
 
 afterEach(async () => {
@@ -172,6 +177,41 @@ describe('activity service', () => {
   it('reports test failures', async () => {
     provider.listModels.mockRejectedValueOnce(new QuizError('auth', 'Bad key.'));
     expect(await service().testProvider()).toEqual({ ok: false, code: 'auth', error: 'Bad key.' });
+  });
+});
+
+describe('questions', () => {
+  const ask = (segments = message().segments): AskQuestionMessage => ({
+    type: 'video:ask',
+    video: message().video,
+    segments,
+    turns: [{ role: 'user', text: 'Why?', atSec: 75 }],
+  });
+
+  it('answers with the transcript in the system prompt', async () => {
+    expect(await service().ask(ask())).toEqual({ ok: true, answer: 'Because of X. See [0:30].' });
+    const request = provider.chat.mock.calls[0]![0];
+    expect(request.system).toContain('Video title: Title');
+    expect(request.system).toContain('[0:30] word');
+    expect(request.messages).toEqual([{ role: 'user', content: '[At 1:15] Why?' }]);
+    expect(provider.generate).not.toHaveBeenCalled();
+  });
+
+  it('reports a missing transcript without calling the provider', async () => {
+    expect(await service().ask(ask([]))).toMatchObject({ ok: false, code: 'no-transcript' });
+    expect(provider.chat).not.toHaveBeenCalled();
+  });
+
+  it('reports configuration and provider errors', async () => {
+    const unconfigured = service({ loadConfig: async () => ({ ...CONFIG, apiKey: '' }) });
+    expect(await unconfigured.ask(ask())).toMatchObject({ ok: false, code: 'not-configured' });
+
+    provider.chat.mockRejectedValueOnce(new QuizError('rate-limit', 'Rate limit reached.'));
+    expect(await service().ask(ask())).toEqual({
+      ok: false,
+      code: 'rate-limit',
+      error: 'Rate limit reached.',
+    });
   });
 });
 

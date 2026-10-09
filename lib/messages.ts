@@ -1,6 +1,7 @@
 import type { CachedActivities } from '@/lib/db';
 import type { VideoResult } from '@/lib/knowledge/bank';
 import type { ChannelRule, Eligibility } from '@/lib/prompt-settings';
+import type { ChatTurn } from '@/lib/learn/ask';
 import type { QuizErrorCode } from '@/lib/learn/errors';
 import type { TranscriptFixture } from '@/lib/transcript/sanitize';
 import type { Transcript, TranscriptAttempt, TranscriptSegment } from '@/lib/transcript/types';
@@ -36,6 +37,22 @@ export interface GenerateQuizMessage {
 export type GenerateQuizResponse =
   | { ok: true; quiz: CachedActivities; cached: boolean }
   | { ok: false; code: QuizErrorCode; error: string };
+
+export interface AskQuestionMessage {
+  type: 'video:ask';
+  video: Pick<VideoInfo, 'videoId' | 'title' | 'channelName' | 'durationSec'>;
+  segments: TranscriptSegment[];
+  /** The conversation so far, ending with the new question. */
+  turns: ChatTurn[];
+}
+
+export type AskQuestionResponse =
+  { ok: true; answer: string } | { ok: false; code: QuizErrorCode; error: string };
+
+/** Opens the question dialog on the video. */
+export interface OpenAskMessage {
+  type: 'ask:open';
+}
 
 export interface TestProviderMessage {
   type: 'provider:test';
@@ -88,6 +105,8 @@ const hasType =
 
 export const isVideoInfoMessage = hasType<VideoInfoMessage>('video:info');
 export const isOpenQuizMessage = hasType<OpenQuizMessage>('quiz:open');
+export const isOpenAskMessage = hasType<OpenAskMessage>('ask:open');
+export const isAskQuestionMessage = hasType<AskQuestionMessage>('video:ask');
 export const isQuizStatusMessage = hasType<QuizStatusMessage>('quiz:status');
 export const isGetCachedQuizMessage = hasType<GetCachedQuizMessage>('quiz:get-cached');
 export const isOpenOptionsMessage = hasType<OpenOptionsMessage>('options:open');

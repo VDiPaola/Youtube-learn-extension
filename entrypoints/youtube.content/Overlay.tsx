@@ -2,6 +2,7 @@ import { useEffect, useRef, useSyncExternalStore, type KeyboardEvent } from 'rea
 import type { QuizErrorCode } from '@/lib/learn/errors';
 import type { VideoResult } from '@/lib/knowledge/bank';
 import type { OverlayState, Store } from '@/lib/watch/session';
+import { AskPanel } from './AskPanel';
 import { LearnPanel } from './LearnPanel';
 
 export interface OverlayActions {
@@ -11,9 +12,11 @@ export interface OverlayActions {
   resume(): void;
   /** Saves one answer to the knowledge bank. */
   record(result: VideoResult): void;
+  /** Sends a question. Resolves false when it was not answered. */
+  ask(question: string): Promise<boolean>;
 }
 
-const SETTINGS_ERRORS: QuizErrorCode[] = ['not-configured', 'permission', 'auth'];
+export const SETTINGS_ERRORS: QuizErrorCode[] = ['not-configured', 'permission', 'auth'];
 
 export function Overlay({
   store,
@@ -69,6 +72,8 @@ export function Overlay({
           }
         />
       );
+    case 'ask':
+      return <AskPanel conversation={state.conversation} actions={actions} />;
   }
 }
 

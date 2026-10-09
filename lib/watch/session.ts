@@ -1,5 +1,6 @@
 import type { CachedActivities, StoredVideo } from '@/lib/db';
-import type { GenerateQuizResponse } from '@/lib/messages';
+import type { ChatTurn } from '@/lib/learn/ask';
+import type { AskQuestionResponse, GenerateQuizResponse } from '@/lib/messages';
 import {
   checkEligibility,
   enabledActivityTypes,
@@ -34,7 +35,14 @@ export type OverlayState =
   | { view: 'hidden' }
   | { view: 'loading' }
   | { view: 'error'; code: QuizErrorCode; message: string }
-  | { view: 'learn'; entry: CachedActivities; activities: Activity[]; video: VideoRef };
+  | { view: 'learn'; entry: CachedActivities; activities: Activity[]; video: VideoRef }
+  | { view: 'ask'; conversation: Store<Conversation> };
+
+export interface Conversation {
+  turns: ChatTurn[];
+  pending: boolean;
+  error: { code: QuizErrorCode; message: string } | null;
+}
 
 /** Video details saved with each answer. Kept in the view so answers stay with their video. */
 export type VideoRef = Omit<StoredVideo, 'activitiesGeneratedAt'>;
@@ -55,12 +63,21 @@ export interface WatchDeps {
   getCachedQuiz(videoId: string): Promise<CachedActivities | null>;
   loadTranscript(video: VideoInfo): Promise<TranscriptSegment[] | null>;
   generateQuiz(video: VideoInfo, segments: TranscriptSegment[]): Promise<GenerateQuizResponse>;
+  askQuestion(
+    video: VideoInfo,
+    segments: TranscriptSegment[],
+    turns: ChatTurn[],
+  ): Promise<AskQuestionResponse>;
+  currentSec(): number;
   pauseVideo(): void;
   onStatus(status: SessionStatus): void;
   log(message: string): void;
 }
 
-/** Tracks one video: prepares learning activities at 50% and opens them on request. */
+/**
+ * Tracks one video: prepares learning activities at 50%, opens them on request, and holds the
+ * question conversation.
+ */
 export class WatchSession {
   private video: VideoInfo | null = null;
   private eligible = false;
@@ -72,6 +89,8 @@ export class WatchSession {
   private failure: QuizError | null = null;
   private enabledTypes: readonly ActivityType[] = ACTIVITY_TYPES;
   private disposed = false;
+  private transcript: Promise<TranscriptSegment[] | null> | null = null;
+  readonly conversation = new Store<Conversation>({ turns: [], pending: false, error: null });
 
   constructor(
     readonly videoId: string,
@@ -144,6 +163,52 @@ export class WatchSession {
     }
   }
 
+  /** Opens the question dialog and starts loading the transcript so the first answer is faster. */
+  openAsk(): void {
+    if (this.overlay.get().view === 'ask') return;
+    this.overlay.set({ view: 'ask', conversation: this.conversation });
+    this.deps.pauseVideo();
+    const { turns, pending } = this.conversation.get();
+    if (turns.length > 0 || pending) return;
+    this.loadVideoTranscript().catch((error: unknown) => {
+      if (this.disposed || this.conversation.get().pending) return;
+      const { code, message } = toQuizError(error);
+      this.conversation.set({ ...this.conversation.get(), error: { code, message } });
+    });
+  }
+
+  /** Sends a question with the conversation so far. Resolves false when it was not answered. */
+  async ask(question: string): Promise<boolean> {
+    const text = question.trim();
+    const previous = this.conversation.get();
+    if (!text || previous.pending) return false;
+
+    const turns: ChatTurn[] = [
+      ...previous.turns,
+      { role: 'user', text, atSec: Math.floor(this.deps.currentSec()) },
+    ];
+    this.conversation.set({ turns, pending: true, error: null });
+    try {
+      const { video, segments } = await this.loadVideoTranscript();
+      const response = await this.deps.askQuestion(video, segments, turns);
+      if (!response.ok) throw new QuizError(response.code, response.error);
+      if (!this.disposed) {
+        this.conversation.set({
+          turns: [...turns, { role: 'assistant', text: response.answer }],
+          pending: false,
+          error: null,
+        });
+      }
+      return true;
+    } catch (error) {
+      const { code, message } = toQuizError(error);
+      if (!this.disposed) {
+        this.conversation.set({ turns: previous.turns, pending: false, error: { code, message } });
+      }
+      return false;
+    }
+  }
+
   close(): void {
     this.overlay.set({ view: 'hidden' });
   }
@@ -197,10 +262,7 @@ export class WatchSession {
       if (cached) return cached;
 
       this.setStep('transcript');
-      const segments = await this.deps.loadTranscript(video);
-      if (!segments) {
-        throw new QuizError('no-transcript', 'No transcript is available for this video.');
-      }
+      const segments = await this.loadSegments(video);
       this.setStep('generating');
       const response = await this.deps.generateQuiz(video, segments);
       if (!response.ok) throw new QuizError(response.code, response.error);
@@ -208,6 +270,34 @@ export class WatchSession {
     } finally {
       this.step = null;
     }
+  }
+
+  private async loadVideoTranscript(): Promise<{
+    video: VideoInfo;
+    segments: TranscriptSegment[];
+  }> {
+    const video = this.video ?? (await this.deps.loadVideo(this.videoId));
+    return { video, segments: await this.loadSegments(video) };
+  }
+
+  /** Loads the transcript once per video; activities and questions share it. */
+  private loadSegments(video: VideoInfo): Promise<TranscriptSegment[]> {
+    this.transcript ??= this.deps.loadTranscript(video).then(
+      (segments) => {
+        if (!segments) this.transcript = null;
+        return segments;
+      },
+      (error: unknown) => {
+        this.transcript = null;
+        throw error;
+      },
+    );
+    return this.transcript.then((segments) => {
+      if (!segments) {
+        throw new QuizError('no-transcript', 'No transcript is available for this video.');
+      }
+      return segments;
+    });
   }
 }
 

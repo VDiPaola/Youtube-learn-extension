@@ -4,9 +4,12 @@ import { createShadowRootUi } from 'wxt/utils/content-script-ui/shadow-root';
 import type { CachedActivities } from '@/lib/db';
 import {
   isGetTranscriptMessage,
+  isOpenAskMessage,
   isOpenQuizMessage,
   isQuizStatusMessage,
   isVideoInfoMessage,
+  type AskQuestionMessage,
+  type AskQuestionResponse,
   type GenerateQuizMessage,
   type GenerateQuizResponse,
   type GetTranscriptMessage,
@@ -27,7 +30,7 @@ import {
 } from '@/lib/watch/session';
 import { videoIdFromUrl, type VideoInfo } from '@/lib/youtube/player-response';
 import { Overlay, type OverlayActions } from './Overlay';
-import { LearnButton } from './LearnButton';
+import { AskButton, LearnButton } from './LearnButton';
 import { isAdShowing, loadTranscript, loadVideoInfo, mainVideo, moviePlayer } from './video';
 import '@/components/activities/activities.css';
 import './overlay.css';
@@ -79,6 +82,21 @@ export default defineContentScript({
         };
         return browser.runtime.sendMessage(message) as Promise<GenerateQuizResponse>;
       },
+      askQuestion: (video, segments, turns) => {
+        const message: AskQuestionMessage = {
+          type: 'video:ask',
+          video: {
+            videoId: video.videoId,
+            title: video.title,
+            channelName: video.channelName,
+            durationSec: video.durationSec,
+          },
+          segments,
+          turns,
+        };
+        return browser.runtime.sendMessage(message) as Promise<AskQuestionResponse>;
+      },
+      currentSec: () => mainVideo()?.currentTime ?? 0,
 
       pauseVideo: () => mainVideo()?.pause(),
       onStatus: (value) => status.set(value),
@@ -120,6 +138,7 @@ export default defineContentScript({
         void video.play();
       },
       resume: () => void mainVideo()?.play(),
+      ask: (question) => session?.ask(question) ?? Promise.resolve(false),
       record: (result) => {
         const message: RecordResultMessage = { type: 'activity:record', result };
         void (browser.runtime.sendMessage(message) as Promise<RecordResultResponse>).then(
@@ -140,12 +159,13 @@ export default defineContentScript({
         }
         return;
       }
-      if (isOpenQuizMessage(message)) {
+      if (isOpenQuizMessage(message) || isOpenAskMessage(message)) {
         if (!session) {
           sendResponse({ ok: false, error: 'Open a YouTube video page first.' });
           return;
         }
-        void session.openNow();
+        if (isOpenAskMessage(message)) session.openAsk();
+        else void session.openNow();
         sendResponse({ ok: true });
         return;
       }
@@ -167,7 +187,10 @@ export default defineContentScript({
         <Overlay store={overlay} actions={actions} />
       )),
       mountUi(ctx, 'ytl-learn-button', '#movie_player .ytp-right-controls', 'first', () => (
-        <LearnButton status={status} onOpen={() => void session?.openNow()} />
+        <>
+          <LearnButton status={status} onOpen={() => void session?.openNow()} />
+          <AskButton status={status} onOpen={() => session?.openAsk()} />
+        </>
       )),
     ]);
   },

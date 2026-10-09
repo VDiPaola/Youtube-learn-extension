@@ -82,6 +82,8 @@ beforeEach(() => {
     getCachedQuiz: vi.fn(async () => null),
     loadTranscript: vi.fn(async () => SEGMENTS),
     generateQuiz: vi.fn(async () => ({ ok: true as const, quiz: QUIZ, cached: false })),
+    askQuestion: vi.fn(async () => ({ ok: true as const, answer: 'Because.' })),
+    currentSec: vi.fn(() => 75.6),
     pauseVideo: vi.fn(),
     onStatus: vi.fn(),
     log: vi.fn(),
@@ -290,6 +292,90 @@ describe('WatchSession opening the quiz', () => {
     s.dispose();
     await opening;
     expect(overlay.get().view).toBe('hidden');
+  });
+});
+
+describe('WatchSession questions', () => {
+  it('opens the question dialog, pauses the video, and loads the transcript', async () => {
+    const s = session();
+    s.openAsk();
+    expect(overlay.get()).toEqual({ view: 'ask', conversation: s.conversation });
+    expect(deps.pauseVideo).toHaveBeenCalledOnce();
+    await flush();
+    expect(deps.loadTranscript).toHaveBeenCalledOnce();
+  });
+
+  it('sends the conversation with the playback position and keeps the answers', async () => {
+    const s = session();
+    expect(await s.ask('  Why?  ')).toBe(true);
+    expect(deps.askQuestion).toHaveBeenLastCalledWith(
+      expect.objectContaining({ videoId: 'vid' }),
+      SEGMENTS,
+      [{ role: 'user', text: 'Why?', atSec: 75 }],
+    );
+
+    deps.askQuestion.mockResolvedValueOnce({ ok: true, answer: 'Like this.' });
+    await s.ask('How?');
+    expect(deps.askQuestion.mock.calls[1]![2]).toHaveLength(3);
+    expect(s.conversation.get()).toEqual({
+      turns: [
+        { role: 'user', text: 'Why?', atSec: 75 },
+        { role: 'assistant', text: 'Because.' },
+        { role: 'user', text: 'How?', atSec: 75 },
+        { role: 'assistant', text: 'Like this.' },
+      ],
+      pending: false,
+      error: null,
+    });
+  });
+
+  it('shares one transcript load with activity preparation', async () => {
+    const s = session();
+    s.openAsk();
+    await s.ask('Why?');
+    await s.openNow();
+    expect(deps.loadTranscript).toHaveBeenCalledOnce();
+  });
+
+  it('shows the pending state and ignores questions sent while waiting', async () => {
+    let finish!: (value: { ok: true; answer: string }) => void;
+    deps.askQuestion.mockReturnValueOnce(new Promise((resolve) => (finish = resolve)));
+    const s = session();
+    const asking = s.ask('Why?');
+    await flush();
+    expect(s.conversation.get().pending).toBe(true);
+    expect(await s.ask('Again?')).toBe(false);
+    finish({ ok: true, answer: 'Because.' });
+    await asking;
+    expect(s.conversation.get().turns).toHaveLength(2);
+  });
+
+  it('drops an unanswered question and reports the error', async () => {
+    deps.askQuestion.mockResolvedValueOnce({ ok: false, code: 'auth', error: 'Bad key.' });
+    const s = session();
+    expect(await s.ask('Why?')).toBe(false);
+    expect(s.conversation.get()).toEqual({
+      turns: [],
+      pending: false,
+      error: { code: 'auth', message: 'Bad key.' },
+    });
+    expect(await s.ask('Why?')).toBe(true);
+    expect(s.conversation.get().error).toBeNull();
+  });
+
+  it('reports a missing transcript and retries it on the next question', async () => {
+    deps.loadTranscript.mockResolvedValueOnce(null);
+    const s = session();
+    s.openAsk();
+    await flush();
+    expect(s.conversation.get().error).toEqual({
+      code: 'no-transcript',
+      message: 'No transcript is available for this video.',
+    });
+    expect(deps.askQuestion).not.toHaveBeenCalled();
+
+    expect(await s.ask('Why?')).toBe(true);
+    expect(deps.loadTranscript).toHaveBeenCalledTimes(2);
   });
 });
 

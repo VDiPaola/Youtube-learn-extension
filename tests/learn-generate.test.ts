@@ -40,7 +40,7 @@ const provider = (
     if (result instanceof Error) generate.mockRejectedValueOnce(result);
     else generate.mockResolvedValueOnce(result);
   }
-  return { generate, listModels: vi.fn() };
+  return { generate, chat: vi.fn(), listModels: vi.fn() };
 };
 
 describe('generateActivities', () => {

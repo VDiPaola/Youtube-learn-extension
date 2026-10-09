@@ -9,4 +9,4 @@ export function createProvider(config: ProviderConfig, fetch?: FetchLike): QuizP
     : createOpenAICompatibleProvider(config, fetch);
 }
 
-export type { QuizProvider, QuizRequest } from './types';
+export type { ChatMessage, ChatRequest, QuizProvider, QuizRequest } from './types';

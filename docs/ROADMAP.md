@@ -93,6 +93,17 @@ Each phase ends with working, tested software. Phases 1 and 2 can run in paralle
 
 - Confirm in Edge with your provider: reload the extension over your existing bank, then rename a topic and check that the next video with that subject joins it.
 
+## Ask about the video
+
+Added after Phase 5.
+
+- **Ask** button beside the Learn button, and "Ask about this video" in the popup.
+- Questions answered from the transcript by a coaching prompt, with follow-up questions and clickable timestamps.
+
+**Status:** Implemented. Unit tests cover the prompt, long transcripts, timestamp parsing, both providers, the background service, and the conversation in the watch session. The smoke test opens the dialog from the button and checks focus, keyboard isolation, the error without a transcript, and that the typed question is kept. Remaining:
+
+- Confirm in Edge with your provider: ask a question and a follow-up on a real video.
+
 ## Phase 6: Export and backup
 
 - Spike: compare `.apkg` libraries; confirm bundled `sql.js` WASM works in both builds.
