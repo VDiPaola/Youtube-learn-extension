@@ -262,7 +262,7 @@ export class WatchSession {
       if (cached) return cached;
 
       this.setStep('transcript');
-      const segments = await this.loadSegments(video);
+      const segments = await this.loadSegments();
       this.setStep('generating');
       const response = await this.deps.generateQuiz(video, segments);
       if (!response.ok) throw new QuizError(response.code, response.error);
@@ -277,21 +277,27 @@ export class WatchSession {
     segments: TranscriptSegment[];
   }> {
     const video = this.video ?? (await this.deps.loadVideo(this.videoId));
-    return { video, segments: await this.loadSegments(video) };
+    return { video, segments: await this.loadSegments() };
   }
 
-  /** Loads the transcript once per video; activities and questions share it. */
-  private loadSegments(video: VideoInfo): Promise<TranscriptSegment[]> {
-    this.transcript ??= this.deps.loadTranscript(video).then(
-      (segments) => {
-        if (!segments) this.transcript = null;
-        return segments;
-      },
-      (error: unknown) => {
-        this.transcript = null;
-        throw error;
-      },
-    );
+  /**
+   * Loads the transcript once per video; activities and questions share it. Caption URLs are
+   * signed and expire, so video details are read again instead of reusing those from page load.
+   */
+  private loadSegments(): Promise<TranscriptSegment[]> {
+    this.transcript ??= this.deps
+      .loadVideo(this.videoId)
+      .then((video) => this.deps.loadTranscript(video))
+      .then(
+        (segments) => {
+          if (!segments) this.transcript = null;
+          return segments;
+        },
+        (error: unknown) => {
+          this.transcript = null;
+          throw error;
+        },
+      );
     return this.transcript.then((segments) => {
       if (!segments) {
         throw new QuizError('no-transcript', 'No transcript is available for this video.');

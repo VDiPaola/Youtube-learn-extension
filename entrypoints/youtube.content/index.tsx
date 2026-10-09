@@ -68,7 +68,11 @@ export default defineContentScript({
           type: 'quiz:get-cached',
           videoId,
         }) as Promise<CachedActivities | null>,
-      loadTranscript: async (video) => (await loadTranscript(video)).transcript?.segments ?? null,
+      loadTranscript: async (video) => {
+        const { transcript, attempts } = await loadTranscript(video);
+        if (!transcript) console.warn('[YouTube Learn] Transcript steps:', attempts);
+        return transcript?.segments ?? null;
+      },
       generateQuiz: (video, segments) => {
         const message: GenerateQuizMessage = {
           type: 'quiz:generate',
